@@ -149,6 +149,7 @@
 /* -------------------- */
 
 .submit {
+  cursor: pointer;
   background: var(--accent1);
   border-radius: 5px;
 

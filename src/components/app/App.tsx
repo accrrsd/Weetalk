@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import { ProtectedRoutes } from '../protected-routes/protected-routes'
 
 import Login from '../../pages/login'
+import { RouteMenu } from '../route-menu/route-menu'
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false)
@@ -15,18 +16,21 @@ export default function App() {
   }, [])
 
   return (
-    <Routes>
-      <Route element={<ProtectedRoutes needAuthorized={true} auth={userAuthorized} />}>
-        {/* Изначальный экран - экран гостей */}
-        <Route path="/" />
-        {/* <Route path="/guests" /> */}
-        <Route path="/favorite" />
-        <Route path="/recommendations" />
-        <Route path="/profile" />
-      </Route>
-      <Route element={<ProtectedRoutes needAuthorized={false} auth={userAuthorized} />}>
-        <Route path="/login" element={<Login authorizedFunc={setUserAuthorized} />} />
-      </Route>
-    </Routes>
+    <>
+      {userAuthorized && <RouteMenu />}
+      <Routes>
+        <Route element={<ProtectedRoutes needAuthorized={true} auth={userAuthorized} />}>
+          {/* Изначальный экран - экран гостей */}
+          <Route path="/" />
+          {/* <Route path="/guests" /> */}
+          <Route path="/favorite" />
+          <Route path="/recommendations" />
+          <Route path="/profile" />
+        </Route>
+        <Route element={<ProtectedRoutes needAuthorized={false} auth={userAuthorized} />}>
+          <Route path="/login" element={<Login authorizedFunc={setUserAuthorized} />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
