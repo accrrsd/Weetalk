@@ -1,4 +1,4 @@
-import './App.css'
+import style from './App.module.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ export default function App() {
   }, [])
 
   return (
-    <>
+    <div className={style.page}>
       {userAuthorized && <RouteMenu />}
       <Routes>
         <Route element={<ProtectedRoutes needAuthorized={true} auth={userAuthorized} />}>
@@ -31,6 +31,6 @@ export default function App() {
           <Route path="/login" element={<Login authorizedFunc={setUserAuthorized} />} />
         </Route>
       </Routes>
-    </>
+    </div>
   )
 }

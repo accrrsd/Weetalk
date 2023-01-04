@@ -3,7 +3,7 @@ import style from './login.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import useImagePreview from '../../hooks/useImagePreview'
-import addPhotoRect from '../../images/addPhotoRect.svg'
+// import addPhotoRect from '../../images/addPhotoRect.svg'
 import { SubmitHandler } from 'react-hook-form/dist/types'
 
 type TFormValues = {
@@ -44,7 +44,7 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
                 <label htmlFor="addImage" className={style.imageInput}>
                   <input {...register('image')} type="file" id="addImage" accept="image/*" onChange={handleChange} style={{ display: 'none' }} />
                 </label>
-                <img src={addPhotoRect} alt="" />
+                {/* <img src={addPhotoRect} alt="" /> */}
               </div>
               <p className={style.imageHint}>
                 Выберите фотографию на которой хорошо видно ваше лицо, а если вы сегодня в ударе, то лучше всего сделать селфи

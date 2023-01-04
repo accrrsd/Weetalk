@@ -1,10 +1,15 @@
-import { NavLink, useLocation } from 'react-router-dom'
-import { ReactComponent as GuestsIcon } from '../../images/Guests.svg'
-import { ReactComponent as FavoriteIcon } from '../../images/Favorite.svg'
-import { ReactComponent as TipsIcon } from '../../images/Tips.svg'
-import { ReactComponent as ProfileIcon } from '../../images/Profile.svg'
 import style from './route-menu.module.css'
 import { useEffect, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+
+import { ReactComponent as GuestsIcon } from '../../images/persons.svg'
+import { ReactComponent as GuestsIconSolid } from '../../images/personsSolid.svg'
+import { ReactComponent as FavoriteIcon } from '../../images/star.svg'
+import { ReactComponent as FavoriteIconSolid } from '../../images/starSolid.svg'
+import { ReactComponent as TipsIcon } from '../../images/info.svg'
+import { ReactComponent as TipsIconSolid } from '../../images/infoSolid.svg'
+import { ReactComponent as ProfileIcon } from '../../images/user.svg'
+import { ReactComponent as ProfileIconSolid } from '../../images/userSolid.svg'
 
 export const RouteMenu = () => {
   const [activeLink, setActiveLink] = useState('guests')
@@ -30,29 +35,31 @@ export const RouteMenu = () => {
     }
   }, [location])
 
-  const checkActiveClass = (str: string) => (activeLink === str ? `${style.navLink} ${style.navLinkActive}` : style.navLink)
-
   return (
     <div className={style.wrapper}>
       <ul className={style.menu}>
         <li>
-          <NavLink to="/" className={() => checkActiveClass('guests')}>
-            <GuestsIcon className={style.menuIcon}></GuestsIcon>
+          <NavLink to="/" className={style.navLink}>
+            {activeLink === 'guests' ? <GuestsIconSolid className={style.menuIcon} /> : <GuestsIcon className={style.menuIcon} />}
+            <span className={style.linkText}>Гости</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/favorite" className={() => checkActiveClass('favorite')}>
-            <FavoriteIcon className={style.menuIcon}></FavoriteIcon>
+          <NavLink to="/favorite" className={style.navLink}>
+            {activeLink === 'favorite' ? <FavoriteIconSolid className={style.menuIcon} /> : <FavoriteIcon className={style.menuIcon} />}
+            <span className={style.linkText}>Избранное</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/recommendations" className={() => checkActiveClass('recommendations')}>
-            <TipsIcon className={style.menuIcon}></TipsIcon>
+          <NavLink to="/recommendations" className={style.navLink}>
+            {activeLink === 'recommendations' ? <TipsIconSolid className={style.menuIcon} /> : <TipsIcon className={style.menuIcon} />}
+            <span className={style.linkText}>Советы</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/profile" className={() => checkActiveClass('profile')}>
-            <ProfileIcon className={style.menuIcon}></ProfileIcon>
+          <NavLink to="/profile" className={style.navLink}>
+            {activeLink === 'profile' ? <ProfileIconSolid className={style.menuIcon} /> : <ProfileIcon className={style.menuIcon} />}
+            <span className={style.linkText}>Профиль</span>
           </NavLink>
         </li>
       </ul>
