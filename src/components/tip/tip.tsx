@@ -7,7 +7,7 @@ export const Tip = ({ text, color, tail, additionStyle }: { text: string; additi
   const [popupOffset, setPopupOffset] = useState<null | TTipPopupOffset>(null)
   return (
     <>
-      <div className={style.wrapper} onClick={(e) => setPopupOffset({ top: e.clientY, left: e.clientX })}>
+      <div className={style.wrapper} onClick={(e) => setPopupOffset({ top: e.pageY, left: e.pageX })}>
         <TipIcon className={`${style.tip} ${additionStyle || ''}`} style={{ color }} />
       </div>
       {popupOffset && <TipModal message={text} onClick={() => setPopupOffset(null)} offset={popupOffset} />}

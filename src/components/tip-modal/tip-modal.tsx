@@ -8,18 +8,16 @@ const modalsContainer = document.querySelector('#modals')
 
 export const TipModal = ({ message, onClick, offset }: { message: string; onClick: () => void; offset: TTipPopupOffset }) => {
   const [size, setSize] = useState<number>(0)
-  const [needMoveUp, setNeedMoveUp] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
     if (ref.current) {
       setSize(ref.current.offsetHeight)
-      setNeedMoveUp(offset.top < size + ref.current!.offsetTop)
     }
-  }, [ref, offset.top, size])
+  }, [ref, offset, size])
 
   return createPortal(
     <>
-      <div ref={ref} className={style.wrapper} style={{ top: needMoveUp ? offset.top - size - 20 : offset.top }}>
+      <div ref={ref} className={style.wrapper} style={{ top: offset.top - size - 20 }}>
         <div className={style.content} onClick={(e) => e.stopPropagation()}>
           <span className={style.message}>{message}</span>
           <div className={style.tongue} style={{ left: offset.left - 10 }}></div>
