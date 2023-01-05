@@ -9,7 +9,7 @@
 }
 
 .menu {
-  background-color: var(--main1);
+  background-color: var(--main2);
   list-style: none;
   display: flex;
   margin: 0;
@@ -27,11 +27,11 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--service1);
+  color: var(--main1);
 }
 
 .menuIcon {
-  color: var(--service1);
+  color: var(--main1);
   height: 24px;
 }
 
