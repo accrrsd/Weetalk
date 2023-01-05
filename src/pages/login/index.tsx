@@ -1,87 +1,80 @@
 import style from './login.module.css'
 
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
-import useImagePreview from '../../hooks/useImagePreview'
-import addPhotoRect from '../../images/addPhotoRect.svg'
 import { SubmitHandler } from 'react-hook-form/dist/types'
+import { AddPhoto } from '../../components/addPhoto/addPhoto'
+import { Tip } from '../../components/tip/tip'
+import { checkError } from '../../utils/functions'
 
 type TFormValues = {
-  image: File
+  photo: File
   name: string
   about: string
-  purpose: string
+  work: string
 }
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
-  const [imageFile, setImageFile] = useState<File | null>(null)
-  const { register, handleSubmit } = useForm<TFormValues>()
-
-  const previewSrc = useImagePreview(imageFile)
+  const formHook = useForm<TFormValues>({ mode: 'all' })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = formHook
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    // Тут нужно будет хранить какую-то ссылку на получение данных с БД
     localStorage.setItem('userData', data.name)
     authorizedFunc(true)
   }
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const files = e.target.files
-    if (!files || !files.item(0)) return
-    setImageFile(files.item(0))
-  }
-
-  const titleText = 'Добавьте Ваше фото :)'
-
   return (
     <div className={style.wrapper}>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-        {!previewSrc && <h2 className={style.title}>{titleText}</h2>}
-        <div className={style.imageWrapper}>
-          {!previewSrc ? (
-            <>
-              <div className={style.imageInputWrapper}>
-                <label htmlFor="addImage" className={style.imageInput}>
-                  <input {...register('image')} type="file" id="addImage" accept="image/*" onChange={handleChange} style={{ display: 'none' }} />
-                </label>
-                <img src={addPhotoRect} alt="" />
-              </div>
-              <p className={style.imageHint}>
-                Выберите фотографию на которой хорошо видно ваше лицо, а если вы сегодня в ударе, то лучше всего сделать селфи
-              </p>
-            </>
-          ) : (
-            <div className={style.imageReadyWrapper}>
-              <img src={previewSrc} alt="" className={style.previewImage} />
-              <label htmlFor="replaceImage" className={style.replaceImageInput}>
-                <span>Заменить фотографию</span>
-                <input {...register('image')} type="file" id="replaceImage" accept="image/*" onChange={handleChange} style={{ display: 'none' }} />
-              </label>
-            </div>
-          )}
+        <p className={style.photoTitle}>
+          Выберите фотографию на которой хорошо видно ваше лицо, а если вы сегодня в ударе, то лучше всего сделать селфи
+        </p>
+        <AddPhoto formHook={formHook} inputName="photo" />
+        <div className={style.infoQuestionWrapper}>
+          <span className={style.infoQuestion}>
+            Как Вас зовут? <Tip color="black" text={'Напишите здесь ваши настоящие имя и фамилию, пожалуйста'} />
+          </span>
+          <input
+            {...register('name', { required: 'Поле обязательно к заполнению' })}
+            type="text"
+            className={`${style.infoInput} ${checkError('name', errors) && style.errorInput}`}
+            placeholder="Сергей Фадеев"
+          />
+          {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
         </div>
-        <div className={style.infoWrapper}>
-          <div className={style.infoQuestionWrapper}>
-            <span className={style.infoQuestion}>Как Вас зовут?</span>
-            <input {...register('name')} type="text" className={style.infoInput} placeholder="Например: Вася Пупкин" required />
-          </div>
-          <div className={style.bottomInfoWrapper}>
-            <div className={style.infoQuestionWrapper}>
-              <span className={style.infoQuestion}>Расскажите о себе</span>
-              <textarea
-                {...register('about')}
-                className={style.infoInput}
-                placeholder="Я очень люблю рассказывать о себе и заполнять информацию"
-                required
-              />
-            </div>
-            <div className={style.infoQuestionWrapper}>
-              <span className={style.infoQuestion}>Почему Вы пришли сюда</span>
-              <textarea {...register('purpose')} className={style.infoInput} placeholder="Я хочу пожать руку людям выше меня 10 раз" required />
-            </div>
-          </div>
+        <div className={style.infoQuestionWrapper}>
+          <span className={style.infoQuestion}>
+            Расскажите о себе
+            <Tip
+              color="black"
+              text={
+                'Расскажите здесь не только где вы работаете и кто вы по профессии, но и про ваши интересы, хобби, добавьте интересный факт о себе.'
+              }
+            />
+          </span>
+          <textarea
+            {...register('about', { required: 'Поле обязательно к заполнению' })}
+            className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) && style.errorInput}`}
+            placeholder="Стратегический консультант в weetalk, мой любимый режиссер Джим Джармуш, а в свободное время я очень люблю рассказывать о себе и заполнять информацию"
+          />
+          {checkError('about', errors) && <span className={style.errorMessage}>{checkError('about', errors)}</span>}
         </div>
-        <input type="submit" className={style.submit} />
+        <div className={style.infoQuestionWrapper}>
+          <span className={style.infoQuestion}>
+            Кем работаете? <Tip color="black" text={'Это важно написать, так можно увеличить количество интересных знакомств'} />
+          </span>
+          <input
+            {...register('work', { required: 'Поле обязательно к заполнению' })}
+            type="text"
+            className={`${style.infoInput} ${checkError('work', errors) && style.errorInput}`}
+            placeholder="Руководитель тестирования"
+          />
+          {checkError('work', errors) && <span className={style.errorMessage}>{checkError('work', errors)}</span>}
+        </div>
+        <input type="submit" className={style.submit} value="Найти новых людей" />
       </form>
     </div>
   )

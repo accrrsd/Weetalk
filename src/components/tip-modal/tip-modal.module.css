@@ -1,0 +1,26 @@
+.wrapper {
+  position: absolute;
+  color: var(--main1);
+  z-index: 1001;
+  font-size: 16px;
+  line-height: 22px;
+  left: 0;
+  right: 0;
+}
+
+.content {
+  position: relative;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: var(--main2);
+}
+
+.tongue {
+  position: absolute;
+  bottom: -15px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: var(--main2) transparent transparent transparent;
+}
