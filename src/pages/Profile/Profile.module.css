@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 16px;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.burgerMenu {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.submit {
+  background-color: var(--main1);
+  color: var(--main2);
+  border: 1px solid var(--main2);
+  border-radius: 8px;
+}

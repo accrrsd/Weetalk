@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  background-color: var(--service3);
+  width: 164px;
+  height: 164px;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.imageInput {
+  position: absolute;
+  background-color: var(--main1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px var(--main2) solid;
+  bottom: -1px;
+  right: -1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageInputRect {
+  color: var(--main2);
+}
+
+.error {
+  color: var(--accent1);
+  margin-top: 13px;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 14px;
+}

@@ -1,0 +1,65 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17.5px;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.errorMessage {
+  color: var(--accent1);
+  margin-top: 13px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 14px;
+}
+
+.errorInput {
+  outline: 1px solid var(--accent1);
+}
+
+.infoQuestionWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  font-size: 15px;
+  line-height: 21px;
+  gap: 5.5px;
+}
+
+.infoQuestion {
+  color: var(--service2);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.infoInput {
+  background-color: var(--service3);
+  border-radius: 4px;
+  border: none;
+  padding: 8px 12px;
+}
+
+.infoInput:focus {
+  outline: 1px solid var(--main2);
+}
+
+.infoInput::placeholder {
+  color: var(--service4);
+}
+
+.textareaInput {
+  min-height: 80px;
+}
+
+.submit {
+  background-color: var(--main2);
+  padding: 12px 91px;
+  margin-top: 75px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  color: var(--main1);
+}
