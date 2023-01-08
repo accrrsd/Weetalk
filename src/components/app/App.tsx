@@ -8,6 +8,7 @@ import Login from '../../pages/login';
 import { RouteMenu } from '../route-menu/route-menu';
 import Profile from '../../pages/Profile';
 import Main from '../../pages/main';
+import Welcome from '../../pages/welcome';
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false);
@@ -26,8 +27,7 @@ export default function App() {
           }
         >
           {/* Изначальный экран - экран гостей */}
-          <Route path="/" />
-          {/* <Route path="/guests" /> */}
+          <Route path="/" element={<Welcome />} />
           <Route path="/guests" element={<Main />} />
           <Route path="/favorite" />
           <Route path="/recommendations" />
@@ -44,7 +44,7 @@ export default function App() {
           />
         </Route>
       </Routes>
-      {userAuthorized && <RouteMenu />}
+      {!userAuthorized && <RouteMenu />}
     </div>
   );
 }

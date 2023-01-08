@@ -1,18 +1,18 @@
 .card {
     position: relative;
-    color: #1E1E24;
+    color: var(--black1);
 }
 
 .cardRow {
     position: relative;
     border: 1px solid #736CED;
-    color: #1E1E24;
+    color: var(--black1);
     border-radius: 12px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px 0;
-    background: #F5F5FD;
+    background: var(--service3);
 }
 
 .cardPhoto {
@@ -62,7 +62,7 @@
     font-weight: 600;
     font-size: 16px;
     letter-spacing: -0.003em;
-    color: #1E1E24;
+    color: var(--black1);
 }
 
 .cardTitleRow {
@@ -73,7 +73,7 @@
 }
 
 .cardAbout {
-    color: #7B7B7B;
+    color: var(--service2);
     margin: 0;
     font-weight: 500;
     font-size: 15px;
@@ -86,7 +86,7 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
-    color: #7B7B7B;
+    color: var(--service2);
 }
 
 .heart {
@@ -107,7 +107,7 @@
 .cardDotRow {
     min-width: 8px;
     height: 8px;
-    background: #7B7B7B;
+    background: var(--service2);
     border-radius: 50%;
 }
 

@@ -1,5 +1,6 @@
 @import url(./utils/variables.css);
 @import url(./vendor/fonts/fonts.css);
+@import url('./pages/welcome/welcome-slider.css');
 /* Возможно стоит подключить файл нормализации или обнуляющий */
 
 body {

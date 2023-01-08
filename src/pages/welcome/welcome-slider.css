@@ -1,0 +1,32 @@
+/*.swiper-pagination-bullet {
+    width: 64px !important;
+    height: 2px;
+    background: #736CED;
+    border-radius: 2px;
+}*/
+
+.welcome-pagination {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 2px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.welcome-pagination .swiper-pagination-bullet {
+    display: block;
+    background: var(--main3);
+    border-radius: 2px;
+    height: 2px;
+    width: 64px;
+}
+
+.welcome-slider .swiper-pagination-bullet-active {
+    background-color: var(--main2);
+}
+
+.welcome-slider .swiper {
+    height: 100%;
+}
