@@ -10,10 +10,13 @@ import { checkError } from '../../utils/functions'
 type TAddPhoto = {
   formHook: UseFormReturn<any, object>
   inputName?: string
+  onChange?: Function
+  onChangeStyle?: string
 }
 
-export const AddPhoto = ({ formHook, inputName = 'photo' }: TAddPhoto) => {
+export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyle }: TAddPhoto) => {
   const [imageFile, setImageFile] = useState<File | null>(null)
+  const [photoChanged, setPhotoChanged] = useState(false)
   const previewSrc = useImagePreview(imageFile)
 
   const {
@@ -26,6 +29,16 @@ export const AddPhoto = ({ formHook, inputName = 'photo' }: TAddPhoto) => {
     imageFile !== null && clearErrors(inputName)
   }, [imageFile, clearErrors, inputName])
 
+  useEffect(() => {
+    if (previewSrc) setPhotoChanged(true)
+  }, [previewSrc])
+
+  useEffect(() => {
+    if (photoChanged && onChange) {
+      onChange()
+    }
+  }, [photoChanged, onChange])
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const files = e.target.files
     if (!files || !files.item(0)) return
@@ -33,7 +46,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo' }: TAddPhoto) => {
   }
   return (
     <div className={style.wrapper}>
-      <div className={style.image} style={{ backgroundImage: `url(${previewSrc})` }}>
+      <div className={`${style.image} ${photoChanged && onChangeStyle ? onChangeStyle : ''}`} style={{ backgroundImage: `url(${previewSrc})` }}>
         {!previewSrc && <ImageRect />}
         <label htmlFor="addImage" className={style.imageInput}>
           <AddPhotoPlusRect className={style.imageInputRect} />

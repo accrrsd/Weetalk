@@ -7,10 +7,14 @@ import { Tip } from '../tip/tip'
 
 export const UserInformation = ({
   onSubmit,
+  onPhotoChange,
+  onPhotoChangeStyle,
   submitText = 'Отправить',
   submitButtonStyle,
 }: {
   onSubmit: (data: TFormValues) => void
+  onPhotoChange?: Function
+  onPhotoChangeStyle?: string
   submitText?: string
   submitButtonStyle?: string
 }) => {
@@ -27,15 +31,15 @@ export const UserInformation = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto formHook={formHook} inputName="photo" />
+      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Как Вас зовут? <Tip color="black" text={'Напишите здесь ваши настоящие имя и фамилию, пожалуйста'} />
+          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} />
         </span>
         <input
-          {...register('name', { required: 'Поле обязательно к заполнению' })}
+          {...register('name', { required: 'Поле обязательное для заполнения' })}
           type="text"
-          className={`${style.infoInput} ${checkError('name', errors) && style.errorInput}`}
+          className={`${style.infoInput} ${checkError('name', errors) ? style.errorInput : ''}`}
           placeholder="Сергей Фадеев"
         />
         {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
@@ -43,30 +47,33 @@ export const UserInformation = ({
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Расскажите о себе
-          <Tip
-            color="black"
-            text={
-              'Расскажите здесь не только где вы работаете и кто вы по профессии, но и про ваши интересы, хобби, добавьте интересный факт о себе.'
-            }
-          />
+          Расскажи о себе
+          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} />
         </span>
         <textarea
-          {...register('about', { required: 'Поле обязательно к заполнению' })}
-          className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) && style.errorInput}`}
-          placeholder="Стратегический консультант в weetalk, мой любимый режиссер Джим Джармуш, а в свободное время я очень люблю рассказывать о себе и заполнять информацию"
+          maxLength={250}
+          {...register('about', {
+            required: 'Поле обязательное для заполнения',
+            minLength: { value: 100, message: 'Напиши о себе минимум 100 символов' },
+          })}
+          className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) ? style.errorInput : ''}`}
+          placeholder="Стратегический консультант в Constanta, стартапер, продакт. Мой любимый режиссер - Джим Джармуш, в свободное время играю в MOBA игры"
         />
-        {checkError('about', errors) && <span className={style.errorMessage}>{checkError('about', errors)}</span>}
+        {checkError('about', errors) ? (
+          <span className={style.errorMessage}>{checkError('about', errors)}</span>
+        ) : (
+          <span className={style.symbolLimitMessage}>Максимум 250 символов</span>
+        )}
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Кем работаете? <Tip color="black" text={'Это важно написать, так можно увеличить количество интересных знакомств'} />
+          Кем работаешь? <Tip color="black" text={'Укажи свое место работы или специальность'} />
         </span>
         <input
-          {...register('work', { required: 'Поле обязательно к заполнению' })}
+          {...register('work', { required: 'Поле обязательное для заполнения' })}
           type="text"
-          className={`${style.infoInput} ${checkError('work', errors) && style.errorInput}`}
+          className={`${style.infoInput} ${checkError('work', errors) ? style.errorInput : ''}`}
           placeholder="Руководитель тестирования"
         />
         {checkError('work', errors) && <span className={style.errorMessage}>{checkError('work', errors)}</span>}

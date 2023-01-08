@@ -12,3 +12,8 @@
   font-size: 16px;
   line-height: 22px;
 }
+
+.biggerPhoto {
+  width: 256px !important;
+  height: 256px !important;
+}

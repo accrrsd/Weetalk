@@ -1,7 +1,10 @@
-import { UserInformation } from '../../components/user-information/user-information'
 import style from './login.module.css'
+import { useState } from 'react'
+import { UserInformation } from '../../components/user-information/user-information'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
+  const [photoChanged, setPhotoChanged] = useState(false)
+  const onPhotoChange = () => setPhotoChanged(true)
   const onSubmit = () => {
     localStorage.setItem('userData', '1234')
     authorizedFunc(true)
@@ -9,10 +12,12 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
 
   return (
     <div className={style.wrapper}>
-      <p className={style.photoTitle}>
-        Выберите фотографию на которой хорошо видно ваше лицо, а если вы сегодня в ударе, то лучше всего сделать селфи
-      </p>
-      <UserInformation onSubmit={onSubmit} submitText="Найти новых людей" />
+      {!photoChanged && (
+        <p className={style.photoTitle}>
+          Выбери фотографию или сделай селфи. Важно чтобы лицо было хорошо видно — так тебя будет проще найти среди гостей
+        </p>
+      )}
+      <UserInformation onSubmit={onSubmit} submitText="Создать карточку" onPhotoChange={onPhotoChange} onPhotoChangeStyle={style.biggerPhoto} />
     </div>
   )
 }

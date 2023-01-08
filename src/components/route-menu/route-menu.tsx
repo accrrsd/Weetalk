@@ -18,7 +18,7 @@ export const RouteMenu = () => {
   useEffect(() => {
     const path = location.pathname
     switch (path) {
-      case '/':
+      case '/guests':
         setActiveLink('guests')
         break
       case '/favorite':
@@ -39,9 +39,9 @@ export const RouteMenu = () => {
     <div className={style.wrapper}>
       <ul className={style.menu}>
         <li>
-          <NavLink to="/" className={style.navLink}>
+          <NavLink to="/guests" className={style.navLink}>
             {activeLink === 'guests' ? <GuestsIconSolid className={style.menuIcon} /> : <GuestsIcon className={style.menuIcon} />}
-            <span className={style.linkText}>Гости</span>
+            <span className={style.linkText}>Люди</span>
           </NavLink>
         </li>
         <li>

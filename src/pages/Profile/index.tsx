@@ -10,7 +10,7 @@ export default function Profile() {
         <span className={style.titleText}>Профиль</span>
         <BurgerMenuSvg className={style.burgerMenu} />
       </h2>
-      <UserInformation onSubmit={onSubmit} submitText={'Сохранить'} submitButtonStyle={style.submit} />
+      <UserInformation onSubmit={onSubmit} submitText={'Обновить'} submitButtonStyle={style.submit} />
     </div>
   )
 }

@@ -1,16 +1,16 @@
 :root {
   --main1: #fff;
   --main2: #7e7ee7;
-  --main3: #D9D9F8;
+  --main3: #d9d9f8;
 
   --accent1: #e43642;
   --accent2: #26878d;
   --accent3: #1a78ae;
 
   --service1: #ffffff;
-  --service2: #7b7b7b;
+  --service2: #696969;
   --service3: #f5f5fd;
   --service4: #c7c7c7;
 
-  --black1: #1E1E24;
+  --black1: #1e1e24;
 }

@@ -4,6 +4,8 @@
   align-items: center;
   gap: 17.5px;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  /* max-width: 344px; */
 }
 
 .errorMessage {
@@ -16,6 +18,13 @@
 
 .errorInput {
   outline: 1px solid var(--accent1);
+}
+
+.symbolLimitMessage {
+  font-size: 15px;
+  line-height: 14px;
+  color: var(--service2);
+  margin-left: 12px;
 }
 
 .infoQuestionWrapper {
@@ -33,9 +42,11 @@
   display: flex;
   gap: 10px;
   align-items: baseline;
+  margin-left: 12px;
 }
 
 .infoInput {
+  font-family: inherit;
   background-color: var(--service3);
   border-radius: 4px;
   border: none;
@@ -43,11 +54,13 @@
 }
 
 .infoInput:focus {
+  font-family: inherit;
   outline: 1px solid var(--main2);
 }
 
 .infoInput::placeholder {
   color: var(--service4);
+  font-family: inherit;
 }
 
 .textareaInput {
@@ -62,4 +75,5 @@
   border: none;
   border-radius: 8px;
   color: var(--main1);
+  font-family: inherit;
 }
