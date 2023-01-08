@@ -38,7 +38,8 @@
 .rowHeading {
     display: flex;
     align-items: center;
-    gap: 0 12px;
+    /*gap: 0 12px;*/
+    justify-content: space-between;
 }
 
 .cardInfo {
@@ -78,7 +79,6 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
-    white-space: nowrap;
 }
 
 .cardAboutRow {
@@ -87,6 +87,7 @@
     font-size: 15px;
     line-height: 18px;
     color: var(--service2);
+    text-align: right;
 }
 
 .heart {
@@ -113,4 +114,22 @@
 
 .cardRowPicture {
     position: relative;
+}
+
+.closeBtn {
+    width: 24px;
+    height: 24px;
+    background-image: url("../../images/close-card.svg");
+    outline: none;
+    border: none;
+    background-position: center;
+    position: absolute;
+    padding: 0;
+    top: 12px;
+    left: 12px;
+    background-color: transparent;
+}
+
+.cardRowPopup {
+    padding: 42px 32px 32px;
 }

@@ -8,6 +8,10 @@ function Card({
   isLiked,
   columns,
   text,
+  card,
+  onCardClick,
+  isPopup,
+  onClose,
 }: {
   title: string;
   about: string;
@@ -15,7 +19,14 @@ function Card({
   isLiked: boolean;
   columns?: number;
   text: string;
+  card: object;
+  onCardClick: (e: object) => void;
+  isPopup?: boolean;
+  onClose?: () => void;
 }) {
+  const handleClick = () => {
+    onCardClick(card);
+  };
   return (
     <>
       {columns === 2 ? (
@@ -25,14 +36,26 @@ function Card({
               isLiked ? style.heart + ' ' + style.heartLiked : style.heart
             }
           ></button>
-          <img className={style.cardPhoto} src={photo} alt={title} />
+          <img
+            className={style.cardPhoto}
+            src={photo}
+            alt={title}
+            onClick={handleClick}
+          />
           <div className={style.cardInfo}>
             <h2 className={style.cardTitle}>{title}</h2>
             <p className={style.cardAbout}>{about}</p>
           </div>
         </div>
       ) : (
-        <div className={style.cardRow}>
+        <div
+          className={
+            isPopup ? style.cardRow + ' ' + style.cardRowPopup : style.cardRow
+          }
+        >
+          {isPopup && (
+            <button className={style.closeBtn} onClick={onClose}></button>
+          )}
           <picture className={style.cardRowPicture}>
             <img className={style.cardPhotoRow} src={photo} alt={title} />
             <button
