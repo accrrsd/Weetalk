@@ -7,16 +7,8 @@
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.burgerMenu {
-  display: inline-block;
-  vertical-align: middle;
+.titleWrapper {
+  margin-bottom: 16px;
 }
 
 .submit {

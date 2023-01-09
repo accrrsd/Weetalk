@@ -1,15 +1,12 @@
 import style from './Profile.module.css'
 
-import { ReactComponent as BurgerMenuSvg } from '../../images/burgerMenu.svg'
 import { UserInformation } from '../../components/user-information/user-information'
+import { TitleSmart } from '../../components/title-smart/title-smart'
 export default function Profile() {
   const onSubmit = () => {}
   return (
     <div className={style.wrapper}>
-      <h2 className={style.title}>
-        <span className={style.titleText}>Профиль</span>
-        <BurgerMenuSvg className={style.burgerMenu} />
-      </h2>
+      <TitleSmart text="Профиль" wrapperStyle={style.titleWrapper} />
       <UserInformation onSubmit={onSubmit} submitText={'Обновить'} submitButtonStyle={style.submit} />
     </div>
   )
