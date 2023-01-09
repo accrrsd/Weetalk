@@ -1,135 +1,135 @@
 .card {
-    position: relative;
-    color: var(--black1);
+  position: relative;
+  color: var(--black1);
 }
 
 .cardRow {
-    position: relative;
-    border: 1px solid #736CED;
-    color: var(--black1);
-    border-radius: 12px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px 0;
-    background: var(--service3);
+  position: relative;
+  border: 1px solid #736ced;
+  color: var(--black1);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px 0;
+  background: var(--service3);
 }
 
 .cardPhoto {
-    width: 100%;
-    object-fit: contain;
-    vertical-align: middle;
-    border-radius: 15px 15px 0 0;
+  width: 100%;
+  object-fit: contain;
+  vertical-align: middle;
+  border-radius: 15px 15px 0 0;
 }
 
 .cardPhotoRow {
-    width: 100%;
-    max-height: 306px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+  width: 100%;
+  max-height: 306px;
+  object-fit: contain;
+  border-radius: 8px 8px 0 0;
 }
 
 .text {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
 }
 
 .rowHeading {
-    display: flex;
-    align-items: center;
-    gap: 0 12px;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 0 12px;
+  flex-wrap: wrap;
 }
 
 .cardInfo {
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px 0;
-    background: #D9D9F8;
-    border-radius: 0 0 12px 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px 0;
+  background: #d9d9f8;
+  border-radius: 0 0 12px 12px;
 }
 
 .cardInfoRow {
-    display: flex;
-    flex-direction: column;
-    gap: 9px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px 0;
 }
 
 .cardTitle {
-    align-self: stretch;
-    margin: 0;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.003em;
-    color: var(--black1);
+  align-self: stretch;
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.003em;
+  color: var(--black1);
 }
 
 .cardTitleRow {
-    margin: 0;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.003em;
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.003em;
 }
 
 .cardAbout {
-    color: var(--service2);
-    margin: 0;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
+  color: var(--service2);
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
 }
 
 .cardAboutRow {
-    margin: 0;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
-    color: var(--service2);
-    text-align: right;
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--service2);
+  text-align: right;
 }
 
 .heart {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border: none;
-    background-color: transparent;
-    top: 12px;
-    right: 12px;
-    background-image: url("../../images/heart.svg");
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  top: 12px;
+  right: 12px;
+  background-image: url('../../images/heart.svg');
 }
 
 .heartLiked {
-    background-image: url("../../images/heartLiked.svg");
+  background-image: url('../../images/heartLiked.svg');
 }
 
 .cardDotRow {
-    min-width: 8px;
-    height: 8px;
-    background: var(--service2);
-    border-radius: 50%;
+  min-width: 8px;
+  height: 8px;
+  background: var(--service2);
+  border-radius: 50%;
 }
 
 .cardRowPicture {
-    position: relative;
+  position: relative;
 }
 
 .closeBtn {
-    width: 24px;
-    height: 24px;
-    background-image: url("../../images/close-card.svg");
-    outline: none;
-    border: none;
-    background-position: center;
-    position: absolute;
-    padding: 0;
-    top: 12px;
-    left: 12px;
-    background-color: transparent;
+  width: 24px;
+  height: 24px;
+  background-image: url('../../images/close-card.svg');
+  outline: none;
+  border: none;
+  background-position: center;
+  position: absolute;
+  padding: 0;
+  top: 12px;
+  left: 12px;
+  background-color: transparent;
 }
 
 .cardRowPopup {
-    padding: 42px 32px 32px;
+  padding: 42px 32px 32px;
 }

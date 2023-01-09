@@ -18,7 +18,7 @@ export const Tip = ({
   const tongueDirection = modalDirection === 'down' ? 'top' : 'bottom'
   return (
     <>
-      <div className={style.wrapper} onClick={(e) => setPopupOffset({ top: e.pageY, left: e.pageX })}>
+      <div className={style.wrapper} onClick={(e) => setPopupOffset({ top: e.pageY, left: e.pageX - 10 })}>
         <TipIcon className={`${style.tip} ${additionStyle || ''}`} style={{ color }} />
       </div>
       {popupOffset && <TipModal message={text} onClick={() => setPopupOffset(null)} offset={popupOffset} tongue={tongueDirection} />}
