@@ -1,16 +1,20 @@
 import { Outlet, Navigate, useLocation } from 'react-router-dom'
 
-export const ProtectedRoutes = ({ needAuthorized = false, auth = false, redirect = '/login' }) => {
+type TProtectedRoute = {
+  needCondition: boolean
+  condition: boolean
+  redirect?: string | number
+}
+
+export const ProtectedRoutes = ({ needCondition = false, condition = false, redirect = -1 }: TProtectedRoute) => {
   const location = useLocation()
-  if (auth && !needAuthorized) {
-    // Если пользователь авторизован, а не должен, возвращаем на предыдущую страницу
+  // Если условие выполняется, а не должно, или условие не выполняется, а должно редирект
+  if (condition !== needCondition) {
     //@ts-ignore:next-line
-    return <Navigate to={-1} />
-  } else if (!auth && needAuthorized) {
-    // Если пользователь не авторизован, а должен, переадресуем на логин с передачей локации
     return <Navigate to={redirect} state={{ from: location }} />
-  } else {
-    // Если все хорошо, возвращаем результат роутинга
+  }
+  // Если все хорошо, возвращаем результат роутинга
+  else {
     return <Outlet />
   }
 }
