@@ -34,7 +34,7 @@ export const UserInformation = ({
       <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} />
+          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />
         </span>
         <input
           {...register('name', { required: 'Поле обязательное для заполнения' })}
@@ -48,7 +48,7 @@ export const UserInformation = ({
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Расскажи о себе
-          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} />
+          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} modalDirection="down" />
         </span>
         <textarea
           maxLength={250}

@@ -6,7 +6,17 @@ import style from './tip-modal.module.css'
 
 const modalsContainer = document.querySelector('#modals')
 
-export const TipModal = ({ message, onClick, offset }: { message: string; onClick: () => void; offset: TTipPopupOffset }) => {
+export const TipModal = ({
+  message,
+  onClick,
+  offset,
+  tongue = 'bottom',
+}: {
+  message: string
+  onClick: () => void
+  offset: TTipPopupOffset
+  tongue?: 'top' | 'bottom'
+}) => {
   const [size, setSize] = useState<number>(0)
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
@@ -17,10 +27,10 @@ export const TipModal = ({ message, onClick, offset }: { message: string; onClic
 
   return createPortal(
     <>
-      <div ref={ref} className={style.wrapper} style={{ top: offset.top - size - 20 }}>
+      <div ref={ref} className={style.wrapper} style={tongue === 'bottom' ? { top: offset.top - size - 20 } : { top: offset.top + 20 }}>
         <div className={style.content} onClick={(e) => e.stopPropagation()}>
           <span className={style.message}>{message}</span>
-          <div className={style.tongue} style={{ left: offset.left - 10 }}></div>
+          <div className={`${style.tongue} ${tongue === 'bottom' ? style.tongueDown : style.tongueUp}`} style={{ left: offset.left - 10 }}></div>
         </div>
       </div>
       <ModalOverlay onClick={onClick} />

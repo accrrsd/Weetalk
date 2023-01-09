@@ -18,10 +18,17 @@
 
 .tongue {
   position: absolute;
-  bottom: -15px;
   width: 0;
   height: 0;
   border-style: solid;
+}
+.tongueDown {
+  bottom: -15px;
   border-width: 15px 10px 0 10px;
   border-color: var(--main2) transparent transparent transparent;
+}
+.tongueUp {
+  top: -15px;
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent var(--main2) transparent;
 }
