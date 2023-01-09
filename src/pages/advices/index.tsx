@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from './advices.module.css';
+import { TitleSmart } from '../../components/title-smart/title-smart';
 function Index() {
   return (
     <div className={styles.advices}>
-      <h1 className={styles.heading}>Как начать общение?</h1>
+      <TitleSmart
+        text="Как начать общение?"
+        haveButton={false}
+        textStyle={styles.heading}
+        wrapperStyle={styles.headingWrapper}
+      />
       <ul className={styles.list}>
         <li className={styles.element}>
           <h2 className={styles.elementTitle}>Шаг 1.</h2>

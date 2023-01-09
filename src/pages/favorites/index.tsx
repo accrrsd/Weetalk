@@ -1,28 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import CardWrapper from '../../components/card-wrapper/card-wrapper'
-import photo from '../../images/test-photo-1.png'
-import photo2 from '../../images/test-photo-2.png'
-import emptyPhoto from '../../images/fav-test.png'
-import style from '../../components/card-wrapper/card-wrapper.module.css'
-import Card from '../../components/card/card'
-import { TipModal } from '../../components/tip-modal/tip-modal'
-import { TTipPopupOffset } from '../../utils/types'
+import React, { useEffect, useState } from 'react';
+import CardWrapper from '../../components/card-wrapper/card-wrapper';
+import photo from '../../images/test-photo-1.png';
+import photo2 from '../../images/test-photo-2.png';
+import emptyPhoto from '../../images/fav-test.png';
+import style from '../../components/card-wrapper/card-wrapper.module.css';
+import Card from '../../components/card/card';
+import { TipModal } from '../../components/tip-modal/tip-modal';
+import { TTipPopupOffset } from '../../utils/types';
 
-import favoritesStyle from './favorites.module.css'
+import favoritesStyle from './favorites.module.css';
+import styles from '../advices/advices.module.css';
+import { TitleSmart } from '../../components/title-smart/title-smart';
 
 function Favorites() {
-  const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null)
+  const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null);
 
   useEffect(() => {
-    const HeartElem = document.querySelector('.card_heart__zgeMe') as HTMLButtonElement
+    const HeartElem = document.querySelector(
+      '.card_heart__zgeMe',
+    ) as HTMLButtonElement;
     if (HeartElem) {
       // const top = HeartElem.offsetTop
       // const left = HeartElem.offsetLeft
-      const { top, left } = HeartElem.getBoundingClientRect()
-      setHeartCords({ top, left })
+      const { top, left } = HeartElem.getBoundingClientRect();
+      setHeartCords({ top, left });
     }
-  }, [])
-  const tipMessage = 'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку'
+  }, []);
+  const tipMessage =
+    'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';
 
   const cards: any = [
     /*    {
@@ -53,13 +58,17 @@ function Favorites() {
       isLiked: true,
       text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
     },*/
-  ]
+  ];
   return cards.length === 0 ? (
     <div className={style.wrapper}>
-      <div className={style.heading} style={{ marginBottom: 100 }}>
-        <h1 className={style.title}>Избранное</h1>
-        <button className={style.button + ' ' + style.buttonOneColumn}></button>
-      </div>
+      <TitleSmart
+        text="Избранное"
+        haveButton={true}
+        buttonStyle={style.button + ' ' + style.buttonOneColumn}
+        textStyle={style.title}
+        wrapperStyle={style.heading}
+      />
+      <div style={{ height: '100px' }}></div>
       <Card
         title="Евгений Александров"
         about="Дизайнер в Gradient"
@@ -69,11 +78,18 @@ function Favorites() {
         card={{}}
         onCardClick={() => {}}
       />
-      {heartCords && <TipModal message={tipMessage} offset={heartCords} onClick={() => {}} overlayAdditionStyle={favoritesStyle.TipAdditionStyle} />}
+      {heartCords && (
+        <TipModal
+          message={tipMessage}
+          offset={heartCords}
+          onClick={() => {}}
+          overlayAdditionStyle={favoritesStyle.TipAdditionStyle}
+        />
+      )}
     </div>
   ) : (
     <CardWrapper title="Избранное" array={cards} />
-  )
+  );
 }
 
-export default Favorites
+export default Favorites;

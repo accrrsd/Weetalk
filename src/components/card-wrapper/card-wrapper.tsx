@@ -1,8 +1,9 @@
 import style from './card-wrapper.module.css';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../../components/card/card';
 import CardModal from '../../components/card-modal/card-modal';
+import { TitleSmart } from '../title-smart/title-smart';
 
 export default function CardWrapper({
   array,
@@ -45,17 +46,18 @@ export default function CardWrapper({
   return (
     <>
       <div className={style.wrapper}>
-        <div className={style.heading}>
-          <h1 className={style.title}>{title}</h1>
-          <button
-            className={
-              columns === 2
-                ? style.button
-                : style.button + ' ' + style.buttonOneColumn
-            }
-            onClick={handleButtonClick}
-          ></button>
-        </div>
+        <TitleSmart
+          text={title}
+          haveButton={true}
+          buttonStyle={
+            columns === 2
+              ? style.button
+              : style.button + ' ' + style.buttonOneColumn
+          }
+          textStyle={style.title}
+          wrapperStyle={style.heading}
+          onButtonClick={handleButtonClick}
+        />
         <Masonry columnsCount={columns} gutter={'16px'}>
           {array.map((el: any) => (
             <Card
