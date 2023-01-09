@@ -14,12 +14,19 @@ function Welcome() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  console.log(localStorage.getItem('welcomeState'));
   return (
     <div
       className={styles.container}
       style={step === 2 ? { display: 'block' } : {}}
     >
-      <button className={styles.skipBtn} onClick={() => navigate('/guests')}>
+      <button
+        className={styles.skipBtn}
+        onClick={() => {
+          localStorage.setItem('welcomeState', 'done');
+          navigate('/guests');
+        }}
+      >
         {currentSlide === 3 ? 'Закрыть' : 'Пропустить'}
       </button>
       {step === 1 ? (

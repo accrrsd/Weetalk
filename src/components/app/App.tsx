@@ -1,6 +1,6 @@
 import style from './App.module.css';
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
 import { ProtectedRoutes } from '../protected-routes/protected-routes';
 
@@ -10,6 +10,7 @@ import Profile from '../../pages/Profile';
 import Main from '../../pages/main';
 import Welcome from '../../pages/welcome';
 import Advices from '../../pages/advices';
+import Favorites from '../../pages/favorites';
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false);
@@ -38,9 +39,13 @@ export default function App() {
             <ProtectedRoutes needAuthorized={true} auth={userAuthorized} />
           }
         >
-          <Route path="/" element={<Welcome />} />
+          {localStorage.getItem('welcomeState') ? (
+            <Route path="/" element={<Navigate to="/guests" />} />
+          ) : (
+            <Route path="/" element={<Welcome />} />
+          )}
           <Route path="/guests" element={<Main />} />
-          <Route path="/favorite" />
+          <Route path="/favorite" element={<Favorites />} />
           <Route path="/recommendations" element={<Advices />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
