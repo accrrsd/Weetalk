@@ -16,6 +16,10 @@
   background-color: var(--main2);
 }
 
+.message {
+  white-space: pre-line;
+}
+
 .tongue {
   position: absolute;
   width: 0;

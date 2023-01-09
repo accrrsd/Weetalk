@@ -12,7 +12,7 @@ import favoritesStyle from './favorites.module.css'
 
 function Favorites() {
   const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null)
-  const tipMessage = 'Иван, ты пока ещё никого не добавил в избранное 😔 Это легко сделать, нажав на иконку'
+  const tipMessage = 'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку'
 
   const TipOffset = {
     left: 10,
