@@ -1,6 +1,6 @@
 import style from './App.module.css'
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { ProtectedRoutes } from '../protected-routes/protected-routes'
 
@@ -18,7 +18,7 @@ export default function App() {
   const location = useLocation()
 
   useEffect(() => {
-    // Получаем из localStorage статус авторизации
+    // Получаем из localStorage всякие статусы
     setUserAuthorized(!!localStorage.getItem('userData'))
     setWelcomeDone(!!localStorage.getItem('welcomeState'))
   }, [])
