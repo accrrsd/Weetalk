@@ -5,6 +5,7 @@
   bottom: 0;
   width: 100%;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  z-index: 10;
 }
 
 .menu {

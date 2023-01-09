@@ -12,12 +12,6 @@ import favoritesStyle from './favorites.module.css'
 
 function Favorites() {
   const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null)
-  const tipMessage = 'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку'
-
-  const TipOffset = {
-    left: 10,
-    top: 10,
-  } as TTipPopupOffset
 
   useEffect(() => {
     const HeartElem = document.querySelector('.card_heart__zgeMe') as HTMLButtonElement
@@ -28,6 +22,7 @@ function Favorites() {
       setHeartCords({ top, left })
     }
   }, [])
+  const tipMessage = 'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку'
 
   const cards: any = [
     /*    {
