@@ -1,5 +1,5 @@
 import style from './login.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserInformation } from '../../components/user-information/user-information'
 import { TFormValues, TUserSubmitValues } from '../../utils/types'
 import { checkResponse } from '../../utils/api'
@@ -8,7 +8,18 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
   const [photoChanged, setPhotoChanged] = useState(false)
   const onPhotoChange = () => setPhotoChanged(true)
   const mainUrl = 'http://95-163-235-246.cloudvps.regruhosting.ru:8080'
-  const postUser = (content: TUserSubmitValues) => {
+
+  type TUserWithoutPhoto = {
+    name: string
+    about: string
+    work: string
+  }
+
+  type TUserPhoto = {
+    file: File
+  }
+
+  const postUser = (content: TUserWithoutPhoto) => {
     // eslint-disable-next-line
     const url = mainUrl + '/users' + '/create'
     return fetch(url, {
@@ -20,11 +31,44 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
     }).then(checkResponse)
   }
 
+  const postUserPhoto = (content: TUserPhoto, id: number) => {
+    // eslint-disable-next-line
+    const url = mainUrl + '/users' + id + '/photo'
+    return fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(content),
+    }).then(checkResponse)
+  }
+
+  // const getTest = () => {
+  //   const url = mainUrl + '/users'
+  //   return fetch(url, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     method: 'GET',
+  //   }).then(checkResponse)
+  // }
+
+  // useEffect(() => {
+  //   getTest().then((data) => console.log(data))
+  // }, [])
+
   const onSubmit = (data: TFormValues) => {
-    const newData = { name: data.name, about: data.about, work: data.work, file: data.photo } as TUserSubmitValues
-    postUser(newData).then(() => {
-      localStorage.setItem('userData', '1234')
-      authorizedFunc(true)
+    const { name, about, work } = data
+    const file = data.photo
+    const userWithoutPhotoData = { name, about, work }
+    const userPhotoData = { file }
+
+    postUser(userWithoutPhotoData).then((data) => {
+      postUserPhoto(userPhotoData, data.id).then(() => {
+        localStorage.setItem('ownerId', data.id)
+        localStorage.setItem('userData', '1234')
+        authorizedFunc(true)
+      })
     })
   }
 
