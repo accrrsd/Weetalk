@@ -23,6 +23,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
     register,
     formState: { errors },
     clearErrors,
+    setValue,
   } = formHook
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
     const files = e.target.files
     if (!files || !files.item(0)) return
     setImageFile(files.item(0))
+    setValue(inputName, files.item(0))
   }
   return (
     <div className={style.wrapper}>

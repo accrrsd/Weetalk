@@ -9,3 +9,10 @@ export type TFormValues = {
   about: string
   work: string
 }
+
+export type TUserSubmitValues = {
+  name: string
+  about: string
+  work: string
+  file: File
+}
