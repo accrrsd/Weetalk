@@ -1,23 +1,13 @@
 import style from './login.module.css'
 import { useEffect, useState } from 'react'
 import { UserInformation } from '../../components/user-information/user-information'
-import { TFormValues, TUserSubmitValues } from '../../utils/types'
+import { TFormValues, TUserPhoto, TUserSubmitValues, TUserWithoutPhoto } from '../../utils/types'
 import { checkResponse } from '../../utils/api'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
   const [photoChanged, setPhotoChanged] = useState(false)
   const onPhotoChange = () => setPhotoChanged(true)
   const mainUrl = 'http://95-163-235-246.cloudvps.regruhosting.ru:8080'
-
-  type TUserWithoutPhoto = {
-    name: string
-    about: string
-    work: string
-  }
-
-  type TUserPhoto = {
-    file: File
-  }
 
   const postUser = (content: TUserWithoutPhoto) => {
     // eslint-disable-next-line
@@ -64,11 +54,10 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
     const userPhotoData = { file }
 
     postUser(userWithoutPhotoData).then((data) => {
-      postUserPhoto(userPhotoData, data.id).then(() => {
-        localStorage.setItem('ownerId', data.id)
-        localStorage.setItem('userData', '1234')
-        authorizedFunc(true)
-      })
+      localStorage.setItem('ownerId', data.id)
+      localStorage.setItem('userData', '1234')
+      authorizedFunc(true)
+      // postUserPhoto(userPhotoData, data.id).then(() => {})
     })
   }
 

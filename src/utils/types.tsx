@@ -16,3 +16,13 @@ export type TUserSubmitValues = {
   work: string
   file: File
 }
+
+export type TUserWithoutPhoto = {
+  name: string
+  about: string
+  work: string
+}
+
+export type TUserPhoto = {
+  file: File
+}
