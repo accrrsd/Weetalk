@@ -14,7 +14,22 @@ import { TitleSmart } from '../../components/title-smart/title-smart';
 
 function Favorites() {
   const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null);
-
+  const [favorites, setFavorites] = useState([]);
+  const ownerId = Number(localStorage.getItem('ownerId'));
+  const getFavorites = () => {
+    return fetch(
+      `http://95-163-235-246.cloudvps.regruhosting.ru:8080/likes/${ownerId}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    ).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  };
   useEffect(() => {
     const HeartElem = document.querySelector(
       '.card_heart__zgeMe',
@@ -25,41 +40,17 @@ function Favorites() {
       const { top, left } = HeartElem.getBoundingClientRect();
       setHeartCords({ top, left });
     }
+    getFavorites()
+      .then((card) => {
+        setFavorites(card);
+        console.log(card);
+      })
+      .catch((error) => console.log(`Error: ${error}`));
   }, []);
   const tipMessage =
     'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';
 
-  const cards: any = [
-    /*    {
-      title: 'Иван Ковалев',
-      about: 'Backend-Developer',
-      photo,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Анна Макарова',
-      about: 'Менеджер',
-      photo: photo2,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Анна Макарова',
-      about: 'Менеджер',
-      photo: photo2,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Иван Ковалев',
-      about: 'Backend-Developer',
-      photo,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },*/
-  ];
-  return cards.length === 0 ? (
+  return favorites.length === 0 ? (
     <div className={style.wrapper}>
       <TitleSmart
         text="Избранное"
@@ -70,11 +61,11 @@ function Favorites() {
       />
       <div style={{ height: '100px' }}></div>
       <Card
-        title="Евгений Александров"
+        name="Евгений Александров"
         about="Дизайнер в Gradient"
         photo={emptyPhoto}
         isLiked={false}
-        text="Профессиональный дизайнер, опыт работы 8 лет. Основатель комьюнити “Контраст”. Занимаюсь йогой, люблю отдыхать на природе. Буду рад обменяться опытом построения сообщества!"
+        work="Профессиональный дизайнер, опыт работы 8 лет. Основатель комьюнити “Контраст”. Занимаюсь йогой, люблю отдыхать на природе. Буду рад обменяться опытом построения сообщества!"
         card={{}}
         onCardClick={() => {}}
       />
@@ -88,7 +79,7 @@ function Favorites() {
       )}
     </div>
   ) : (
-    <CardWrapper title="Избранное" array={cards} />
+    <CardWrapper title="Избранное" array={favorites} favorites={favorites} />
   );
 }
 
