@@ -2,7 +2,7 @@ import style from './login.module.css'
 import { useState } from 'react'
 import { UserInformation } from '../../components/user-information/user-information'
 import { TFormValues } from '../../utils/types'
-import { postUser } from '../../utils/api'
+import { postUser, postUserPhoto } from '../../utils/api'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
   const [photoChanged, setPhotoChanged] = useState(false)
@@ -15,10 +15,11 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
     const userPhotoData = { file }
 
     postUser(userWithoutPhotoData).then((data) => {
-      localStorage.setItem('ownerId', data.id)
-      localStorage.setItem('userData', '1234')
-      authorizedFunc(true)
-      // postUserPhoto(userPhotoData, data.id).then(() => {})
+      postUserPhoto(userPhotoData, data.id).then(() => {
+        localStorage.setItem('ownerId', data.id)
+        localStorage.setItem('userData', '1234')
+        authorizedFunc(true)
+      })
     })
   }
 
