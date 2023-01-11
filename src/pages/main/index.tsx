@@ -1,67 +1,27 @@
-import photo from '../../images/test-photo-1.png';
-import photo2 from '../../images/test-photo-2.png';
-import photo3 from '../../images/test-photo-3.jpg';
-import photo4 from '../../images/test-photo-4.jpg';
 import CardWrapper from '../../components/card-wrapper/card-wrapper';
+import { useEffect, useState } from 'react';
 
 export default function Main() {
-  const cards = [
-    {
-      title: 'Иван Ковалев',
-      about: 'Backend-Developer',
-      photo,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Анна Макарова',
-      about: 'Менеджер',
-      photo: photo2,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Вика Лау',
-      about: 'Ивент-менеджер',
-      photo: photo3,
-      isLiked: false,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa"',
-    },
-    {
-      title: 'Сергей Афанасьев',
-      about: 'Тим Лид ',
-      photo: photo4,
-      isLiked: false,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Анна Макарова',
-      about: 'Менеджер',
-      photo: photo2,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Иван Ковалев',
-      about: 'Backend-Developer',
-      photo,
-      isLiked: true,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Сергей Афанасьев',
-      about: 'Тим Лид ',
-      photo: photo4,
-      isLiked: false,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo invento perspiciatis unde omnis iste ',
-    },
-    {
-      title: 'Вика Лау',
-      about: 'Ивент-менеджер',
-      photo: photo3,
-      isLiked: false,
-      text: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa"',
-    },
-  ];
-  return <CardWrapper array={cards} title={'Люди рядом'} />;
+  const [cards, setInitialCards] = useState([]);
+  const getInitialCards = () => {
+    return fetch(`http://95-163-235-246.cloudvps.regruhosting.ru:8080/users`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  };
+  useEffect(() => {
+    getInitialCards()
+      .then((card) => {
+        setInitialCards(card);
+        console.log(card);
+      })
+      .catch((error) => console.log(`Error: ${error}`));
+  }, []);
+
+  return <CardWrapper array={cards} title={'Люди рядом'} users={cards} />;
 }

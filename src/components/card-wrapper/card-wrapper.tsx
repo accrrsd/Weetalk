@@ -8,9 +8,13 @@ import { TitleSmart } from '../title-smart/title-smart';
 export default function CardWrapper({
   array,
   title,
+  users,
+  favorites,
 }: {
   array: any;
   title: string;
+  users?: any;
+  favorites?: any;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [columns, setColumns] = useState(2);
@@ -29,7 +33,34 @@ export default function CardWrapper({
   const handleClosePopup = () => {
     setIsModalOpen(false);
   };
-  const handleLikeCard = () => {};
+  const handleLike = (ownerId: any, userId: any) => {
+    // Логика для фильтрации
+    /*   console.log(
+      users.filter(
+        (item: object) =>
+          !favorites.some(
+            // @ts-ignore
+            (itemToBeRemoved: { id: any }) => itemToBeRemoved.id === item.id,
+          ),
+      ),
+    );*/
+    return fetch(
+      `http://95-163-235-246.cloudvps.regruhosting.ru:8080/likes/create`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ownerId,
+          userId,
+        }),
+      },
+    ).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  };
   useEffect(() => {
     function closeByClickOutside(evt: any) {
       if (evt.target.classList[0].split('__')[0] === 'card-modal_popup') {
@@ -61,15 +92,16 @@ export default function CardWrapper({
         <Masonry columnsCount={columns} gutter={'16px'}>
           {array.map((el: any) => (
             <Card
-              title={el.title}
+              name={el.name}
               about={el.about}
               photo={el.photo}
               isLiked={el.isLiked}
               columns={columns}
-              text={el.text}
+              work={el.work}
               card={el}
               key={Math.random() * 100}
               onCardClick={handleCardClick}
+              onCardLike={handleLike}
             />
           ))}
         </Masonry>

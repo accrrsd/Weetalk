@@ -8,11 +8,11 @@ function CardModal({ card, onClose }: { card: any; onClose: () => void }) {
     <div className={styles.popup}>
       <div style={{ maxWidth: '90%' }}>
         <Card
-          title={card.title}
+          name={card.name}
           about={card.about}
           photo={card.photo}
           isLiked={card.isLiked}
-          text={card.text}
+          work={card.work}
           card={card}
           onCardClick={() => {}}
           isPopup={true}
