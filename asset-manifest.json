@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Weetalk/static/css/main.4e5b3207.css",
-    "main.js": "/Weetalk/static/js/main.d62d8881.js",
+    "main.js": "/Weetalk/static/js/main.e5db57f5.js",
     "static/media/Montserrat-BoldItalic.woff": "/Weetalk/static/media/Montserrat-BoldItalic.bf331673b91821715c08.woff",
     "static/media/Montserrat-BlackItalic.woff": "/Weetalk/static/media/Montserrat-BlackItalic.fbf405b6c45f55a09aec.woff",
     "static/media/Montserrat-ExtraBoldItalic.woff": "/Weetalk/static/media/Montserrat-ExtraBoldItalic.1357e84ca56356a41d5c.woff",
@@ -97,10 +97,10 @@
     "static/media/close-card.svg": "/Weetalk/static/media/close-card.b8ecf5b2027700a817ae.svg",
     "static/media/addPhotoRect.svg": "/Weetalk/static/media/addPhotoRect.619237bea64770de474cc49190a559bd.svg",
     "main.4e5b3207.css.map": "/Weetalk/static/css/main.4e5b3207.css.map",
-    "main.d62d8881.js.map": "/Weetalk/static/js/main.d62d8881.js.map"
+    "main.e5db57f5.js.map": "/Weetalk/static/js/main.e5db57f5.js.map"
   },
   "entrypoints": [
     "static/css/main.4e5b3207.css",
-    "static/js/main.d62d8881.js"
+    "static/js/main.e5db57f5.js"
   ]
 }
