@@ -10,19 +10,9 @@ export type TFormValues = {
   work: string
 }
 
-export type TUserSubmitValues = {
-  name: string
+export type TUserFormData = {
+  username: string
+  description: string
   about: string
-  work: string
-  file: File
-}
-
-export type TUserWithoutPhoto = {
-  name: string
-  about: string
-  work: string
-}
-
-export type TUserPhoto = {
-  file: File
+  currentImage: File
 }
