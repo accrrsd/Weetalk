@@ -8,10 +8,10 @@ export default function Profile() {
   const onSubmit = (data: TFormValues) => {
     const { name, about, work, photo } = data
     const formDataContent = new FormData()
-    formDataContent.set('username', name)
-    formDataContent.set('description', about)
-    formDataContent.set('actualJob', work)
-    formDataContent.set('currentImage', photo)
+    if (name) formDataContent.set('username', name)
+    if (about) formDataContent.set('description', about)
+    if (work) formDataContent.set('actualJob', work)
+    if (photo) formDataContent.set('currentImage', photo)
 
     const id = localStorage.getItem('ownerId')
     if (id) patchUser(formDataContent, id)
