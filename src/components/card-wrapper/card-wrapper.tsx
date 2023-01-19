@@ -92,12 +92,12 @@ export default function CardWrapper({
         <Masonry columnsCount={columns} gutter={'16px'}>
           {array.map((el: any) => (
             <Card
-              name={el.name}
-              about={el.about}
-              photo={el.photo}
+              username={el.username}
+              description={el.description}
+              image={el.image}
               isLiked={el.isLiked}
               columns={columns}
-              work={el.work}
+              actualJob={el.actualJob}
               card={el}
               key={Math.random() * 100}
               onCardClick={handleCardClick}

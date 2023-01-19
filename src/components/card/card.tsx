@@ -2,24 +2,24 @@ import React from 'react';
 import style from '../card/card.module.css';
 
 function Card({
-  name,
-  about,
-  photo,
+  username,
+  description,
+  image,
   isLiked,
   columns,
-  work,
+  actualJob,
   card,
   onCardClick,
   isPopup,
   onClose,
   onCardLike,
 }: {
-  name: string;
-  about: string;
-  photo: string;
+  username: string;
+  description: string;
+  image: string;
   isLiked: boolean;
   columns?: number;
-  work: string;
+  actualJob: string;
   card: object;
   onCardClick: (e: object) => void;
   isPopup?: boolean;
@@ -66,13 +66,13 @@ function Card({
           ></button>
           <img
             className={style.cardPhoto}
-            src={photo}
-            alt={name}
+            src={`data:image/jpeg;base64,${image}`}
+            alt={username}
             onClick={handleClick}
           />
           <div className={style.cardInfo}>
-            <h2 className={style.cardTitle}>{name}</h2>
-            <p className={style.cardAbout}>{work}</p>
+            <h2 className={style.cardTitle}>{username}</h2>
+            <p className={style.cardAbout}>{actualJob}</p>
           </div>
         </div>
       ) : (
@@ -85,7 +85,11 @@ function Card({
             <button className={style.closeBtn} onClick={onClose}></button>
           )}
           <picture className={style.cardRowPicture}>
-            <img className={style.cardPhotoRow} src={photo} alt={name} />
+            <img
+              className={style.cardPhotoRow}
+              src={`data:image/jpeg;base64,${image}`}
+              alt={username}
+            />
             <button
               className={
                 isLiked ? style.heart + ' ' + style.heartLiked : style.heart
@@ -94,11 +98,11 @@ function Card({
           </picture>
           <div className={style.cardInfoRow}>
             <div className={style.rowHeading}>
-              <h2 className={style.cardTitleRow}>{name}</h2>
+              <h2 className={style.cardTitleRow}>{username}</h2>
               <div className={style.cardDotRow}></div>
-              <p className={style.cardAboutRow}>{work}</p>
+              <p className={style.cardAboutRow}>{actualJob}</p>
             </div>
-            <div className={style.text}>{about}</div>
+            <div className={style.text}>{description}</div>
           </div>
         </div>
       )}
