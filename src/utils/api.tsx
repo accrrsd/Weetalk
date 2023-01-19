@@ -1,54 +1,31 @@
 /* eslint-disable no-useless-concat */
 
-const testMainUrl = 'http://weetalk.online'
+const mainUrl = 'http://weetalk.online/api/v1'
 
 export const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
-export const convertToBase64 = (file: File) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    }
-
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-}
+export const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 export const postUser = (content: FormData) => {
-  const url = testMainUrl + '/users'
+  const url = mainUrl + '/users'
   return fetch(url, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
     method: 'POST',
     body: content,
   }).then(checkResponse)
 }
 
 export const getAllUsers = () => {
-  const url = 'http://weetalk.online/users'
+  const url = mainUrl + '/users'
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      // Accept:
-      //   'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      // 'Accept-Encoding': 'gzip, deflate',
-      // 'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
-      // 'Cache-Control': 'max-age=0',
-      // Connection: 'keep-alive',
-      // 'Upgrade-Insecure-Requests': '1',
     },
     method: 'GET',
   }).then(checkResponse)
 }
 
-export const getUserById = (userId: number) => {
-  const url = testMainUrl + '/users/' + userId
+export const getUserById = (userId: number | string) => {
+  const url = mainUrl + '/users/' + userId
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',

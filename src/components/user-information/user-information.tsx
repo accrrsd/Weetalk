@@ -4,6 +4,8 @@ import { checkError } from '../../utils/functions'
 import { TFormValues } from '../../utils/types'
 import { AddPhoto } from '../addPhoto/addPhoto'
 import { Tip } from '../tip/tip'
+import { useEffect, useState } from 'react'
+import { getUserById } from '../../utils/api'
 
 export const UserInformation = ({
   onSubmit,
@@ -11,17 +13,22 @@ export const UserInformation = ({
   onPhotoChangeStyle,
   submitText = 'Отправить',
   submitButtonStyle,
+  autoValues = false,
 }: {
   onSubmit: (data: TFormValues) => void
   onPhotoChange?: Function
   onPhotoChangeStyle?: string
   submitText?: string
   submitButtonStyle?: string
+  autoValues?: boolean
 }) => {
   const formHook = useForm<TFormValues>({ mode: 'all' })
+  const [apiPreview, setApiPreview] = useState<null | string>(null)
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = formHook
 
@@ -29,9 +36,24 @@ export const UserInformation = ({
     onSubmit(data)
   }
 
+  useEffect(() => {
+    if (autoValues) {
+      const id = localStorage.getItem('ownerId')
+      if (id) {
+        getUserById(id).then((userData) => {
+          const { username, description, image, actualJob } = userData
+          setValue('name', username)
+          setValue('about', description)
+          setValue('work', actualJob)
+          setApiPreview(image)
+        })
+      }
+    }
+  })
+
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} />
+      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageBase64={apiPreview} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />

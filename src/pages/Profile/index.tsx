@@ -7,7 +7,7 @@ export default function Profile() {
   return (
     <div className={style.wrapper}>
       <TitleSmart text="Профиль" wrapperStyle={style.titleWrapper} />
-      <UserInformation onSubmit={onSubmit} submitText={'Обновить'} submitButtonStyle={style.submit} />
+      <UserInformation onSubmit={onSubmit} submitText={'Обновить'} submitButtonStyle={style.submit} autoValues={true} />
     </div>
   )
 }

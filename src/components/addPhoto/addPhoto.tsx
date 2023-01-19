@@ -12,12 +12,15 @@ type TAddPhoto = {
   inputName?: string
   onChange?: Function
   onChangeStyle?: string
+  previewImageBase64?: string | null
 }
 
-export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyle }: TAddPhoto) => {
+export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyle, previewImageBase64 }: TAddPhoto) => {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [photoChanged, setPhotoChanged] = useState(false)
-  const previewSrc = useImagePreview(imageFile)
+  const imagePreview = useImagePreview(imageFile)
+  const base64Preview = `data:image/jpeg;base64,${previewImageBase64}`
+  const previewSrc = previewImageBase64 ? base64Preview : imagePreview
 
   const {
     register,
