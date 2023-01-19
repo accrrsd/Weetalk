@@ -58,7 +58,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
           <input
             {...register(inputName, {
               validate: {
-                havePhoto: () => (imageFile !== null ? true : 'Добавьте вашу фотографию'),
+                havePhoto: () => (previewImageBase64 ? true : imageFile !== null ? true : 'Добавьте вашу фотографию'),
               },
             })}
             type="file"

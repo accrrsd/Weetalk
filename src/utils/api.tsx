@@ -14,6 +14,14 @@ export const postUser = (content: FormData) => {
   }).then(checkResponse)
 }
 
+export const patchUser = (content: FormData, userId: number | string) => {
+  const url = mainUrl + '/users/' + userId
+  return fetch(url, {
+    method: 'PATCH',
+    body: content,
+  })
+}
+
 export const getAllUsers = () => {
   const url = mainUrl + '/users'
   return fetch(url, {
