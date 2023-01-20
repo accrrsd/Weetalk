@@ -20,7 +20,7 @@ function Card({
   isLiked: boolean;
   columns?: number;
   actualJob: string;
-  card: object;
+  card: any;
   onCardClick: (e: object) => void;
   isPopup?: boolean;
   onClose?: () => void;
@@ -28,10 +28,15 @@ function Card({
     currentUserId: number | null,
     likedUserId: number | null,
     isLiked: boolean,
+    card: any,
   ) => void;
 }) {
   const handleClick = () => {
     onCardClick(card);
+  };
+  const handleLike = () => {
+    // @ts-ignore
+    onCardLike(ownerId, card.id, card.isLiked);
   };
   const ownerId = Number(localStorage.getItem('ownerId'));
   return (
@@ -43,10 +48,7 @@ function Card({
               isLiked ? style.heart + ' ' + style.heartLiked : style.heart
             }
             onClick={() => {
-              // @ts-ignore
-              onCardLike(ownerId, card.id, card.isLiked);
-
-              /*handleLike(ownerId, card.id);*/
+              onCardLike?.(ownerId, card.id, card.isLiked, card);
             }}
           ></button>
           <img
@@ -79,6 +81,9 @@ function Card({
               className={
                 isLiked ? style.heart + ' ' + style.heartLiked : style.heart
               }
+              onClick={() => {
+                onCardLike?.(ownerId, card.id, card.isLiked, card);
+              }}
             ></button>
           </picture>
           <div className={style.cardInfoRow}>

@@ -11,26 +11,13 @@ import { TTipPopupOffset } from '../../utils/types';
 import favoritesStyle from './favorites.module.css';
 import styles from '../advices/advices.module.css';
 import { TitleSmart } from '../../components/title-smart/title-smart';
+import { getUserFavorites } from '../../utils/api';
 
 function Favorites() {
   const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null);
   const [favorites, setFavorites] = useState([]);
-  const ownerId = Number(localStorage.getItem('ownerId'));
+  const [isFavoritesLoaded, setIsFavoritesLoaded] = useState(false);
 
-  const getFavorites = () => {
-    return fetch(
-      `http://95-163-235-246.cloudvps.regruhosting.ru:8080/likes/${ownerId}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      },
-    ).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
-  };
   useEffect(() => {
     const HeartElem = document.querySelector(
       '.card_heart__zgeMe',
@@ -41,17 +28,17 @@ function Favorites() {
       const { top, left } = HeartElem.getBoundingClientRect();
       setHeartCords({ top, left });
     }
-    getFavorites()
-      .then((card) => {
+    getUserFavorites(String(localStorage.getItem('ownerId')))
+      .then(card => {
         setFavorites(card);
-        console.log(card);
       })
-      .catch((error) => console.log(`Error: ${error}`));
+      .catch(error => console.log(`Error: ${error}`))
+      .finally(() => setIsFavoritesLoaded(true));
   }, []);
   const tipMessage =
     'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';
 
-  return favorites.length === 0 ? (
+  return isFavoritesLoaded && favorites.length === 0 ? (
     <div className={style.wrapper}>
       <TitleSmart
         text="Избранное"
@@ -82,7 +69,13 @@ function Favorites() {
       )}
     </div>
   ) : (
-    <CardWrapper title="Избранное" array={favorites} favorites={favorites} />
+    <CardWrapper
+      title="Избранное"
+      array={favorites}
+      favorites={favorites}
+      setFavorites={setFavorites}
+      isFavoritesLoaded={isFavoritesLoaded}
+    />
   );
 }
 

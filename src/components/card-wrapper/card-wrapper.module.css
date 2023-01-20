@@ -10,6 +10,7 @@
     margin: 0 auto;
     max-width: 100%;
     font-family: 'Montserrat', sans-serif;
+    position: relative;
 }
 
 .heading {
@@ -17,6 +18,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    height: calc(100% - 75px);
+    width: 100%;
+    z-index: 50555;
 }
 
 .title {

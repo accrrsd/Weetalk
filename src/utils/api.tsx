@@ -26,6 +26,16 @@ export const getAllUsers = (userId: string | null) => {
   }).then(checkResponse);
 };
 
+export const getUserFavorites = (userId: string | null) => {
+  const url = mainUrl + `/users/${userId}/favorites`;
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  }).then(checkResponse);
+};
+
 export const getUserById = (userId: number | string) => {
   const url = mainUrl + '/users/' + userId;
   return fetch(url, {
@@ -40,13 +50,16 @@ export const addUserLike = (
   currentUserId: number | null,
   likedUserId: number | null,
 ) => {
-  const url = mainUrl + `/users/${currentUserId}/like`;
+  const url =
+    mainUrl +
+    `/users/${currentUserId}/like?currentUserId=${currentUserId}&likedUserId=${likedUserId}`;
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://weetalk.online',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',
     },
     method: 'PATCH',
-    body: JSON.stringify({ currentUserId, likedUserId }),
   });
 };
 
@@ -54,10 +67,14 @@ export const removeUserLike = (
   currentUserId: number | null,
   likedUserId: number | null,
 ) => {
-  const url = mainUrl + `/users/${currentUserId}/like`;
+  const url =
+    mainUrl +
+    `/users/${currentUserId}/like?currentUserId=${currentUserId}&likedUserId=${likedUserId}`;
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://weetalk.online',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',
     },
     method: 'DELETE',
     body: JSON.stringify({ currentUserId, likedUserId }),
@@ -76,16 +93,6 @@ export const removeUserLike = (
 // }
 
 // ! Не актуально
-// export const getUserFavorites = (ownerId: number) => {
-//   const url = mainUrl + '/likes/' + ownerId
-//   return fetch(url, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'GET',
-//   }).then(checkResponse)
-// }
-
 // ----------
 // const createFormData = (content: TUserPhoto) => {
 //   const data = new FormData()

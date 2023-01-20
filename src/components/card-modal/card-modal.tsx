@@ -2,8 +2,20 @@ import React from 'react';
 import Card from '../card/card';
 import styles from './card-modal.module.css';
 
-function CardModal({ card, onClose }: { card: any; onClose: () => void }) {
-  console.log(card);
+function CardModal({
+  card,
+  onClose,
+  onCardLike,
+}: {
+  card: any;
+  onClose: () => void;
+  onCardLike: (
+    currentUserId: number | null,
+    likedUserId: number | null,
+    isLiked: boolean,
+    card: any,
+  ) => void;
+}) {
   return (
     <div className={styles.popup}>
       <div style={{ maxWidth: '90%' }}>
@@ -17,6 +29,7 @@ function CardModal({ card, onClose }: { card: any; onClose: () => void }) {
           onCardClick={() => {}}
           isPopup={true}
           onClose={onClose}
+          onCardLike={onCardLike}
         />
       </div>
     </div>
