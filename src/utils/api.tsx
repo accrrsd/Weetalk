@@ -45,7 +45,7 @@ export const addUserLike = (
     headers: {
       'Content-Type': 'application/json',
     },
-    method: 'PUT',
+    method: 'PATCH',
     body: JSON.stringify({ currentUserId, likedUserId }),
   });
 };
