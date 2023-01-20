@@ -49,7 +49,7 @@ export const UserInformation = ({
         })
       }
     }
-  })
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>

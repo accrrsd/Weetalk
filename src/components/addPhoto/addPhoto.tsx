@@ -43,6 +43,12 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
     }
   }, [photoChanged, onChange])
 
+  useEffect(() => {
+    if (previewImageBase64) {
+      setValue(inputName, null)
+    }
+  }, [previewImageBase64])
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const files = e.target.files
     if (!files || !files.item(0)) return
