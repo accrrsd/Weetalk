@@ -24,32 +24,16 @@ function Card({
   onCardClick: (e: object) => void;
   isPopup?: boolean;
   onClose?: () => void;
-  onCardLike?: (ownerId: number, userId: number) => void;
+  onCardLike?: (
+    currentUserId: number | null,
+    likedUserId: number | null,
+    isLiked: boolean,
+  ) => void;
 }) {
   const handleClick = () => {
     onCardClick(card);
   };
-  /*  const handleLike = (ownerId: any, userId: any) => {
-    return fetch(
-      `http://95-163-235-246.cloudvps.regruhosting.ru:8080/likes/create`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ownerId,
-          userId,
-        }),
-      },
-    ).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
-  };
-  */
   const ownerId = Number(localStorage.getItem('ownerId'));
-
   return (
     <>
       {columns === 2 ? (
@@ -60,7 +44,7 @@ function Card({
             }
             onClick={() => {
               // @ts-ignore
-              onCardLike(ownerId, card.id);
+              onCardLike(ownerId, card.id, card.isLiked);
 
               /*handleLike(ownerId, card.id);*/
             }}

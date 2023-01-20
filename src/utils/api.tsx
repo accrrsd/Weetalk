@@ -36,6 +36,34 @@ export const getUserById = (userId: number | string) => {
   }).then(checkResponse);
 };
 
+export const addUserLike = (
+  currentUserId: number | null,
+  likedUserId: number | null,
+) => {
+  const url = mainUrl + `/users/${currentUserId}/like`;
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'PUT',
+    body: JSON.stringify({ currentUserId, likedUserId }),
+  });
+};
+
+export const removeUserLike = (
+  currentUserId: number | null,
+  likedUserId: number | null,
+) => {
+  const url = mainUrl + `/users/${currentUserId}/like`;
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'DELETE',
+    body: JSON.stringify({ currentUserId, likedUserId }),
+  });
+};
+
 // !Не готово
 // export const patchUserById = (userId: number) => {
 //   const url = mainUrl + '/users/' + userId
@@ -56,28 +84,6 @@ export const getUserById = (userId: number | string) => {
 //     },
 //     method: 'GET',
 //   }).then(checkResponse)
-// }
-
-// export const addUserLike = (ownerId: number, userId: number) => {
-//   const url = mainUrl + '/likes' + '/create'
-//   return fetch(url, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'POST',
-//     body: JSON.stringify({ ownerId, userId }),
-//   })
-// }
-
-// export const removeUserLike = (ownerId: number, userId: number) => {
-//   const url = mainUrl + '/likes' + '/create'
-//   return fetch(url, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'POST',
-//     body: JSON.stringify({ ownerId, userId }),
-//   })
 // }
 
 // ----------

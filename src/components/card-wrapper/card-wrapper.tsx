@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '../../components/card/card';
 import CardModal from '../../components/card-modal/card-modal';
 import { TitleSmart } from '../title-smart/title-smart';
+import { addUserLike, removeUserLike } from '../../utils/api';
 
 export default function CardWrapper({
   array,
@@ -33,33 +34,18 @@ export default function CardWrapper({
   const handleClosePopup = () => {
     setIsModalOpen(false);
   };
-  const handleLike = (ownerId: any, userId: any) => {
-    // Логика для фильтрации
-    /*   console.log(
-      users.filter(
-        (item: object) =>
-          !favorites.some(
-            // @ts-ignore
-            (itemToBeRemoved: { id: any }) => itemToBeRemoved.id === item.id,
-          ),
-      ),
-    );*/
-    return fetch(
-      `http://95-163-235-246.cloudvps.regruhosting.ru:8080/likes/create`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ownerId,
-          userId,
-        }),
-      },
-    ).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+
+  const handleLike = (
+    currentUserId: number | null,
+    likedUserId: number | null,
+    isLiked: boolean,
+  ) => {
+    return addUserLike(currentUserId, likedUserId);
+    /*    if (isLiked) {
+      return addUserLike(currentUserId, likedUserId);
+    } else {
+      return removeUserLike(currentUserId, likedUserId);
+    }*/
   };
   useEffect(() => {
     function closeByClickOutside(evt: any) {
