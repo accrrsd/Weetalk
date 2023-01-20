@@ -49,6 +49,7 @@ function Card({
   };
   */
   const ownerId = Number(localStorage.getItem('ownerId'));
+
   return (
     <>
       {columns === 2 ? (
