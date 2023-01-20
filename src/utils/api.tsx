@@ -16,8 +16,8 @@ export const postUser = (content: FormData) => {
   }).then(checkResponse);
 };
 
-export const getAllUsers = (userId: string | null) => {
-  const url = mainUrl + `/users?id=${userId}`;
+export const getAllUsers = () => {
+  const url = mainUrl + '/users';
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
