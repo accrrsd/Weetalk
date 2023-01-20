@@ -51,8 +51,7 @@ export const addUserLike = (
   likedUserId: number | null,
 ) => {
   const url =
-    mainUrl +
-    `/users/${currentUserId}/like?currentUserId=${currentUserId}&likedUserId=${likedUserId}`;
+    mainUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`;
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -68,8 +67,7 @@ export const removeUserLike = (
   likedUserId: number | null,
 ) => {
   const url =
-    mainUrl +
-    `/users/${currentUserId}/like?currentUserId=${currentUserId}&likedUserId=${likedUserId}`;
+    mainUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`;
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
