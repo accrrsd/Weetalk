@@ -1,21 +1,27 @@
 /* eslint-disable no-useless-concat */
 
-const mainUrl = 'http://weetalk.online/api/v1'
+const devUrl = 'http://weetalk.online/api/v1'
+const buildUrl = 'http://localhost:8080'
+
+const currentUrl = devUrl
 
 export const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
 export const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 export const postUser = (content: FormData) => {
-  const url = mainUrl + '/users'
+  const url = currentUrl + '/users'
   return fetch(url, {
     method: 'POST',
     body: content,
   }).then(checkResponse)
 }
 
+/**
+ * @param userId Текущий пользователь (ownerId)
+ */
 export const getAllUsers = (userId: string | null) => {
-  const url = mainUrl + `/users?id=${userId}`
+  const url = currentUrl + `/users?id=${userId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -24,8 +30,11 @@ export const getAllUsers = (userId: string | null) => {
   }).then(checkResponse)
 }
 
+/**
+ * @param userId Текущий пользователь (ownerId)
+ */
 export const getUserFavorites = (userId: string | null) => {
-  const url = mainUrl + `/users/${userId}/favorites`
+  const url = currentUrl + `/users/${userId}/favorites`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +44,7 @@ export const getUserFavorites = (userId: string | null) => {
 }
 
 export const getUserById = (userId: number | string) => {
-  const url = mainUrl + '/users/' + userId
+  const url = currentUrl + '/users/' + userId
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -45,7 +54,7 @@ export const getUserById = (userId: number | string) => {
 }
 
 export const addUserLike = (currentUserId: number | null, likedUserId: number | null) => {
-  const url = mainUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -57,7 +66,7 @@ export const addUserLike = (currentUserId: number | null, likedUserId: number | 
 }
 
 export const removeUserLike = (currentUserId: number | null, likedUserId: number | null) => {
-  const url = mainUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -69,8 +78,11 @@ export const removeUserLike = (currentUserId: number | null, likedUserId: number
   })
 }
 
+/**
+ * @param userId Текущий пользователь (ownerId)
+ */
 export const patchUser = (content: FormData, userId: string) => {
-  const url = mainUrl + '/users/' + userId
+  const url = currentUrl + '/users/' + userId
   return fetch(url, {
     method: 'PATCH',
     body: content,
