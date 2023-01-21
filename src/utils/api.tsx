@@ -1,4 +1,5 @@
 /* eslint-disable no-useless-concat */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 const devUrl = 'http://weetalk.online/api/v1'
 const buildUrl = 'http://localhost:8080'

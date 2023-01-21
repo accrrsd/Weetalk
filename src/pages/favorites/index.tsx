@@ -32,11 +32,13 @@ function Favorites() {
         getElement()
       })
 
-    getElementByQuery('.card_heart__zgeMe').then((element) => {
-      const { top, left } = element.getBoundingClientRect()
-      setHeartCords({ top, left })
-    })
-  }, [])
+    if (isFavoritesLoaded && favorites.length === 0) {
+      getElementByQuery('.card_heart__zgeMe').then((element) => {
+        const { top, left } = element.getBoundingClientRect()
+        setHeartCords({ top, left })
+      })
+    }
+  }, [isFavoritesLoaded, favorites])
 
   useEffect(() => {
     getUserFavorites(String(localStorage.getItem('ownerId')))
