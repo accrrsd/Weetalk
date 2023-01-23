@@ -1,5 +1,6 @@
-import React from 'react';
 import style from '../card/card.module.css';
+import { useEffect, useState } from 'react';
+import favImage from '../../images/favImage.jpg';
 
 function Card({
   username,
@@ -28,15 +29,23 @@ function Card({
     currentUserId: number | null,
     likedUserId: number | null,
     isLiked: boolean,
-    card: any,
+    card: any
   ) => void;
 }) {
+  const [basicImage, setBasicImage] = useState('');
+  useEffect(() => {
+    if (!image) {
+      setBasicImage(favImage);
+    } else {
+      setBasicImage(`http://weetalk.online/img/${image}`);
+    }
+  }, [image]);
+
   const handleClick = () => {
     onCardClick(card);
   };
   const handleLike = () => {
-    // @ts-ignore
-    onCardLike(ownerId, card.id, card.isLiked);
+    onCardLike?.(ownerId, card.id, card.isLiked, card);
   };
   const ownerId = Number(localStorage.getItem('ownerId'));
   return (
@@ -47,13 +56,11 @@ function Card({
             className={
               isLiked ? style.heart + ' ' + style.heartLiked : style.heart
             }
-            onClick={() => {
-              onCardLike?.(ownerId, card.id, card.isLiked, card);
-            }}
+            onClick={handleLike}
           ></button>
           <img
             className={style.cardPhoto}
-            src={`data:image/jpeg;base64,${image}`}
+            src={basicImage}
             alt={username}
             onClick={handleClick}
           />
@@ -74,7 +81,7 @@ function Card({
           <picture className={style.cardRowPicture}>
             <img
               className={style.cardPhotoRow}
-              src={`data:image/jpeg;base64,${image}`}
+              src={basicImage}
               alt={username}
             />
             <button
