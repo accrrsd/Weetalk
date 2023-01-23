@@ -5,7 +5,6 @@ import Card from '../../components/card/card';
 import { TipModal } from '../../components/tip-modal/tip-modal';
 import { TTipPopupOffset } from '../../utils/types';
 import favoritesStyle from './favorites.module.css';
-import { imageVariable } from '../../utils/imageVariable';
 import { TitleSmart } from '../../components/title-smart/title-smart';
 import { getUserFavorites } from '../../utils/api';
 

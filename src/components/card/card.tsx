@@ -1,6 +1,6 @@
 import style from '../card/card.module.css';
 import { useEffect, useState } from 'react';
-import favImage from '../../images/favImage.jpg';
+import favImage from '../../images/favImage.png';
 
 function Card({
   username,
