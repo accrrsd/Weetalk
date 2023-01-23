@@ -7,6 +7,7 @@ import { TTipPopupOffset } from '../../utils/types';
 import favoritesStyle from './favorites.module.css';
 import { TitleSmart } from '../../components/title-smart/title-smart';
 import { getUserFavorites } from '../../utils/api';
+import card from '../../components/card/card';
 
 function Favorites() {
   const [heartCords, setHeartCords] = useState<TTipPopupOffset | null>(null);
@@ -35,7 +36,7 @@ function Favorites() {
   }, []);
 
   const tipMessage =
-    'Иван, ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';
+    'Ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';
 
   return isFavoritesLoaded && favorites.length === 0 ? (
     <div className={style.wrapper}>

@@ -5,13 +5,16 @@ import { getAllUsers } from '../../utils/api';
 export default function Main() {
   const [cards, setInitialCards] = useState([]);
   const [isUsersLoaded, setIsUsersLoaded] = useState(false);
+
   useEffect(() => {
     getAllUsers(localStorage.getItem('ownerId'))
-      .then((card) => {
+      .then(card => {
         setInitialCards(card);
       })
-      .catch((error) => console.log(`Error: ${error}`))
-      .finally(() => setIsUsersLoaded(true));
+      .catch(error => console.log(`Error: ${error}`))
+      .finally(() => {
+        setIsUsersLoaded(true);
+      });
   }, []);
 
   return (

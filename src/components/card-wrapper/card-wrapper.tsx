@@ -17,7 +17,7 @@ export default function CardWrapper({
   isUsersLoaded,
   isFavoritesLoaded,
 }: {
-  array: any;
+  array: Array<any>;
   title: string;
   users?: any;
   favorites?: any;
@@ -47,15 +47,15 @@ export default function CardWrapper({
   const changeLikeStatus = (
     currentUserId: number | null,
     likedUserId: number | null,
-    isLiked: boolean,
+    isLiked: boolean
   ) => {
     if (!isLiked) {
       return addUserLike(currentUserId, likedUserId).catch(error =>
-        console.log(`Error: ${error}`),
+        console.log(`Error: ${error}`)
       );
     } else {
       return removeUserLike(currentUserId, likedUserId).catch(error =>
-        console.log(`Error: ${error}`),
+        console.log(`Error: ${error}`)
       );
     }
   };
@@ -63,19 +63,19 @@ export default function CardWrapper({
     currentUserId: number | null,
     likedUserId: number | null,
     isLiked: boolean,
-    card: any,
+    card: any
   ) => {
     changeLikeStatus(currentUserId, likedUserId, isLiked).then(() => {
       if (users !== undefined) {
         card.isLiked = !card.isLiked;
         setUsers?.((state: Array<any>) =>
-          state.map(c => (c.id === card.id ? card : c)),
+          state.map(c => (c.id === card.id ? card : c))
         );
       }
       if (favorites !== undefined) {
         card.isLiked = !card.isLiked;
         setFavorites?.((state: Array<any>) =>
-          state.filter(c => c.isLiked === true),
+          state.filter(c => c.isLiked === true)
         );
       }
     });
@@ -93,60 +93,59 @@ export default function CardWrapper({
       };
     }
   }, [isModalOpen]);
+
   return (
-    <>
-      <div className={style.wrapper}>
-        <TitleSmart
-          text={title}
-          haveButton={true}
-          buttonStyle={
-            columns === 2
-              ? style.button
-              : style.button + ' ' + style.buttonOneColumn
-          }
-          textStyle={style.title}
-          wrapperStyle={style.heading}
-          onButtonClick={handleButtonClick}
+    <div className={style.wrapper}>
+      <TitleSmart
+        text={title}
+        haveButton={true}
+        buttonStyle={
+          columns === 2
+            ? style.button
+            : style.button + ' ' + style.buttonOneColumn
+        }
+        textStyle={style.title}
+        wrapperStyle={style.heading}
+        onButtonClick={handleButtonClick}
+      />
+      {!isUsersLoaded && !isFavoritesLoaded ? (
+        <Oval
+          height={60}
+          width={60}
+          color="#7e7ee7"
+          wrapperStyle={{}}
+          wrapperClass={style.loader}
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#d9d9f8"
+          strokeWidth={4}
+          strokeWidthSecondary={4}
         />
-        {!isUsersLoaded && !isFavoritesLoaded ? (
-          <Oval
-            height={60}
-            width={60}
-            color="#7e7ee7"
-            wrapperStyle={{}}
-            wrapperClass={style.loader}
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="#d9d9f8"
-            strokeWidth={4}
-            strokeWidthSecondary={4}
-          />
-        ) : (
-          <Masonry columnsCount={columns} gutter={'16px'}>
-            {array.map((el: any) => (
-              <Card
-                username={el.username}
-                description={el.description}
-                image={el.image}
-                isLiked={el.isLiked}
-                columns={columns}
-                actualJob={el.actualJob}
-                card={el}
-                key={el.id}
-                onCardClick={handleCardClick}
-                onCardLike={handleLike}
-              />
-            ))}
-          </Masonry>
-        )}
-        {isModalOpen && (
-          <CardModal
-            card={selectedCard}
-            onCardLike={handleLike}
-            onClose={handleClosePopup}
-          />
-        )}
-      </div>
-    </>
+      ) : (
+        <Masonry columnsCount={columns} gutter={'16px'}>
+          {array.map((el: any) => (
+            <Card
+              username={el.username}
+              description={el.description}
+              image={el.image}
+              isLiked={el.isLiked}
+              columns={columns}
+              actualJob={el.actualJob}
+              card={el}
+              key={el.id}
+              onCardClick={handleCardClick}
+              onCardLike={handleLike}
+            />
+          ))}
+        </Masonry>
+      )}
+      {isModalOpen && (
+        <CardModal
+          card={selectedCard}
+          onCardLike={handleLike}
+          onClose={handleClosePopup}
+        />
+      )}
+    </div>
   );
 }
