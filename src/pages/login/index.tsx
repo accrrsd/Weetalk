@@ -2,7 +2,7 @@ import style from './login.module.css'
 import { useState } from 'react'
 import { UserInformation } from '../../components/user-information/user-information'
 import { TFormValues } from '../../utils/types'
-import { getAllUsers, postUser } from '../../utils/api'
+import { postUser } from '../../utils/api'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
   const [photoChanged, setPhotoChanged] = useState(false)
@@ -16,7 +16,7 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
     formDataContent.set('actualJob', work)
     formDataContent.set('currentImage', photo)
 
-    postUser(formDataContent).then((id) => {
+    return postUser(formDataContent).then((id) => {
       localStorage.setItem('ownerId', id)
       localStorage.setItem('userData', '1234')
       authorizedFunc(true)
@@ -30,7 +30,13 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
           Выбери фотографию или сделай селфи. Важно чтобы лицо было хорошо видно — так тебя будет проще найти среди гостей
         </p>
       )}
-      <UserInformation onSubmit={onSubmit} submitText="Создать карточку" onPhotoChange={onPhotoChange} onPhotoChangeStyle={style.biggerPhoto} />
+      <UserInformation
+        onSubmit={onSubmit}
+        submitText="Создать карточку"
+        onPhotoChange={onPhotoChange}
+        onPhotoChangeStyle={style.biggerPhoto}
+        submitSuccessText="Карточка успешно создана"
+      />
     </div>
   )
 }

@@ -67,13 +67,50 @@
   min-height: 80px;
 }
 
+.submitWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 75px;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+
 .submit {
   background-color: var(--main2);
   padding: 12px 91px;
-  margin-top: 75px;
-  width: 100%;
   border: none;
   border-radius: 8px;
   color: var(--main1);
   font-family: inherit;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.submitContent {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButtonDisablePadding {
+  padding: 5px 91px;
+}
+
+.submitLabelWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.submitLabelWrapperDisableEvents {
+  pointer-events: none;
+}
+
+.submitSuccessColor {
+  color: rgb(0, 255, 0);
+}
+
+.submitDenyColor {
+  color: var(--accent1);
 }

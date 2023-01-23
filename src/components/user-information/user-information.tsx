@@ -6,6 +6,7 @@ import { AddPhoto } from '../addPhoto/addPhoto'
 import { Tip } from '../tip/tip'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../../utils/api'
+import { Oval } from 'react-loader-spinner'
 
 export const UserInformation = ({
   onSubmit,
@@ -13,17 +14,23 @@ export const UserInformation = ({
   onPhotoChangeStyle,
   submitText = 'Отправить',
   submitButtonStyle,
+  submitSuccessText = 'Данные успешно установлены',
+  submitDenyText = 'Ошибка, попробуйте снова',
   autoValues = false,
 }: {
-  onSubmit: (data: TFormValues) => void
+  onSubmit: (data: TFormValues) => any
   onPhotoChange?: Function
   onPhotoChangeStyle?: string
   submitText?: string
+  submitSuccessText?: string
+  submitDenyText?: string
   submitButtonStyle?: string
   autoValues?: boolean
 }) => {
   const formHook = useForm<TFormValues>({ mode: 'all' })
-  const [apiPreview, setApiPreview] = useState<null | string>(null)
+  const [previewFromApi, setPreviewFromApi] = useState<null | string>(null)
+  const [loader, setLoader] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState<null | boolean>(null)
 
   const {
     register,
@@ -33,7 +40,16 @@ export const UserInformation = ({
   } = formHook
 
   const onSubmitWrapper: SubmitHandler<TFormValues> = (data) => {
+    setLoader(true)
     onSubmit(data)
+      .then(() => {
+        setLoader(false)
+        setSubmitSuccess(true)
+      })
+      .catch(() => {
+        setLoader(false)
+        setSubmitSuccess(false)
+      })
   }
 
   useEffect(() => {
@@ -45,15 +61,21 @@ export const UserInformation = ({
           setValue('name', username)
           setValue('about', description)
           setValue('work', actualJob)
-          setApiPreview(image)
+          setPreviewFromApi(image)
         })
       }
     }
-  }, [])
+  }, [setValue, autoValues])
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageBase64={apiPreview} />
+      <AddPhoto
+        formHook={formHook}
+        inputName="photo"
+        onChange={onPhotoChange}
+        onChangeStyle={onPhotoChangeStyle}
+        previewImageBase64={previewFromApi}
+      />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />
@@ -101,7 +123,19 @@ export const UserInformation = ({
         {checkError('work', errors) && <span className={style.errorMessage}>{checkError('work', errors)}</span>}
       </div>
 
-      <input type="submit" className={`${style.submit} ${submitButtonStyle}`} value={submitText} />
+      <div className={style.submitWrapper}>
+        {submitSuccess !== null && (
+          <span className={submitSuccess ? style.submitSuccessColor : style.submitDenyColor}>
+            {submitSuccess ? submitSuccessText : submitDenyText}
+          </span>
+        )}
+        <div className={`${style.submitLabelWrapper} ${loader ? style.submitLabelWrapperDisableEvents : ''}`}>
+          <label htmlFor="submitButton" className={`${style.submit} ${submitButtonStyle} ${loader ? style.submitButtonDisablePadding : ''}`}>
+            <input type="submit" id="submitButton" style={{ display: 'none' }} />
+            <span className={style.submitContent}>{loader ? <Oval color="#7e7ee7" height={27} secondaryColor="#d9d9f8"></Oval> : submitText}</span>
+          </label>
+        </div>
+      </div>
     </form>
   )
 }

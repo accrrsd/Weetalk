@@ -15,13 +15,19 @@ export default function Profile() {
     if (photo) formDataContent.set('currentImage', photo)
 
     const id = localStorage.getItem('ownerId')
-    if (id) patchUser(formDataContent, id)
+    return patchUser(formDataContent, id!)
   }
 
   return (
     <div className={style.wrapper}>
       <TitleSmart text="Профиль" wrapperStyle={style.titleWrapper} />
-      <UserInformation onSubmit={onSubmit} submitText={'Обновить'} submitButtonStyle={style.submit} autoValues={true} />
+      <UserInformation
+        onSubmit={onSubmit}
+        submitText={'Обновить'}
+        submitButtonStyle={style.submit}
+        autoValues={true}
+        submitSuccessText="Карточка успешно обновлена"
+      />
     </div>
   )
 }
