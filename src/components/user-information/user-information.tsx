@@ -84,7 +84,7 @@ export const UserInformation = ({
           {...register('name', { required: 'Поле обязательное для заполнения' })}
           type="text"
           className={`${style.infoInput} ${checkError('name', errors) ? style.errorInput : ''}`}
-          placeholder="Сергей Фадеев"
+          placeholder="Евгений Александров"
         />
         {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
       </div>
@@ -101,7 +101,7 @@ export const UserInformation = ({
             minLength: { value: 100, message: 'Напиши о себе минимум 100 символов' },
           })}
           className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) ? style.errorInput : ''}`}
-          placeholder="Стратегический консультант в Constanta, стартапер, продакт. Мой любимый режиссер - Джим Джармуш, в свободное время играю в MOBA игры"
+          placeholder="Профессиональный дизайнер, опыт работы 8 лет. Основатель комьюнити “Контраст”. Занимаюсь йогой, люблю отдыхать на природе. Буду рад обменяться опытом построения сообщества!"
         />
         {checkError('about', errors) ? (
           <span className={style.errorMessage}>{checkError('about', errors)}</span>
@@ -118,7 +118,7 @@ export const UserInformation = ({
           {...register('work', { required: 'Поле обязательное для заполнения' })}
           type="text"
           className={`${style.infoInput} ${checkError('work', errors) ? style.errorInput : ''}`}
-          placeholder="Руководитель тестирования"
+          placeholder="Дизайнер в Gradient"
         />
         {checkError('work', errors) && <span className={style.errorMessage}>{checkError('work', errors)}</span>}
       </div>
