@@ -108,7 +108,7 @@
 }
 
 .submitSuccessColor {
-  color: rgb(0, 255, 0);
+  color: var(--accent4);
 }
 
 .submitDenyColor {
