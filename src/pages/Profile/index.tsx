@@ -4,6 +4,7 @@ import { UserInformation } from '../../components/user-information/user-informat
 import { TitleSmart } from '../../components/title-smart/title-smart'
 import { TFormValues } from '../../utils/types'
 import { patchUser } from '../../utils/api'
+
 export default function Profile() {
   const onSubmit = (data: TFormValues) => {
     const { name, about, work, photo } = data
@@ -15,7 +16,9 @@ export default function Profile() {
     if (photo) formDataContent.set('currentImage', photo)
 
     const id = localStorage.getItem('ownerId')
-    return patchUser(formDataContent, id!)
+    // Временная обработка отсутствия id
+    if (!id) return new Promise((resolve, reject) => reject())
+    return patchUser(formDataContent, id)
   }
 
   return (
