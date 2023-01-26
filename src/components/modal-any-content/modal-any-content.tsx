@@ -5,7 +5,7 @@ import style from './modal-any-content.module.css'
 const modalsContainer = document.querySelector('#modals')
 
 type TModalProps = {
-  children: string | JSX.Element | JSX.Element[]
+  children: string | JSX.Element | (JSX.Element | boolean)[]
   onOverlayClick: () => void
   wrapperStyle?: string
 }
