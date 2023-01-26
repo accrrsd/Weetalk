@@ -6,11 +6,18 @@ import { TFormValues } from '../../utils/types'
 import { patchUser } from '../../utils/api'
 import { useState } from 'react'
 import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
+import { Oval } from 'react-loader-spinner'
 
 export default function Profile() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false)
+  const [deleteLoader, setDeleteLoader] = useState(false)
+  const [deleteError, setDeleteError] = useState(false)
 
-  const onConfirmDelete = () => {}
+  const onConfirmDelete = () => {
+    // setDeleteLoader(true)
+    setDeleteLoader((prev) => !prev)
+    setDeleteError((prev) => !prev)
+  }
 
   const onSubmit = (data: TFormValues) => {
     const { name, about, work, photo } = data
@@ -49,6 +56,7 @@ export default function Profile() {
           }}
         >
           <span className={style.deleteModalTitle}>Ты действительно хочешь удалить профиль?</span>
+          {deleteError && <span className={style.deleteModalError}>Произошла ошибка удаления</span>}
           <div className={style.deleteModalButtonsWrapper}>
             <button
               className={style.deleteModalButton}
@@ -58,8 +66,8 @@ export default function Profile() {
             >
               Нет
             </button>
-            <button className={style.deleteModalButton} onClick={onConfirmDelete}>
-              Да
+            <button className={`${style.deleteModalButton} ${deleteLoader ? style.deleteModalButtonWithLoader : ''}`} onClick={onConfirmDelete}>
+              {deleteLoader ? <Oval height={34} color="#7e7ee7" secondaryColor="#d9d9f8" /> : 'Да'}
             </button>
           </div>
         </ModalAnyContent>

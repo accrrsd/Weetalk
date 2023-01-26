@@ -64,4 +64,17 @@
   background-color: transparent;
   border: 1px solid var(--main2);
   border-radius: 8px;
+  outline: none;
+}
+
+.deleteModalButtonWithLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.deleteModalError {
+  color: var(--accent1);
+  margin-top: 15px;
 }
