@@ -4,8 +4,14 @@ import { UserInformation } from '../../components/user-information/user-informat
 import { TitleSmart } from '../../components/title-smart/title-smart'
 import { TFormValues } from '../../utils/types'
 import { patchUser } from '../../utils/api'
+import { useState } from 'react'
+import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
 
 export default function Profile() {
+  const [openConfirmModal, setOpenConfirmModal] = useState(false)
+
+  const onConfirmDelete = () => {}
+
   const onSubmit = (data: TFormValues) => {
     const { name, about, work, photo } = data
 
@@ -31,6 +37,33 @@ export default function Profile() {
         autoValues={true}
         submitSuccessText="Карточка успешно обновлена"
       />
+
+      <button className={style.deleteProfileButton} onClick={() => setOpenConfirmModal(true)}>
+        Удалить
+      </button>
+      {openConfirmModal && (
+        <ModalAnyContent
+          wrapperStyle={style.deleteModalWrapper}
+          onOverlayClick={() => {
+            setOpenConfirmModal(false)
+          }}
+        >
+          <span className={style.deleteModalTitle}>Ты действительно хочешь удалить профиль?</span>
+          <div className={style.deleteModalButtonsWrapper}>
+            <button
+              className={style.deleteModalButton}
+              onClick={() => {
+                setOpenConfirmModal(false)
+              }}
+            >
+              Нет
+            </button>
+            <button className={style.deleteModalButton} onClick={onConfirmDelete}>
+              Да
+            </button>
+          </div>
+        </ModalAnyContent>
+      )}
     </div>
   )
 }
