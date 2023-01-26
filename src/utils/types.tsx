@@ -16,3 +16,8 @@ export type TUserFormData = {
   about: string
   currentImage: File
 }
+
+export type TDateRange = {
+  startDate: Date
+  endDate: Date
+}

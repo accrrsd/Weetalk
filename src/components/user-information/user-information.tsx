@@ -1,12 +1,15 @@
 import style from './user-information.module.css'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { checkError } from '../../utils/functions'
-import { TFormValues } from '../../utils/types'
+import { TDateRange, TFormValues } from '../../utils/types'
 import { AddPhoto } from '../addPhoto/addPhoto'
 import { Tip } from '../tip/tip'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../../utils/api'
 import { Oval } from 'react-loader-spinner'
+import { ReactComponent as CalendarIcon } from '../../images/calendar.svg'
+import { InputCalendar } from '../input-calendar/input-calendar'
+import { ModalAnyContent } from '../modal-any-content/modal-any-content'
 
 export const UserInformation = ({
   onSubmit,
@@ -31,6 +34,8 @@ export const UserInformation = ({
   const [previewFromApi, setPreviewFromApi] = useState<null | string>(null)
   const [loader, setLoader] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState<null | boolean>(null)
+  const [openCalendar, setOpenCalendar] = useState(false)
+  const [dateHandler, setDateHandler] = useState<TDateRange>({ startDate: new Date(), endDate: new Date() })
 
   const {
     register,
@@ -87,6 +92,20 @@ export const UserInformation = ({
           placeholder="Евгений Александров"
         />
         {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
+      </div>
+
+      <div className={style.infoQuestionWrapper}>
+        <span className={style.infoQuestion}>
+          Как долго ты будешь с нами?
+          <Tip color="black" text={'Укажи продолжительность пребывания у нас'} modalDirection="down" />
+          {/* <CalendarIcon style={{ alignSelf: 'center', marginLeft: 'auto' }} /> */}
+        </span>
+        <button onClick={() => setOpenCalendar(true)}></button>
+        {openCalendar && (
+          <ModalAnyContent onOverlayClick={() => setOpenCalendar(false)}>
+            <InputCalendar dateStateHandler={setDateHandler} />
+          </ModalAnyContent>
+        )}
       </div>
 
       <div className={style.infoQuestionWrapper}>
