@@ -13,7 +13,7 @@ function CardModal({
     currentUserId: number | null,
     likedUserId: number | null,
     isLiked: boolean,
-    card: any,
+    card: any
   ) => void;
 }) {
   return (

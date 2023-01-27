@@ -14,6 +14,7 @@ function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [isFavoritesLoaded, setIsFavoritesLoaded] = useState(false);
   const cardWrapperRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const cardWrapper = cardWrapperRef?.current;
@@ -28,12 +29,29 @@ function Favorites() {
 
   useEffect(() => {
     getUserFavorites(String(localStorage.getItem('ownerId')))
-      .then(card => {
-        setFavorites(card);
-      })
-      .catch(error => console.log(`Error: ${error}`))
-      .finally(() => setIsFavoritesLoaded(true));
+      .then(card => setFavorites(card))
+      .catch(error => console.log(`Error: ${error}`));
   }, []);
+
+  useEffect(() => {
+    const loadImage = (card: any) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = `http://weetalk.online/img/${card.image}`;
+        loadImg.onload = () => resolve(card);
+        loadImg.onerror = err => reject(err);
+      });
+    };
+    // Избавляемся от первого рендера
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    Promise.all(favorites.map(image => loadImage(image)))
+      .then(() => setIsFavoritesLoaded(true))
+      .catch(err => console.log('Failed to load images', err));
+  }, [favorites]);
 
   const tipMessage =
     'Ты пока ещё никого не добавил в избранное 😔 \n Это легко сделать, нажав на иконку';

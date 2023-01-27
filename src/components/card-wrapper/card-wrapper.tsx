@@ -29,6 +29,7 @@ export default function CardWrapper({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [columns, setColumns] = useState(2);
   const [selectedCard, setSelectedCard] = useState({});
+
   const handleButtonClick = () => {
     if (columns === 2) {
       setColumns(1);
