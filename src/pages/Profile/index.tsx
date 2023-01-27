@@ -3,7 +3,7 @@ import style from './Profile.module.css'
 import { UserInformation } from '../../components/user-information/user-information'
 import { TitleSmart } from '../../components/title-smart/title-smart'
 import { TFormValues } from '../../utils/types'
-import { patchUser } from '../../utils/api'
+import { deleteUser, patchUser } from '../../utils/api'
 import { useState } from 'react'
 import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
 import { Oval } from 'react-loader-spinner'
@@ -14,9 +14,27 @@ export default function Profile() {
   const [deleteError, setDeleteError] = useState(false)
 
   const onConfirmDelete = () => {
-    // setDeleteLoader(true)
-    setDeleteLoader((prev) => !prev)
-    setDeleteError((prev) => !prev)
+    const id = localStorage.getItem('ownerId')
+    if (!id) {
+      setDeleteError(true)
+      return
+    }
+
+    setDeleteLoader(true)
+    setDeleteError(false)
+
+    deleteUser(id)
+      .then(() => {
+        localStorage.removeItem('ownerId')
+        localStorage.removeItem('userData')
+        localStorage.removeItem('welcomeState')
+      })
+      .catch(() => {
+        setDeleteError(true)
+      })
+      .finally(() => {
+        setDeleteLoader(false)
+      })
   }
 
   const onSubmit = (data: TFormValues) => {

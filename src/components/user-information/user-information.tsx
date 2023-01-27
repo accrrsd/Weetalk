@@ -43,12 +43,13 @@ export const UserInformation = ({
     setLoader(true)
     onSubmit(data)
       .then(() => {
-        setLoader(false)
         setSubmitSuccess(true)
       })
       .catch(() => {
-        setLoader(false)
         setSubmitSuccess(false)
+      })
+      .finally(() => {
+        setLoader(false)
       })
   }
 
