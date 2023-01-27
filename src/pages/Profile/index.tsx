@@ -7,11 +7,13 @@ import { deleteUser, patchUser } from '../../utils/api'
 import { useState } from 'react'
 import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
 import { Oval } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false)
   const [deleteLoader, setDeleteLoader] = useState(false)
   const [deleteError, setDeleteError] = useState(false)
+  const navigate = useNavigate()
 
   const onConfirmDelete = () => {
     const id = localStorage.getItem('ownerId')
@@ -28,6 +30,8 @@ export default function Profile() {
         localStorage.removeItem('ownerId')
         localStorage.removeItem('userData')
         localStorage.removeItem('welcomeState')
+        setOpenConfirmModal(false)
+        navigate('/login')
       })
       .catch(() => {
         setDeleteError(true)

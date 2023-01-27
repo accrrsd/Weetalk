@@ -17,11 +17,14 @@ export default function App() {
   const [welcomeDone, setWelcomeDone] = useState(false)
   const location = useLocation()
 
+  const userDataLocalStorage = !!localStorage.getItem('userData')
+  const welcomeStateLocalStorage = !!localStorage.getItem('welcomeState')
+
   useEffect(() => {
     // Получаем из localStorage всякие статусы
-    setUserAuthorized(!!localStorage.getItem('userData'))
-    setWelcomeDone(!!localStorage.getItem('welcomeState'))
-  }, [])
+    setUserAuthorized(userDataLocalStorage)
+    setWelcomeDone(welcomeStateLocalStorage)
+  }, [userDataLocalStorage, welcomeStateLocalStorage])
 
   return (
     <div className={style.page}>
