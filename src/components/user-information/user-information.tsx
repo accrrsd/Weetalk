@@ -70,13 +70,7 @@ export const UserInformation = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto
-        formHook={formHook}
-        inputName="photo"
-        onChange={onPhotoChange}
-        onChangeStyle={onPhotoChangeStyle}
-        previewImageBase64={previewFromApi}
-      />
+      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />

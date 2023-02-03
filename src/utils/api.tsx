@@ -5,7 +5,7 @@ const devUrl = 'http://weetalk.online/api/v1'
 const buildUrl = 'http://localhost:8080'
 const temporaryBuildUrl = 'http://95.163.235.246:8080'
 
-const currentUrl = devUrl
+export const currentUrl = buildUrl
 
 export const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
