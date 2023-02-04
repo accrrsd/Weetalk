@@ -33,7 +33,7 @@
 }
 
 .cardPhoto {
-  min-height: 240px;
+  height: 240px;
   width: 100%;
   object-fit: cover;
   vertical-align: middle;
