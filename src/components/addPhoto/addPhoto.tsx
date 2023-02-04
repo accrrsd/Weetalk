@@ -6,6 +6,7 @@ import { ReactComponent as ImageRect } from '../../images/addPhotoRect.svg'
 import { ReactComponent as AddPhotoPlusRect } from '../../images/addPhotoPlus.svg'
 import { UseFormReturn } from 'react-hook-form'
 import { checkError } from '../../utils/functions'
+import { currentUrl } from '../../utils/api'
 
 type TAddPhoto = {
   formHook: UseFormReturn<any, object>
@@ -19,7 +20,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [photoChanged, setPhotoChanged] = useState(false)
   const imagePreview = useImagePreview(imageFile)
-  const linkToPreviewImage = `http://weetalk.online/api/v1/img/${previewImageUrl}`
+  const linkToPreviewImage = `${currentUrl}/img/${previewImageUrl}`
   const previewSrc = previewImageUrl ? linkToPreviewImage : imagePreview
 
   const {
