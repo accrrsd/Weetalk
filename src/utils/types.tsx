@@ -8,6 +8,7 @@ export type TFormValues = {
   name: string
   about: string
   work: string
+  contactType: TSelectableItem
 }
 
 export type TUserFormData = {
@@ -15,4 +16,25 @@ export type TUserFormData = {
   description: string
   about: string
   currentImage: File
+}
+
+export type TSelectableItem<valueType = string | number> = {
+  label: string
+  value: valueType
+}
+
+export type TSelectInputClassNames = {
+  removeBadgeBtn?: string
+  valueWrapper?: string
+  optionBadge?: string
+  clearBtn?: string
+  divider?: string
+  arrow?: string
+  option?: string
+  options?: string
+  arrowOpen?: string
+  container?: string
+  optionsShow?: string
+  optionSelected?: string
+  optionHighlighted?: string
 }
