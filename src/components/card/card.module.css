@@ -3,30 +3,50 @@
   color: var(--black1);
 }
 
+.card::after {
+  border-radius: 12px;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  box-shadow: inset 0px -40px 14px rgba(0, 0, 0, 0.5);
+}
+
 .cardRow {
   position: relative;
-  border: 1px solid #736ced;
-  color: var(--black1);
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px 0;
-  background: var(--service3);
+  min-height: 500px;
+}
+
+.cardRow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0px -85px 14px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  border-radius: 16px;
 }
 
 .cardPhoto {
+  min-height: 240px;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   vertical-align: middle;
-  border-radius: 15px 15px 0 0;
+  box-shadow: inset 0px -40px 14px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
 }
 
 .cardPhotoRow {
   width: 100%;
-  max-height: 306px;
-  object-fit: contain;
-  border-radius: 8px 8px 0 0;
+  max-height: 500px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .text {
@@ -45,11 +65,15 @@
 }
 
 .cardInfo {
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0;
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px 0;
-  background: #d9d9f8;
+  gap: 12px 0;
   border-radius: 0 0 12px 12px;
 }
 
@@ -57,16 +81,19 @@
   display: flex;
   flex-direction: column;
   gap: 9px 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .cardTitle {
+  text-align: center;
   align-self: stretch;
   margin: 0;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.003em;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
   word-break: break-word;
-  color: var(--black1);
+  color: var(--main1);
 }
 
 .cardTitleRow {
@@ -77,12 +104,34 @@
 }
 
 .cardAbout {
-  color: var(--service2);
+  color: var(--main1);
   margin: 0;
   font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 11px;
+  line-height: 13px;
   word-break: break-word;
+  /* test */
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* test */
+}
+
+.cardAboutWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardAboutFav {
+  display: flex;
+  gap: 0 8px;
+}
+
+.cardAboutDivider {
+  width: 1px;
+  background-color: #BBCDD9;
 }
 
 .cardAboutRow {
@@ -95,13 +144,10 @@
 }
 
 .heart {
-  position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-color: transparent;
-  top: 12px;
-  right: 12px;
   background-image: url('../../images/heart.svg');
 }
 

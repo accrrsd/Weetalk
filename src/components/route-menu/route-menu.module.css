@@ -10,7 +10,7 @@
 }
 
 .menu {
-  background-color: var(--main2);
+  background: var(--main2);
   list-style: none;
   display: flex;
   margin: 0;

@@ -52,12 +52,6 @@ function Card({
     <>
       {columns === 2 ? (
         <div className={style.card}>
-          <button
-            className={
-              isLiked ? style.heart + ' ' + style.heartLiked : style.heart
-            }
-            onClick={handleLike}
-          ></button>
           <img
             className={style.cardPhoto}
             src={basicImage}
@@ -65,8 +59,19 @@ function Card({
             onClick={handleClick}
           />
           <div className={style.cardInfo}>
-            <h2 className={style.cardTitle}>{username}</h2>
-            <p className={style.cardAbout}>{actualJob}</p>
+            <h2 className={style.cardTitle}>{username.split(' ')[0]}</h2>
+            <div className={style.cardAboutWrapper}>
+              <p className={style.cardAbout}>{actualJob}</p>
+              <div className={style.cardAboutFav}>
+                <div className={style.cardAboutDivider}></div>
+                <button
+                  className={
+                    isLiked ? style.heart + ' ' + style.heartLiked : style.heart
+                  }
+                  onClick={handleLike}
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -78,12 +83,8 @@ function Card({
           {isPopup && (
             <button className={style.closeBtn} onClick={onClose}></button>
           )}
-          <picture className={style.cardRowPicture}>
-            <img
-              className={style.cardPhotoRow}
-              src={basicImage}
-              alt={username}
-            />
+          <img className={style.cardPhotoRow} src={basicImage} alt={username} />
+          <div className={style.cardInfoRow}>
             <button
               className={
                 isLiked ? style.heart + ' ' + style.heartLiked : style.heart
@@ -92,10 +93,8 @@ function Card({
                 onCardLike?.(ownerId, card.id, card.isLiked, card);
               }}
             ></button>
-          </picture>
-          <div className={style.cardInfoRow}>
             <div className={style.rowHeading}>
-              <h2 className={style.cardTitleRow}>{username}</h2>
+              <h2 className={style.cardTitleRow}>{username.split(' ')[0]}</h2>
               <div className={style.cardDotRow}></div>
               <p className={style.cardAboutRow}>{actualJob}</p>
             </div>

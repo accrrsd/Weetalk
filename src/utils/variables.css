@@ -1,6 +1,7 @@
 :root {
   --main1: #fff;
-  --main2: #7e7ee7;
+  --main2-old: #7e7ee7;
+  --main2: linear-gradient(127.95deg, #2B5876 0%, #4E4376 97.08%);
   --main3: #d9d9f8;
 
   --accent1: #e43642;
