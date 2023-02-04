@@ -1,12 +1,15 @@
 import style from './user-information.module.css'
+import selectInputStyle from './selectInputStyle.module.css'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { checkError } from '../../utils/functions'
-import { TFormValues } from '../../utils/types'
+import { TFormValues, TSelectableItem } from '../../utils/types'
 import { AddPhoto } from '../addPhoto/addPhoto'
 import { Tip } from '../tip/tip'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../../utils/api'
 import { Oval } from 'react-loader-spinner'
+import { SelectInput } from '../select-input/select-input'
+import { InputPreValue } from '../input-pre-value/input-pre-value'
 
 export const UserInformation = ({
   onSubmit,
@@ -29,13 +32,29 @@ export const UserInformation = ({
 }) => {
   const formHook = useForm<TFormValues>({ mode: 'all' })
   const [previewFromApi, setPreviewFromApi] = useState<null | string>(null)
-  const [loader, setLoader] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState<null | boolean>(null)
+  const [loader, setLoader] = useState(false)
+
+  const possibleContacts: TSelectableItem<string>[] = [
+    { label: 'Telegram', value: 'Telegram' },
+    { label: 'Электронная почта', value: 'Email' },
+  ]
+  const [contactType, setContactType] = useState<string | number | undefined>(possibleContacts[0].value)
+
+  const possibleVisibility: TSelectableItem<string>[] = [
+    { label: 'Все пользователи', value: 'all' },
+    { label: 'Кто мне понравился', value: 'isLiked' },
+    { label: 'Не видит никто', value: 'never' },
+  ]
+
+  const contactTypeChangeHandler = (e: TSelectableItem | undefined) =>
+    typeof e === 'undefined' ? setContactType(undefined) : setContactType(e.value)
 
   const {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = formHook
 
@@ -70,13 +89,7 @@ export const UserInformation = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto
-        formHook={formHook}
-        inputName="photo"
-        onChange={onPhotoChange}
-        onChangeStyle={onPhotoChangeStyle}
-        previewImageBase64={previewFromApi}
-      />
+      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />
@@ -88,6 +101,34 @@ export const UserInformation = ({
           placeholder="Евгений Александров"
         />
         {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
+      </div>
+
+      <div className={style.infoQuestionWrapper}>
+        <span className={style.infoQuestion}>
+          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} modalDirection="down" />
+        </span>
+        <SelectInput
+          control={control}
+          inputName="contactType"
+          options={possibleContacts}
+          onChange={contactTypeChangeHandler}
+          className={selectInputStyle}
+        />
+        <InputPreValue
+          control={control}
+          preValue={contactType === possibleContacts[0].value ? '@' : ''}
+          inputName="contact"
+          placeholder={contactType === possibleContacts[0].value ? 'ananas' : 'example@mail.ru'}
+          wrapperErrorClassName={style.errorInput}
+        />
+        {checkError('contact', errors) && <span className={style.errorMessage}>{checkError('contact', errors)}</span>}
+      </div>
+
+      <div className={style.infoQuestionWrapper}>
+        <span className={style.infoQuestion}>
+          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} modalDirection="down" />
+        </span>
+        <SelectInput control={control} inputName="contactsVisibility" options={possibleVisibility} className={selectInputStyle} />
       </div>
 
       <div className={style.infoQuestionWrapper}>

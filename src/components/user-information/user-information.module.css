@@ -51,6 +51,7 @@
   border-radius: 4px;
   border: none;
   padding: 8px 12px;
+  font-size: 16px;
 }
 
 .infoInput:focus {
@@ -65,6 +66,8 @@
 
 .textareaInput {
   min-height: 80px;
+  resize: vertical;
+  font-size: 16px;
 }
 
 .submitWrapper {
