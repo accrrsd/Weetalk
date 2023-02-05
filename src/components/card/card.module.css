@@ -157,6 +157,7 @@
   background-position: center;
   background-size: cover;
   border: none;
+  background-repeat: no-repeat;
   background-color: transparent;
   background-image: url('../../images/heart.svg');
 }
