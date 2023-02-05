@@ -38,3 +38,11 @@ export type TSelectInputClassNames = {
   optionSelected?: string
   optionHighlighted?: string
 }
+
+export type loadedCard = {
+  actualJob: string
+  username: string
+  image: string
+  isLiked: boolean
+  description: string
+}
