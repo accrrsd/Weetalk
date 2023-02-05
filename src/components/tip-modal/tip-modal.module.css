@@ -13,7 +13,7 @@
   position: relative;
   border-radius: 8px;
   padding: 12px;
-  background-color: var(--main2);
+  background: var(--main-gradient);
 }
 
 .message {
@@ -22,17 +22,16 @@
 
 .tongue {
   position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
+  width: 20px;
+  height: 15px;
+  background: var(--main-gradient);
+  background-size: cover;
 }
 .tongueDown {
   bottom: -15px;
-  border-width: 15px 10px 0 10px;
-  border-color: var(--main2) transparent transparent transparent;
+  clip-path: polygon(50% 100%, 100% 0, 0 0);
 }
 .tongueUp {
   top: -15px;
-  border-width: 0 10px 15px 10px;
-  border-color: transparent transparent var(--main2) transparent;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
