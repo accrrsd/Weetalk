@@ -51,17 +51,17 @@ function Card({
       {columns === 2 ? (
         <div className={style.card}>
           <img
-            className={style.cardPhoto}
+            className={style.photo}
             src={basicImage}
             alt={username}
             onClick={handleClick}
           />
-          <div className={style.cardInfo}>
-            <h2 className={style.cardTitle}>{username.split(' ')[0]}</h2>
-            <div className={style.cardAboutWrapper}>
-              <p className={style.cardAbout}>{actualJob}</p>
-              <div className={style.cardAboutFav}>
-                <div className={style.cardAboutDivider}></div>
+          <div className={style.info}>
+            <h2 className={style.title}>{username.split(' ')[0]}</h2>
+            <div className={style.aboutWrapper}>
+              <p className={style.about}>{actualJob}</p>
+              <div className={style.aboutFav}>
+                <div className={style.aboutDivider}></div>
                 <button
                   className={
                     isLiked ? style.heart + ' ' + style.heartLiked : style.heart
@@ -79,15 +79,15 @@ function Card({
           }
         >
           <img
-            className={style.cardPhotoRow}
+            className={style.photoRow}
             src={basicImage}
             alt={username}
             onClick={handleClick}
           />
-          <div className={style.cardInfoRow}>
-            <div className={style.rowHeading}>
-              <h2 className={style.cardTitleRow}>{username.split(' ')[0]}</h2>
-              <p className={style.cardAboutRow}>{actualJob}</p>
+          <div className={style.infoRow}>
+            <div className={style.headingRow}>
+              <h2 className={style.titleRow}>{username.split(' ')[0]}</h2>
+              <p className={style.aboutRow}>{actualJob}</p>
             </div>
             <div className={style.aboutFavRow}>
               <div className={style.aboutFavRowDivider}></div>
@@ -101,9 +101,7 @@ function Card({
                       style.heartLiked
                     : style.heart + ' ' + style.heartRow
                 }
-                onClick={() => {
-                  onCardLike?.(ownerId, card.id, card.isLiked, card)
-                }}
+                onClick={handleLike}
               ></button>
             </div>
           </div>
