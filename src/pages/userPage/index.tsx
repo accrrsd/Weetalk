@@ -16,6 +16,7 @@ export default function UserPage() {
     actualJob: '',
     description: '',
     id: null,
+    contacts: null,
   })
   const [pageLoaded, setPageLoaded] = useState(false)
   const navigate = useNavigate()
@@ -64,6 +65,35 @@ export default function UserPage() {
             actualJob={loadedCard.actualJob}
             isFull={true}
           />
+          {loadedCard.contacts && (
+            <>
+              <h3 className={style.subtitle}>Контакты</h3>
+              {loadedCard.contacts.email && (
+                <div className={style.contacts}>
+                  <div className={style.email}></div>
+                  <a
+                    href={`mailto:${loadedCard.contacts.email}?body=Отправлено через сервис Weetalk`}
+                    className={style.text}
+                  >
+                    {loadedCard.contacts.email}
+                  </a>
+                </div>
+              )}
+              {loadedCard.contacts.telegram && (
+                <div className={style.contacts}>
+                  <div className={style.tg}></div>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={`https://t.me/${loadedCard.contacts.telegram}`}
+                    className={style.link}
+                  >
+                    @{loadedCard.contacts.telegram}
+                  </a>
+                </div>
+              )}
+            </>
+          )}
           <h3 className={style.subtitle}>Обо мне</h3>
           <p className={style.text}>{loadedCard.description}</p>
         </>

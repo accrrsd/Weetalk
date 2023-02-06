@@ -8,7 +8,9 @@ export type TFormValues = {
   name: string
   about: string
   work: string
-  contactsUserShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
+  contactsUserShowType: TSelectableItem<
+    'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'
+  >
   contactType: TSelectableItem<'telegram' | 'email'>
   contact: string
 }
@@ -48,6 +50,10 @@ export type loadedCard = {
   isLiked: boolean
   description: string
   id: number | null
+  contacts?: null | {
+    email: string | null
+    telegram: string | null
+  }
 }
 
 export type TContactForReq = {

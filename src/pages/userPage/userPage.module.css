@@ -41,9 +41,42 @@
 }
 
 .text {
+    font-family: 'HindVadodara', sans-serif;
     word-break: break-word;
     font-weight: 300;
     font-size: 16px;
     line-height: 24px;
     margin: 0;
+}
+
+.contacts {
+    display: flex;
+    align-items: center;
+    gap: 0 8px;
+}
+
+.tg {
+    width: 28px;
+    height: 28px;
+    background-image: url("../../images/tg-icon.svg");
+    background-size: contain;
+    background-position: center;
+}
+
+.email {
+    width: 28px;
+    height: 28px;
+    background-image: url("../../images/email-icon.svg");
+    background-size: contain;
+    background-position: center;
+}
+
+.link {
+    text-decoration: none;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black2);
+    font-family: 'HindVadodara', sans-serif;
 }
