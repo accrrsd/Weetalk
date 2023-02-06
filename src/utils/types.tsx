@@ -46,4 +46,15 @@ export type loadedCard = {
   isLiked: boolean
   description: string
   id: number | null
+  contacts?: null | {
+    email: string | null
+    telegram: string | null
+  }
+}
+
+export type TContactForReq = {
+  email?: string
+  instagram?: string
+  telegram?: string
+  showType: 'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'
 }

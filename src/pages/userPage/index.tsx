@@ -16,6 +16,7 @@ export default function UserPage() {
     actualJob: '',
     description: '',
     id: null,
+    contacts: null,
   })
   const [pageLoaded, setPageLoaded] = useState(false)
   const navigate = useNavigate()
@@ -64,6 +65,17 @@ export default function UserPage() {
             actualJob={loadedCard.actualJob}
             isFull={true}
           />
+          {loadedCard.contacts && (
+            <>
+              <h3 className={style.subtitle}>Контакты</h3>
+              {loadedCard.contacts.email && (
+                <p className={style.text}>{loadedCard.contacts.email}</p>
+              )}
+              {loadedCard.contacts.telegram && (
+                <p className={style.text}>{loadedCard.contacts.telegram}</p>
+              )}
+            </>
+          )}
           <h3 className={style.subtitle}>Обо мне</h3>
           <p className={style.text}>{loadedCard.description}</p>
         </>
