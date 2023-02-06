@@ -18,28 +18,30 @@
 .list {
     display: flex;
     flex-direction: column;
-    gap: 44px 0;
+    gap: 16px 0;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .element {
-    background: #F5F5FD;
-    border-radius: 8px;
-    padding: 12px;
+    background: var(--bg1);
+    border-radius: 16px;
+    padding: 16px 12px;
     display: inline-flex;
     flex-direction: column;
-    gap: 12px 0;
+    gap: 8px 0;
 }
 
 .elementTitle {
     width: fit-content;
     padding: 8px;
     margin: 0;
-    color: var(--black1);
+    color: var(--black2);
     background: #FFFFFF;
-    border-bottom: 2px solid #D9D9F8;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 2px solid var(--bg1);
     border-radius: 8px;
 }
 
@@ -49,27 +51,19 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
-    color: var(--black1);
+    color: var(--black2);
 }
 
 .elementTip {
     margin: 0;
     font-style: italic;
     font-weight: 500;
+    font-size: 16px;
     background: #fff;
     color: var(--black1);
     padding: 8px;
-    border-width: 0 2px 2px 0;
+    border-width: 1px 2px 2px 1px;
     border-style: solid;
-    border-color: #7E7EE7;
+    border-color: #AFAAA7;
     border-radius: 8px;
-}
-
-.bottomText {
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 150%;
-    margin: 64px 0 0;
-    padding: 0;
 }

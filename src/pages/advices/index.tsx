@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './advices.module.css';
-import { TitleSmart } from '../../components/title-smart/title-smart';
+import React from 'react'
+import styles from './advices.module.css'
+import { TitleSmart } from '../../components/title-smart/title-smart'
 function Index() {
   return (
     <div className={styles.advices}>
       <TitleSmart
-        text="Как начать общение?"
+        text="Советы"
         haveButton={false}
         textStyle={styles.heading}
         wrapperStyle={styles.headingWrapper}
@@ -60,11 +60,8 @@ function Index() {
           </p>
         </li>
       </ul>
-      <p className={styles.bottomText}>
-        Полезных знакомств и интересного общения! Команда WEETALK.
-      </p>
     </div>
-  );
+  )
 }
 
-export default Index;
+export default Index

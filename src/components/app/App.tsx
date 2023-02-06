@@ -11,6 +11,7 @@ import Main from '../../pages/main'
 import Welcome from '../../pages/welcome'
 import Advices from '../../pages/advices'
 import Favorites from '../../pages/favorites'
+import UserPage from '../../pages/userPage'
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false)
@@ -29,18 +30,46 @@ export default function App() {
   return (
     <div className={style.page}>
       <Routes>
-        <Route element={<ProtectedRoutes needCondition={false} condition={userAuthorized} redirect="/" />}>
-          <Route path="/login" element={<Login authorizedFunc={setUserAuthorized} />} />
+        <Route
+          element={
+            <ProtectedRoutes
+              needCondition={false}
+              condition={userAuthorized}
+              redirect="/"
+            />
+          }
+        >
+          <Route
+            path="/login"
+            element={<Login authorizedFunc={setUserAuthorized} />}
+          />
         </Route>
 
-        <Route element={<ProtectedRoutes needCondition={true} condition={userAuthorized} redirect="/login" />}>
-          <Route element={<ProtectedRoutes needCondition={false} condition={welcomeDone} redirect="/guests" />}>
+        <Route
+          element={
+            <ProtectedRoutes
+              needCondition={true}
+              condition={userAuthorized}
+              redirect="/login"
+            />
+          }
+        >
+          <Route
+            element={
+              <ProtectedRoutes
+                needCondition={false}
+                condition={welcomeDone}
+                redirect="/guests"
+              />
+            }
+          >
             <Route path="/" element={<Welcome />} />
           </Route>
           <Route path="/guests" element={<Main />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/recommendations" element={<Advices />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/users/:id" element={<UserPage />} />
         </Route>
       </Routes>
       {userAuthorized && location.pathname !== '/' && <RouteMenu />}

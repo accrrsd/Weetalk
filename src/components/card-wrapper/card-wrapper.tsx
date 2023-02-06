@@ -1,11 +1,11 @@
-import style from './card-wrapper.module.css';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { useEffect, useState } from 'react';
-import Card from '../../components/card/card';
-import CardModal from '../../components/card-modal/card-modal';
-import { TitleSmart } from '../title-smart/title-smart';
-import { addUserLike, removeUserLike } from '../../utils/api';
-import { Oval } from 'react-loader-spinner';
+import style from './card-wrapper.module.css'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import { useState } from 'react'
+import Card from '../../components/card/card'
+import { TitleSmart } from '../title-smart/title-smart'
+import { Oval } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
+import { changeLikeStatus } from '../../utils/functions'
 
 export default function CardWrapper({
   array,
@@ -17,49 +17,31 @@ export default function CardWrapper({
   isUsersLoaded,
   isFavoritesLoaded,
 }: {
-  array: Array<any>;
-  title: string;
-  users?: any;
-  favorites?: any;
-  setUsers?: Function;
-  setFavorites?: Function;
-  isUsersLoaded?: boolean;
-  isFavoritesLoaded?: boolean;
+  array: Array<any>
+  title: string
+  users?: any
+  favorites?: any
+  setUsers?: Function
+  setFavorites?: Function
+  isUsersLoaded?: boolean
+  isFavoritesLoaded?: boolean
 }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [columns, setColumns] = useState(2);
-  const [selectedCard, setSelectedCard] = useState({});
+  const [columns, setColumns] = useState(2)
+  const [selectedCard, setSelectedCard] = useState({})
+  const navigate = useNavigate()
 
   const handleButtonClick = () => {
     if (columns === 2) {
-      setColumns(1);
+      setColumns(1)
     } else {
-      setColumns(2);
+      setColumns(2)
     }
-  };
-  const handleCardClick = (card: object) => {
-    setSelectedCard(card);
-    setIsModalOpen(true);
-  };
-  const handleClosePopup = () => {
-    setIsModalOpen(false);
-  };
+  }
+  const handleCardClick = (card: any) => {
+    setSelectedCard(card)
+    navigate(`/users/${card.id}`)
+  }
 
-  const changeLikeStatus = (
-    currentUserId: number | null,
-    likedUserId: number | null,
-    isLiked: boolean
-  ) => {
-    if (!isLiked) {
-      return addUserLike(currentUserId, likedUserId).catch(error =>
-        console.log(`Error: ${error}`)
-      );
-    } else {
-      return removeUserLike(currentUserId, likedUserId).catch(error =>
-        console.log(`Error: ${error}`)
-      );
-    }
-  };
   const handleLike = (
     currentUserId: number | null,
     likedUserId: number | null,
@@ -68,33 +50,19 @@ export default function CardWrapper({
   ) => {
     changeLikeStatus(currentUserId, likedUserId, isLiked).then(() => {
       if (users !== undefined) {
-        card.isLiked = !card.isLiked;
+        card.isLiked = !card.isLiked
         setUsers?.((state: Array<any>) =>
           state.map(c => (c.id === card.id ? card : c))
-        );
+        )
       }
       if (favorites !== undefined) {
-        card.isLiked = !card.isLiked;
+        card.isLiked = !card.isLiked
         setFavorites?.((state: Array<any>) =>
           state.filter(c => c.isLiked === true)
-        );
+        )
       }
-    });
-  };
-  useEffect(() => {
-    function closeByClickOutside(evt: any) {
-      if (evt.target.classList[0].split('__')[0] === 'card-modal_popup') {
-        setIsModalOpen(false);
-      }
-    }
-    if (isModalOpen) {
-      document.addEventListener('mousedown', closeByClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', closeByClickOutside);
-      };
-    }
-  }, [isModalOpen]);
-
+    })
+  }
   return (
     <div className={style.wrapper}>
       <TitleSmart
@@ -140,13 +108,6 @@ export default function CardWrapper({
           ))}
         </Masonry>
       )}
-      {isModalOpen && (
-        <CardModal
-          card={selectedCard}
-          onCardLike={handleLike}
-          onClose={handleClosePopup}
-        />
-      )}
     </div>
-  );
+  )
 }

@@ -47,8 +47,11 @@ export const getUserFavorites = (currentUserId: string | null) => {
   }).then(checkResponse)
 }
 
-export const getUserById = (userId: number | string) => {
-  const url = currentUrl + '/users/' + userId
+export const getUserById = (
+  userId: number | string,
+  currentUserId: string | null
+) => {
+  const url = currentUrl + '/users/' + currentUserId + '?id=' + userId
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -70,6 +73,7 @@ export const addUserLike = (
       'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',
     },
     method: 'PATCH',
+    body: JSON.stringify({ currentUserId, likedUserId }),
   })
 }
 

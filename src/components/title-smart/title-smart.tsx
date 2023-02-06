@@ -1,7 +1,7 @@
 import style from './title-smart.module.css'
 
 type TTitleSmart = {
-  text: string
+  text?: string
   textStyle?: string
   wrapperStyle?: string
   haveButton?: boolean
@@ -10,12 +10,23 @@ type TTitleSmart = {
   onButtonClick?: () => any | void
 }
 
-export const TitleSmart = ({ text, textStyle, wrapperStyle, haveButton = true, buttonStyle, buttonText, onButtonClick }: TTitleSmart) => {
+export const TitleSmart = ({
+  text,
+  textStyle,
+  wrapperStyle,
+  haveButton = true,
+  buttonStyle,
+  buttonText,
+  onButtonClick,
+}: TTitleSmart) => {
   return (
     <div className={`${style.wrapper} ${wrapperStyle}`}>
-      <h2 className={`${style.title} ${textStyle}`}>{text}</h2>
+      {text && <h2 className={`${style.title} ${textStyle}`}>{text}</h2>}
       {haveButton && (
-        <button onClick={onButtonClick} className={`${style.button} ${buttonStyle}`}>
+        <button
+          onClick={onButtonClick}
+          className={`${style.button} ${buttonStyle}`}
+        >
           {buttonText}
         </button>
       )}

@@ -1,0 +1,49 @@
+.wrapper {
+    padding: 12px 15px 100px;
+    margin: 0 auto;
+    max-width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.button {
+    width: 24px;
+    height: 24px;
+    background-image: url("../../images/back-arrow.svg");
+    background-position: center;
+    background-size: cover;
+}
+
+.title {
+    padding-bottom: 20px;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    height: calc(100% - 75px);
+    width: 100%;
+    z-index: 50555;
+}
+
+.subtitle {
+    margin: 16px 0 8px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 140%;
+    letter-spacing: -0.01em;
+}
+
+.text {
+    word-break: break-word;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+}
