@@ -39,7 +39,7 @@ export default function CardWrapper({
   }
   const handleCardClick = (card: any) => {
     setSelectedCard(card)
-    navigate(`/user/${card.id}`)
+    navigate(`/users/${card.id}`)
   }
 
   const handleLike = (

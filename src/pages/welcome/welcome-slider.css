@@ -13,19 +13,21 @@
     height: 2px;
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 32px;
 }
 
 .welcome-pagination .swiper-pagination-bullet {
     display: block;
-    background: var(--main3);
-    border-radius: 2px;
-    height: 2px;
-    width: 64px;
+    background: #EBDCD9;
+    border-radius: 8px;
+    height: 4px;
+    width: 48px;
+    transition: .3s ease;
 }
 
 .welcome-slider .swiper-pagination-bullet-active {
-    background-color: var(--main2);
+    background: var(--main-gradient);
+    width: 98px;
 }
 
 .welcome-slider .swiper {

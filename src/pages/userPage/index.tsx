@@ -6,6 +6,7 @@ import { getUserById } from '../../utils/api'
 import { loadedCard } from '../../utils/types'
 import Card from '../../components/card/card'
 import { Oval } from 'react-loader-spinner'
+import { changeLikeStatus } from '../../utils/functions'
 
 export default function UserPage() {
   const [loadedCard, setLoadedCard] = useState<loadedCard>({
@@ -14,24 +15,37 @@ export default function UserPage() {
     isLiked: false,
     actualJob: '',
     description: '',
+    id: null,
   })
   const [pageLoaded, setPageLoaded] = useState(false)
   const navigate = useNavigate()
   const params = useParams()
+  const currentUser = localStorage.getItem('ownerId')
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0)
     }, 0)
-    getUserById(String(params.id))
+    getUserById(String(params.id), currentUser)
       .then(card => {
         setLoadedCard(card)
       })
       .catch(error => console.log(`Error: ${error}`))
       .finally(() => {
         setPageLoaded(true)
+        console.log(loadedCard)
       })
   }, [params.id])
-  const handleLike = () => {}
+  const handleLike = () => {
+    changeLikeStatus(
+      Number(currentUser),
+      loadedCard.id,
+      loadedCard.isLiked
+    ).then(() => {
+      setLoadedCard(state => {
+        return { ...state, isLiked: !state.isLiked }
+      })
+    })
+  }
   return (
     <div className={style.wrapper}>
       <TitleSmart

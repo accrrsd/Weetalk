@@ -45,4 +45,5 @@ export type loadedCard = {
   image: string
   isLiked: boolean
   description: string
+  id: number | null
 }

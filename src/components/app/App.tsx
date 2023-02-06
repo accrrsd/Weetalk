@@ -69,7 +69,7 @@ export default function App() {
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/recommendations" element={<Advices />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/users/:id" element={<UserPage />} />
         </Route>
       </Routes>
       {userAuthorized && location.pathname !== '/' && <RouteMenu />}
