@@ -121,7 +121,7 @@ export const UserInformation = ({
         <span className={style.infoQuestion}>
           Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} modalDirection="down" />
         </span>
-        <SelectInput control={control} inputName="contactsShowType" options={possibleVisibility} className={selectInputStyle} />
+        <SelectInput control={control} inputName="contactsUserShowType" options={possibleVisibility} className={selectInputStyle} />
       </div>
 
       <div className={style.infoQuestionWrapper}>

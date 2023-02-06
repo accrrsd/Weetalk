@@ -42,7 +42,7 @@ export default function Profile() {
   }
 
   const onSubmit = (data: TFormValues) => {
-    const { name, about, work, photo, contactsShowType, contact } = data
+    const { name, about, work, photo, contactsUserShowType, contact, contactType } = data
 
     const formDataContent = new FormData()
     if (name) formDataContent.set('username', name)
@@ -50,10 +50,8 @@ export default function Profile() {
     if (work) formDataContent.set('actualJob', work)
     if (photo) formDataContent.set('currentImage', photo)
 
-    if (contact.label === 'Электронная почта') formDataContent.set('contacts.email', contact.value)
-    if (contact.label === 'Telegram') formDataContent.set('contacts.telegram', contact.value)
-
-    formDataContent.set('contacts.showType', contactsShowType.value ?? 'NOBODY')
+    if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, contact)
+    formDataContent.set('contacts.showType', contactsUserShowType.value ?? 'NOBODY')
 
     const id = localStorage.getItem('ownerId')
     // Временная обработка отсутствия id

@@ -8,8 +8,9 @@ export type TFormValues = {
   name: string
   about: string
   work: string
-  contactsShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
-  contact: TSelectableItem<string>
+  contactsUserShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
+  contactType: TSelectableItem<'telegram' | 'email'>
+  contact: string
 }
 
 export type TUserFormData = {
