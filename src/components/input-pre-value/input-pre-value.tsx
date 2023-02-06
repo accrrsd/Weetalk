@@ -38,7 +38,7 @@ export const InputPreValue = ({
     control,
     rules: rules ?? {
       validate: {
-        notOnlyPreValue: (value) => (String(value).replace(replaceRegEx, '') !== '' ? true : 'Поле обязательно к заполнению'),
+        notOnlyPreValue: (value) => (String(value).replace(replaceRegEx, '') !== '' ? true : 'Поле обязательное для заполнения'),
       },
     },
   })

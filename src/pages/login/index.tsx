@@ -9,12 +9,19 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
   const onPhotoChange = () => setPhotoChanged(true)
 
   const onSubmit = (data: TFormValues) => {
-    const { name, about, work, photo } = data
+    const { name, about, work, photo, contactsUserShowType, contact, contactType } = data
+
     const formDataContent = new FormData()
     formDataContent.set('username', name)
     formDataContent.set('description', about)
     formDataContent.set('actualJob', work)
     formDataContent.set('currentImage', photo)
+
+    const DEV_CONTACT = contact.startsWith('@') ? contact.slice(1) : contact
+
+    if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, DEV_CONTACT)
+
+    formDataContent.set('contacts.showType', contactsUserShowType.value ?? 'NOBODY')
 
     return postUser(formDataContent).then((id) => {
       localStorage.setItem('ownerId', id)

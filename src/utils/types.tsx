@@ -8,7 +8,9 @@ export type TFormValues = {
   name: string
   about: string
   work: string
-  contactType: TSelectableItem
+  contactsUserShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
+  contactType: TSelectableItem<'telegram' | 'email'>
+  contact: string
 }
 
 export type TUserFormData = {
@@ -50,6 +52,13 @@ export type loadedCard = {
     email: string | null
     telegram: string | null
   }
+}
+
+export type TContactForReq = {
+  email?: string
+  instagram?: string
+  telegram?: string
+  showType: 'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'
 }
 
 export type TContactForReq = {

@@ -10,6 +10,7 @@ import { getUserById } from '../../utils/api'
 import { Oval } from 'react-loader-spinner'
 import { SelectInput } from '../select-input/select-input'
 import { InputPreValue } from '../input-pre-value/input-pre-value'
+import { possibleContacts, possibleVisibility } from '../../utils/constants'
 
 export const UserInformation = ({
   onSubmit,
@@ -35,24 +36,10 @@ export const UserInformation = ({
   const [submitSuccess, setSubmitSuccess] = useState<null | boolean>(null)
   const [loader, setLoader] = useState(false)
 
-  const possibleContacts: TSelectableItem<string>[] = [
-    { label: 'Telegram', value: 'Telegram' },
-    { label: 'Электронная почта', value: 'Email' },
-  ]
-  const [contactType, setContactType] = useState<string | number | undefined>(
-    possibleContacts[0].value
-  )
-
-  const possibleVisibility: TSelectableItem<string>[] = [
-    { label: 'Все пользователи', value: 'all' },
-    { label: 'Кто мне понравился', value: 'isLiked' },
-    { label: 'Не видит никто', value: 'never' },
-  ]
+  const [contactType, setContactType] = useState<string | number | undefined>(possibleContacts[0].value)
 
   const contactTypeChangeHandler = (e: TSelectableItem | undefined) =>
-    typeof e === 'undefined'
-      ? setContactType(undefined)
-      : setContactType(e.value)
+    typeof e === 'undefined' ? setContactType(undefined) : setContactType(e.value)
 
   const {
     register,
@@ -62,7 +49,7 @@ export const UserInformation = ({
     formState: { errors },
   } = formHook
 
-  const onSubmitWrapper: SubmitHandler<TFormValues> = data => {
+  const onSubmitWrapper: SubmitHandler<TFormValues> = (data) => {
     setLoader(true)
     onSubmit(data)
       .then(() => {
@@ -80,7 +67,7 @@ export const UserInformation = ({
     if (autoValues) {
       const id = localStorage.getItem('ownerId')
       if (id) {
-        getUserById(id, id).then(userData => {
+        getUserById(id, id).then((userData) => {
           const { username, description, image, actualJob } = userData
           setValue('name', username)
           setValue('about', description)
@@ -93,47 +80,25 @@ export const UserInformation = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
-      <AddPhoto
-        formHook={formHook}
-        inputName="photo"
-        onChange={onPhotoChange}
-        onChangeStyle={onPhotoChangeStyle}
-        previewImageUrl={previewFromApi}
-      />
+      <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Как тебя зовут?{' '}
-          <Tip
-            color="black"
-            text={'Напиши свои настоящие имя и фамилию'}
-            modalDirection="down"
-          />
+          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />
         </span>
         <input
           {...register('name', {
             required: 'Поле обязательное для заполнения',
           })}
           type="text"
-          className={`${style.infoInput} ${
-            checkError('name', errors) ? style.errorInput : ''
-          }`}
+          className={`${style.infoInput} ${checkError('name', errors) ? style.errorInput : ''}`}
           placeholder="Евгений Александров"
         />
-        {checkError('name', errors) && (
-          <span className={style.errorMessage}>
-            {checkError('name', errors)}
-          </span>
-        )}
+        {checkError('name', errors) && <span className={style.errorMessage}>{checkError('name', errors)}</span>}
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Оставь свой контакт для связи{' '}
-          <Tip
-            color="black"
-            text={'Добавь удобный контакт для связи с тобой'}
-            modalDirection="down"
-          />
+          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} modalDirection="down" />
         </span>
         <SelectInput
           control={control}
@@ -146,47 +111,23 @@ export const UserInformation = ({
           control={control}
           preValue={contactType === possibleContacts[0].value ? '@' : ''}
           inputName="contact"
-          placeholder={
-            contactType === possibleContacts[0].value
-              ? 'ananas'
-              : 'example@mail.ru'
-          }
+          placeholder={contactType === possibleContacts[0].value ? 'ananas' : 'example@mail.ru'}
           wrapperErrorClassName={style.errorInput}
         />
-        {checkError('contact', errors) && (
-          <span className={style.errorMessage}>
-            {checkError('contact', errors)}
-          </span>
-        )}
+        {checkError('contact', errors) && <span className={style.errorMessage}>{checkError('contact', errors)}</span>}
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Кто видит твои контакты{' '}
-          <Tip
-            color="black"
-            text={'Выбери кто из пользователей может видеть твои контакты'}
-            modalDirection="down"
-          />
+          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} modalDirection="down" />
         </span>
-        <SelectInput
-          control={control}
-          inputName="contactsVisibility"
-          options={possibleVisibility}
-          className={selectInputStyle}
-        />
+        <SelectInput control={control} inputName="contactsUserShowType" options={possibleVisibility} className={selectInputStyle} />
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Расскажи о себе
-          <Tip
-            color="black"
-            text={
-              'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'
-            }
-            modalDirection="down"
-          />
+          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} modalDirection="down" />
         </span>
         <textarea
           maxLength={250}
@@ -197,84 +138,41 @@ export const UserInformation = ({
               message: 'Напиши о себе минимум 100 символов',
             },
           })}
-          className={`${style.infoInput} ${style.textareaInput} ${
-            checkError('about', errors) ? style.errorInput : ''
-          }`}
+          className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) ? style.errorInput : ''}`}
           placeholder="Профессиональный дизайнер, опыт работы 8 лет. Основатель комьюнити “Контраст”. Занимаюсь йогой, люблю отдыхать на природе. Буду рад обменяться опытом построения сообщества!"
         />
         {checkError('about', errors) ? (
-          <span className={style.errorMessage}>
-            {checkError('about', errors)}
-          </span>
+          <span className={style.errorMessage}>{checkError('about', errors)}</span>
         ) : (
-          <span className={style.symbolLimitMessage}>
-            Максимум 250 символов
-          </span>
+          <span className={style.symbolLimitMessage}>Максимум 250 символов</span>
         )}
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Кем работаешь?{' '}
-          <Tip
-            color="black"
-            text={'Укажи свое место работы или специальность'}
-          />
+          Кем работаешь? <Tip color="black" text={'Укажи свое место работы или специальность'} />
         </span>
         <input
           {...register('work', {
             required: 'Поле обязательное для заполнения',
           })}
           type="text"
-          className={`${style.infoInput} ${
-            checkError('work', errors) ? style.errorInput : ''
-          }`}
+          className={`${style.infoInput} ${checkError('work', errors) ? style.errorInput : ''}`}
           placeholder="Дизайнер в Gradient"
         />
-        {checkError('work', errors) && (
-          <span className={style.errorMessage}>
-            {checkError('work', errors)}
-          </span>
-        )}
+        {checkError('work', errors) && <span className={style.errorMessage}>{checkError('work', errors)}</span>}
       </div>
 
       <div className={style.submitWrapper}>
         {submitSuccess !== null && (
-          <span
-            className={
-              submitSuccess ? style.submitSuccessColor : style.submitDenyColor
-            }
-          >
+          <span className={submitSuccess ? style.submitSuccessColor : style.submitDenyColor}>
             {submitSuccess ? submitSuccessText : submitDenyText}
           </span>
         )}
-        <div
-          className={`${style.submitLabelWrapper} ${
-            loader ? style.submitLabelWrapperDisableEvents : ''
-          }`}
-        >
-          <label
-            htmlFor="submitButton"
-            className={`${style.submit} ${submitButtonStyle} ${
-              loader ? style.submitButtonDisablePadding : ''
-            }`}
-          >
-            <input
-              type="submit"
-              id="submitButton"
-              style={{ display: 'none' }}
-            />
-            <span className={style.submitContent}>
-              {loader ? (
-                <Oval
-                  color="#7e7ee7"
-                  height={27}
-                  secondaryColor="#d9d9f8"
-                ></Oval>
-              ) : (
-                submitText
-              )}
-            </span>
+        <div className={`${style.submitLabelWrapper} ${loader ? style.submitLabelWrapperDisableEvents : ''}`}>
+          <label htmlFor="submitButton" className={`${style.submit} ${submitButtonStyle} ${loader ? style.submitButtonDisablePadding : ''}`}>
+            <input type="submit" id="submitButton" style={{ display: 'none' }} />
+            <span className={style.submitContent}>{loader ? <Oval color="#7e7ee7" height={27} secondaryColor="#d9d9f8"></Oval> : submitText}</span>
           </label>
         </div>
       </div>
