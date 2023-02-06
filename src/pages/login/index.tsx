@@ -9,12 +9,18 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
   const onPhotoChange = () => setPhotoChanged(true)
 
   const onSubmit = (data: TFormValues) => {
-    const { name, about, work, photo } = data
+    const { name, about, work, photo, contactsShowType, contact } = data
+
     const formDataContent = new FormData()
     formDataContent.set('username', name)
     formDataContent.set('description', about)
     formDataContent.set('actualJob', work)
     formDataContent.set('currentImage', photo)
+
+    if (contact.label === 'Электронная почта') formDataContent.set('contacts.email', contact.value)
+    if (contact.label === 'Telegram') formDataContent.set('contacts.telegram', contact.value)
+
+    formDataContent.set('contacts.showType', contactsShowType.value ?? 'NOBODY')
 
     return postUser(formDataContent).then((id) => {
       localStorage.setItem('ownerId', id)

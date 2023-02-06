@@ -2,7 +2,7 @@ import style from './Profile.module.css'
 
 import { UserInformation } from '../../components/user-information/user-information'
 import { TitleSmart } from '../../components/title-smart/title-smart'
-import { TFormValues } from '../../utils/types'
+import { TContactForReq, TFormValues } from '../../utils/types'
 import { deleteUser, patchUser } from '../../utils/api'
 import { useState } from 'react'
 import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
@@ -42,13 +42,18 @@ export default function Profile() {
   }
 
   const onSubmit = (data: TFormValues) => {
-    const { name, about, work, photo } = data
+    const { name, about, work, photo, contactsShowType, contact } = data
 
     const formDataContent = new FormData()
     if (name) formDataContent.set('username', name)
     if (about) formDataContent.set('description', about)
     if (work) formDataContent.set('actualJob', work)
     if (photo) formDataContent.set('currentImage', photo)
+
+    if (contact.label === 'Электронная почта') formDataContent.set('contacts.email', contact.value)
+    if (contact.label === 'Telegram') formDataContent.set('contacts.telegram', contact.value)
+
+    formDataContent.set('contacts.showType', contactsShowType.value ?? 'NOBODY')
 
     const id = localStorage.getItem('ownerId')
     // Временная обработка отсутствия id
