@@ -68,10 +68,22 @@ export const UserInformation = ({
       const id = localStorage.getItem('ownerId')
       if (id) {
         getUserById(id, id).then((userData) => {
-          const { username, description, image, actualJob } = userData
+          const {
+            username,
+            description,
+            image,
+            actualJob,
+            contacts: { telegram, email, showType },
+          } = userData
+          console.log(userData)
           setValue('name', username)
           setValue('about', description)
           setValue('work', actualJob)
+          const foundIndexShowType = possibleVisibility.findIndex((element) => element.value === showType)
+          setValue('contactsUserShowType', possibleVisibility[foundIndexShowType])
+          const foundContactType = possibleContacts.findIndex((element) => element.value === `${telegram ? 'telegram' : 'email'}`)
+          setValue('contactType', possibleContacts[foundContactType])
+          setValue('contact', telegram ?? email)
           setPreviewFromApi(image)
         })
       }
