@@ -69,10 +69,28 @@ export default function UserPage() {
             <>
               <h3 className={style.subtitle}>Контакты</h3>
               {loadedCard.contacts.email && (
-                <p className={style.text}>{loadedCard.contacts.email}</p>
+                <div className={style.contacts}>
+                  <div className={style.email}></div>
+                  <a
+                    href={`mailto:${loadedCard.contacts.email}?body=Отправлено через сервис Weetalk`}
+                    className={style.text}
+                  >
+                    {loadedCard.contacts.email}
+                  </a>
+                </div>
               )}
               {loadedCard.contacts.telegram && (
-                <p className={style.text}>{loadedCard.contacts.telegram}</p>
+                <div className={style.contacts}>
+                  <div className={style.tg}></div>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={`https://t.me/${loadedCard.contacts.telegram}`}
+                    className={style.link}
+                  >
+                    @{loadedCard.contacts.telegram}
+                  </a>
+                </div>
               )}
             </>
           )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './advices.module.css'
 import { TitleSmart } from '../../components/title-smart/title-smart'
-function Index() {
+function Advices() {
   return (
     <div className={styles.advices}>
       <TitleSmart
@@ -64,4 +64,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Advices
