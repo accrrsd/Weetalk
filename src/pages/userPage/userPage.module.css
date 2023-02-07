@@ -80,3 +80,7 @@
     color: var(--black2);
     font-family: 'HindVadodara', sans-serif;
 }
+
+.contacts:not(:last-child) {
+    margin-bottom: 12px;
+}

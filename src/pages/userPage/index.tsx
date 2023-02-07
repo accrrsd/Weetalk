@@ -33,7 +33,6 @@ export default function UserPage() {
       .catch(error => console.log(`Error: ${error}`))
       .finally(() => {
         setPageLoaded(true)
-        console.log(loadedCard)
       })
   }, [params.id])
   const handleLike = () => {
@@ -73,7 +72,7 @@ export default function UserPage() {
                   <div className={style.email}></div>
                   <a
                     href={`mailto:${loadedCard.contacts.email}?body=Отправлено через сервис Weetalk`}
-                    className={style.text}
+                    className={style.link}
                   >
                     {loadedCard.contacts.email}
                   </a>
