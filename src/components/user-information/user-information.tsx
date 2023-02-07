@@ -160,8 +160,8 @@ export const UserInformation = ({
           {...register('about', {
             required: 'Поле обязательное для заполнения',
             minLength: {
-              value: 100,
-              message: 'Напиши о себе минимум 100 символов',
+              value: 70,
+              message: 'Напиши о себе минимум 70 символов',
             },
           })}
           className={`${style.infoInput} ${style.textareaInput} ${checkError('about', errors) ? style.errorInput : ''}`}
