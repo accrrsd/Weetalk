@@ -2,7 +2,7 @@ import style from './Profile.module.css'
 
 import { UserInformation } from '../../components/user-information/user-information'
 import { TitleSmart } from '../../components/title-smart/title-smart'
-import { TContactForReq, TFormValues } from '../../utils/types'
+import { TFormValues } from '../../utils/types'
 import { deleteUser, patchUser } from '../../utils/api'
 import { useState } from 'react'
 import { ModalAnyContent } from '../../components/modal-any-content/modal-any-content'
@@ -44,6 +44,8 @@ export default function Profile() {
   const onSubmit = (data: TFormValues) => {
     const { name, about, work, photo, contactsUserShowType, contact, contactType } = data
 
+    //todo Рефактор МОЖНО вынести подобную логику в отдельную функцию, которая будет использоваться сразу и в login и в profile
+
     const formDataContent = new FormData()
     if (name) formDataContent.set('username', name)
     if (about) formDataContent.set('description', about)
@@ -65,9 +67,9 @@ export default function Profile() {
       <UserInformation
         onSubmit={onSubmit}
         submitText={'Обновить'}
-        submitButtonStyle={style.submit}
         autoValues={true}
         submitSuccessText="Карточка успешно обновлена"
+        submitButtonStyle={style.submit}
       />
 
       <button className={style.deleteProfileButton} onClick={() => setOpenConfirmModal(true)}>

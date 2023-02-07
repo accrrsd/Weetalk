@@ -79,19 +79,6 @@
   gap: 10px;
 }
 
-.submit {
-  background-color: var(--main2);
-  padding: 12px 91px;
-  border: none;
-  border-radius: 8px;
-  color: var(--main1);
-  font-family: inherit;
-  width: 100%;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-}
-
 .submitContent {
   display: flex;
   justify-content: center;

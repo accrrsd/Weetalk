@@ -8,9 +8,7 @@ export type TFormValues = {
   name: string
   about: string
   work: string
-  contactsUserShowType: TSelectableItem<
-    'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'
-  >
+  contactsUserShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
   contactType: TSelectableItem<'telegram' | 'email'>
   contact: string
 }
@@ -31,6 +29,7 @@ export type TSelectInputClassNames = {
   removeBadgeBtn?: string
   valueWrapper?: string
   optionBadge?: string
+  mainWrapper?: string
   clearBtn?: string
   divider?: string
   arrow?: string

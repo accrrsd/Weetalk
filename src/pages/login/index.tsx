@@ -12,15 +12,12 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
     const { name, about, work, photo, contactsUserShowType, contact, contactType } = data
 
     const formDataContent = new FormData()
-    formDataContent.set('username', name)
-    formDataContent.set('description', about)
-    formDataContent.set('actualJob', work)
-    formDataContent.set('currentImage', photo)
+    if (name) formDataContent.set('username', name)
+    if (about) formDataContent.set('description', about)
+    if (work) formDataContent.set('actualJob', work)
+    if (photo) formDataContent.set('currentImage', photo)
 
-    const DEV_CONTACT = contact.startsWith('@') ? contact.slice(1) : contact
-
-    if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, DEV_CONTACT)
-
+    if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, contact)
     formDataContent.set('contacts.showType', contactsUserShowType.value ?? 'NOBODY')
 
     return postUser(formDataContent).then((id) => {
@@ -43,6 +40,7 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
         onPhotoChange={onPhotoChange}
         onPhotoChangeStyle={style.biggerPhoto}
         submitSuccessText="Карточка успешно создана"
+        submitButtonStyle={style.submit}
       />
     </div>
   )

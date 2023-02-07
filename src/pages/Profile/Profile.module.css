@@ -13,10 +13,16 @@
 }
 
 .submit {
-  background-color: var(--main1);
-  color: var(--main2);
+  background: var(--main1);
+  padding: 12px 91px;
   border: 1px solid var(--main2);
   border-radius: 8px;
+  color: var(--main2);
+  font-family: inherit;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .deleteProfileButton {

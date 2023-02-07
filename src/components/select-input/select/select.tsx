@@ -32,38 +32,42 @@ const Select = forwardRef<HTMLDivElement, TSelectProps>(
     const isOptionSelected = (option: TSelectableItem) =>
       multiple ? value.includes(option) : option.label === value?.label && option.value === value.value
 
+    //todo Рефактор нужно сделать возможность как absolute так и обычного меню выбора, ИСПРАВИТЬ СТИЛИ и привести в нормальный вид, местами упростить и разбить на мелкие компоненты.
+
     return (
       <div ref={ref} onBlur={onBlurHandler} onClick={() => setIsOpen((prev) => !prev)} tabIndex={0} className={`${smartStyle('container')}`}>
-        <span className={`${smartStyle('valueWrapper')}`}>
-          {multiple
-            ? value.map((v) => (
-                <button
-                  key={uuid()}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    selectOption(v)
-                  }}
-                  className={`${smartStyle('optionBadge')}`}
-                >
-                  {v.label}
-                  <span className={`${smartStyle('removeBadgeBtn')}`}>&times;</span>
-                </button>
-              ))
-            : value?.label}
-        </span>
-        {clearButton && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              clearOptions()
-            }}
-            className={`${smartStyle('clearBtn')}`}
-          >
-            &times;
-          </button>
-        )}
-        {divider && <div className={style.divider}></div>}
-        <div className={`${smartStyle('arrow')} ${isOpen ? smartStyle('arrowOpen') : ''}`}></div>
+        <div className={style.upperMenu}>
+          <span className={`${smartStyle('valueWrapper')}`}>
+            {multiple
+              ? value.map((v) => (
+                  <button
+                    key={uuid()}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      selectOption(v)
+                    }}
+                    className={`${smartStyle('optionBadge')}`}
+                  >
+                    {v.label}
+                    <span className={`${smartStyle('removeBadgeBtn')}`}>&times;</span>
+                  </button>
+                ))
+              : value?.label}
+          </span>
+          {clearButton && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                clearOptions()
+              }}
+              className={`${smartStyle('clearBtn')}`}
+            >
+              &times;
+            </button>
+          )}
+          {divider && <div className={style.divider}></div>}
+          <div className={`${smartStyle('arrow')} ${isOpen ? smartStyle('arrowOpen') : ''}`}></div>
+        </div>
         <ul className={`${smartStyle('options')} ${isOpen ? smartStyle('optionsShow') : ''}`}>
           {options.map((option, index) => (
             <li

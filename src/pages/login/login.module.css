@@ -17,3 +17,16 @@
   width: 256px !important;
   height: 256px !important;
 }
+
+.submit {
+  background: var(--main-gradient);
+  padding: 12px 91px;
+  border: none;
+  border-radius: 8px;
+  color: var(--main1);
+  font-family: inherit;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}

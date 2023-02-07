@@ -1,83 +1,36 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { Control, useController } from 'react-hook-form'
 import { v4 as uuid } from 'uuid'
 import style from './input-pre-value.module.css'
 
-type TInputPreValue = {
-  control: Control<any, any>
-  preValue?: string | number
-  inputName: string
-  rules?: object
+import { UseFormRegister } from 'react-hook-form'
+import { TFormValues } from '../../utils/types'
+
+export const ContactInput = ({
+  register,
+  preValue,
+  placeholder,
+  wrapperClassName,
+  preClassName,
+  error,
+  inputClassName,
+  wrapperErrorClassName,
+}: {
+  preValue: string
+  register: UseFormRegister<TFormValues>
+  placeholder: string
+  preClassName?: string
+  error?: boolean
   wrapperClassName?: string
   wrapperErrorClassName?: string
   inputClassName?: string
-  preClassName?: string
-  placeholder?: string
-}
-export const InputPreValue = ({
-  control,
-  preValue,
-  inputName,
-  rules,
-  wrapperClassName,
-  wrapperErrorClassName,
-  preClassName,
-  inputClassName,
-  placeholder,
-  ...rest
-}: TInputPreValue) => {
-  const preNumberInputId = uuid()
-  const replaceRegEx = new RegExp(String(preValue), 'g')
-  const [preValueRendered, setPreValueRendered] = useState(false)
-  const {
-    field,
-    fieldState: { error },
-  } = useController({
-    defaultValue: preValue,
-    name: inputName,
-    control,
-    rules: rules ?? {
-      validate: {
-        notOnlyPreValue: (value) => (String(value).replace(replaceRegEx, '') !== '' ? true : 'Поле обязательное для заполнения'),
-      },
-    },
-  })
-
-  //todo Вроде как все сделали, завтра нужно будет прикрутить картинки к меню выбора, например через второй массив, и доделать все поля ввода.
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    const currentValue = `${preValue}${value}`
-    field.onChange(currentValue)
-  }
-
-  // очистка поля ввода при изменении типа ввода
-  useEffect(() => {
-    setPreValueRendered(true)
-  }, [])
-
-  useEffect(() => {
-    if (preValueRendered) {
-      field.onChange('')
-    }
-    // eslint-disable-next-line
-  }, [preValue])
-
+}) => {
+  const id = uuid()
   return (
     <label
-      htmlFor={preNumberInputId}
+      htmlFor={id}
       className={`${wrapperClassName ?? style.wrapperClassName} ${error ? wrapperErrorClassName ?? style.wrapperErrorClassName : ''}`}
     >
       {preValue && <span className={preClassName ?? style.preClassName}>{preValue}</span>}
-      <input
-        type="text"
-        value={String(field.value).replace(replaceRegEx, '')}
-        id={preNumberInputId}
-        placeholder={placeholder}
-        className={inputClassName ?? style.inputClassName}
-        onChange={onChangeHandler}
-        ref={field.ref}
-        {...rest}
-      ></input>
+      <input {...register('contact')} type="text" id={id} placeholder={placeholder} className={inputClassName ?? style.inputClassName} />
     </label>
   )
 }

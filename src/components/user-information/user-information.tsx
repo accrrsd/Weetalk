@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { getUserById } from '../../utils/api'
 import { Oval } from 'react-loader-spinner'
 import { SelectInput } from '../select-input/select-input'
-import { InputPreValue } from '../input-pre-value/input-pre-value'
+import { ContactInput } from '../input-pre-value/input-pre-value'
 import { possibleContacts, possibleVisibility } from '../../utils/constants'
 
 export const UserInformation = ({
@@ -90,6 +90,9 @@ export const UserInformation = ({
     }
   }, [setValue, autoValues])
 
+  //todo Рефактор нужно завернуть infoQuestionWrapper в отдельный компонент, чтобы сильно упростить структуру, для инпутов можно сделать отдельную папку
+  //todo Рефактор нужно разбить это на два возможных рендера, профиль и логин, т.к там сильно отличается дизайн
+
   return (
     <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
       <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
@@ -119,10 +122,9 @@ export const UserInformation = ({
           onChange={contactTypeChangeHandler}
           className={selectInputStyle}
         />
-        <InputPreValue
-          control={control}
+        <ContactInput
+          register={register}
           preValue={contactType === possibleContacts[0].value ? '@' : ''}
-          inputName="contact"
           placeholder={contactType === possibleContacts[0].value ? 'ananas' : 'example@mail.ru'}
           wrapperErrorClassName={style.errorInput}
         />

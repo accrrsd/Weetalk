@@ -23,6 +23,22 @@
   flex-wrap: wrap;
 }
 
+.upperMenu {
+  border: 1px solid var(--service5);
+  border-radius: 4px;
+  outline: none;
+  user-select: none;
+  align-items: center;
+  padding: 12px;
+  font-size: 16px;
+
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: var(--bg2);
+}
+
 .clearBtn {
   background: none;
   color: #777;
