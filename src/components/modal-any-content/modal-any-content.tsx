@@ -8,13 +8,14 @@ type TModalProps = {
   children: string | JSX.Element | (JSX.Element | boolean)[]
   onOverlayClick: () => void
   wrapperStyle?: string
+  removeDefaultStyle?: boolean
 }
 
-export const ModalAnyContent = ({ children, onOverlayClick, wrapperStyle }: TModalProps) => {
+export const ModalAnyContent = ({ children, onOverlayClick, wrapperStyle, removeDefaultStyle }: TModalProps) => {
   const emptyFunc = () => {}
   return createPortal(
     <>
-      <div className={`${style.wrapper} ${wrapperStyle ?? ''}`} onClick={(e) => e.stopPropagation()}>
+      <div className={`${removeDefaultStyle ? '' : style.wrapper} ${wrapperStyle ?? ''}`} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
       <ModalOverlay onClick={onOverlayClick ?? emptyFunc} />

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import useImagePreview from '../../hooks/useImagePreview'
 
 import { ReactComponent as ImageRect } from '../../images/addPhotoRect.svg'
-import { ReactComponent as AddPhotoPlusRect } from '../../images/addPhotoPlus.svg'
+import { ReactComponent as AddPhotoPlusRect } from '../../images/addPhotoGradientPlus.svg'
 import { UseFormReturn } from 'react-hook-form'
 import { checkError } from '../../utils/functions'
 import { currentUrl } from '../../utils/api'
@@ -61,19 +61,21 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
       <div className={`${style.image} ${photoChanged && onChangeStyle ? onChangeStyle : ''}`} style={{ backgroundImage: `url(${previewSrc})` }}>
         {!previewSrc && <ImageRect />}
         <label htmlFor="addImage" className={style.imageInput}>
-          <AddPhotoPlusRect className={style.imageInputRect} />
-          <input
-            {...register(inputName, {
-              validate: {
-                havePhoto: () => (previewImageUrl ? true : imageFile !== null ? true : 'Добавьте вашу фотографию'),
-              },
-            })}
-            type="file"
-            id="addImage"
-            accept="image/*"
-            onChange={handleChange}
-            style={{ display: 'none' }}
-          />
+          <div className={style.imageInputContent}>
+            <AddPhotoPlusRect className={style.imageInputRect} />
+            <input
+              {...register(inputName, {
+                validate: {
+                  havePhoto: () => (previewImageUrl ? true : imageFile !== null ? true : 'Добавьте вашу фотографию'),
+                },
+              })}
+              type="file"
+              id="addImage"
+              accept="image/*"
+              onChange={handleChange}
+              style={{ display: 'none' }}
+            />
+          </div>
         </label>
       </div>
       {checkError(inputName, errors) && <span className={style.error}>{checkError(inputName, errors)}</span>}

@@ -21,21 +21,28 @@
 }
 .imageInput {
   position: absolute;
-  background-color: var(--main1);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px var(--main2) solid;
   bottom: -1px;
   right: -1px;
+
+  background: var(--main-gradient);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.imageInputRect {
-  color: var(--main2);
+.imageInputContent {
+  background-color: var(--main1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .error {

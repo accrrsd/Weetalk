@@ -72,32 +72,42 @@ export default function Profile() {
         autoValues={true}
         submitSuccessText="Карточка успешно обновлена"
         submitButtonStyle={style.submit}
+        submitLabelWrapperStyle={style.submitLabel}
       />
 
-      <button className={style.deleteProfileButton} onClick={() => setOpenConfirmModal(true)}>
-        Удалить
-      </button>
+      <div className={style.deleteProfileButtonWrapper}>
+        <button className={style.deleteProfileButton} onClick={() => setOpenConfirmModal(true)}>
+          Удалить профиль
+        </button>
+      </div>
+
       {openConfirmModal && (
         <ModalAnyContent
           wrapperStyle={style.deleteModalWrapper}
+          removeDefaultStyle={true}
           onOverlayClick={() => {
             setOpenConfirmModal(false)
           }}
         >
-          <span className={style.deleteModalTitle}>Ты действительно хочешь удалить профиль?</span>
+          <span className={style.deleteModalTitle}>Ты действительно хочешь удалить свой профиль?</span>
           {deleteError && <span className={style.deleteModalError}>Произошла ошибка удаления</span>}
           <div className={style.deleteModalButtonsWrapper}>
             <button
-              className={style.deleteModalButton}
+              className={`${style.deleteModalButton} ${style.deleteModalButtonNo}`}
               onClick={() => {
                 setOpenConfirmModal(false)
               }}
             >
-              Нет
+              Не удалять
             </button>
-            <button className={`${style.deleteModalButton} ${deleteLoader ? style.deleteModalButtonWithLoader : ''}`} onClick={onConfirmDelete}>
-              {deleteLoader ? <Oval height={34} color="#7e7ee7" secondaryColor="#d9d9f8" /> : 'Да'}
-            </button>
+            <div className={style.deleteModalButtonYesWrapper}>
+              <button
+                className={`${style.deleteModalButton} ${deleteLoader ? style.deleteModalButtonWithLoader : ''} ${style.deleteModalButtonYes}`}
+                onClick={onConfirmDelete}
+              >
+                {deleteLoader ? <Oval height={34} color="#7e7ee7" secondaryColor="#d9d9f8" /> : 'Удалить профиль'}
+              </button>
+            </div>
           </div>
         </ModalAnyContent>
       )}

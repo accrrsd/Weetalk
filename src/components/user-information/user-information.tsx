@@ -20,12 +20,14 @@ export const UserInformation = ({
   submitButtonStyle,
   submitSuccessText = 'Данные успешно установлены',
   submitDenyText = 'Ошибка, попробуйте снова',
+  submitLabelWrapperStyle,
   autoValues = false,
 }: {
   onSubmit: (data: TFormValues) => any
   onPhotoChange?: Function
   onPhotoChangeStyle?: string
   submitText?: string
+  submitLabelWrapperStyle?: string
   submitSuccessText?: string
   submitDenyText?: string
   submitButtonStyle?: string
@@ -193,7 +195,7 @@ export const UserInformation = ({
             {submitSuccess ? submitSuccessText : submitDenyText}
           </span>
         )}
-        <div className={`${style.submitLabelWrapper} ${loader ? style.submitLabelWrapperDisableEvents : ''}`}>
+        <div className={`${style.submitLabelWrapper} ${loader ? style.submitLabelWrapperDisableEvents : ''} ${submitLabelWrapperStyle ?? ''}`}>
           <label htmlFor="submitButton" className={`${style.submit} ${submitButtonStyle} ${loader ? style.submitButtonDisablePadding : ''}`}>
             <input type="submit" id="submitButton" style={{ display: 'none' }} />
             <span className={style.submitContent}>{loader ? <Oval color="#7e7ee7" height={27} secondaryColor="#d9d9f8"></Oval> : submitText}</span>
