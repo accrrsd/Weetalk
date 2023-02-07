@@ -6,6 +6,7 @@ import { TFormValues } from '../../utils/types'
 
 export const ContactInput = ({
   register,
+  rules,
   preValue,
   placeholder,
   wrapperClassName,
@@ -15,6 +16,7 @@ export const ContactInput = ({
   wrapperErrorClassName,
 }: {
   preValue: string
+  rules?: object
   register: UseFormRegister<TFormValues>
   placeholder: string
   preClassName?: string
@@ -30,7 +32,7 @@ export const ContactInput = ({
       className={`${wrapperClassName ?? style.wrapperClassName} ${error ? wrapperErrorClassName ?? style.wrapperErrorClassName : ''}`}
     >
       {preValue && <span className={preClassName ?? style.preClassName}>{preValue}</span>}
-      <input {...register('contact')} type="text" id={id} placeholder={placeholder} className={inputClassName ?? style.inputClassName} />
+      <input {...register('contact', rules)} type="text" id={id} placeholder={placeholder} className={inputClassName ?? style.inputClassName} />
     </label>
   )
 }

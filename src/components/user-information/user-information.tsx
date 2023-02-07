@@ -49,6 +49,14 @@ export const UserInformation = ({
     formState: { errors },
   } = formHook
 
+  const isValidEmail = (email: string) =>
+    // eslint-disable-next-line no-useless-escape
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    )
+      ? true
+      : 'Некорректный адрес электронной почты'
+
   const onSubmitWrapper: SubmitHandler<TFormValues> = (data) => {
     setLoader(true)
     onSubmit(data)
@@ -127,6 +135,7 @@ export const UserInformation = ({
           preValue={contactType === possibleContacts[0].value ? '@' : ''}
           placeholder={contactType === possibleContacts[0].value ? 'ananas' : 'example@mail.ru'}
           wrapperErrorClassName={style.errorInput}
+          rules={{ required: 'Поле обязательное для заполнения', validate: contactType === possibleContacts[0].value ? true : isValidEmail }}
         />
         {checkError('contact', errors) && <span className={style.errorMessage}>{checkError('contact', errors)}</span>}
       </div>
