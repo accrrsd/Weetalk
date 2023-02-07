@@ -7,11 +7,9 @@ const temporaryBuildUrl = 'http://91.185.86.7:8080'
 
 export const currentUrl = temporaryBuildUrl
 
-export const checkResponse = (res: any) =>
-  res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+export const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
-export const checkResponseWithoutContent = (res: any) =>
-  !res.ok && Promise.reject(`Ошибка: ${res.status}`)
+export const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 export const postUser = (content: FormData) => {
   const url = currentUrl + '/users'
@@ -47,10 +45,17 @@ export const getUserFavorites = (currentUserId: string | null) => {
   }).then(checkResponse)
 }
 
-export const getUserById = (
-  userId: number | string,
-  currentUserId: string | null
-) => {
+export const getCurrentUser = (currentUserId: string | number) => {
+  const url = currentUrl + '/users/' + currentUserId
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  }).then(checkResponse)
+}
+
+export const getUserById = (userId: number | string, currentUserId: string | null) => {
   const url = currentUrl + '/users/' + currentUserId + '?id=' + userId
   return fetch(url, {
     headers: {
@@ -60,12 +65,8 @@ export const getUserById = (
   }).then(checkResponse)
 }
 
-export const addUserLike = (
-  currentUserId: number | null,
-  likedUserId: number | null
-) => {
-  const url =
-    currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+export const addUserLike = (currentUserId: number | null, likedUserId: number | null) => {
+  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -77,12 +78,8 @@ export const addUserLike = (
   })
 }
 
-export const removeUserLike = (
-  currentUserId: number | null,
-  likedUserId: number | null
-) => {
-  const url =
-    currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+export const removeUserLike = (currentUserId: number | null, likedUserId: number | null) => {
+  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',

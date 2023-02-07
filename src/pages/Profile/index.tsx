@@ -51,6 +51,8 @@ export default function Profile() {
     if (about) formDataContent.set('description', about)
     if (work) formDataContent.set('actualJob', work)
     if (photo) formDataContent.set('currentImage', photo)
+    // if (contactType.value==='email') {formDataContent.set('contacts.telegram', undefined)}
+    // if (contactType.value==='telegram') formDataContent.set('contacts.email', undefined)
 
     if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, contact)
     formDataContent.set('contacts.showType', contactsUserShowType.value ?? 'NOBODY')

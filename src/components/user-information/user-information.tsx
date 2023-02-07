@@ -6,7 +6,7 @@ import { TFormValues, TSelectableItem } from '../../utils/types'
 import { AddPhoto } from '../addPhoto/addPhoto'
 import { Tip } from '../tip/tip'
 import { useEffect, useState } from 'react'
-import { getUserById } from '../../utils/api'
+import { getCurrentUser } from '../../utils/api'
 import { Oval } from 'react-loader-spinner'
 import { SelectInput } from '../select-input/select-input'
 import { ContactInput } from '../input-pre-value/input-pre-value'
@@ -75,7 +75,7 @@ export const UserInformation = ({
     if (autoValues) {
       const id = localStorage.getItem('ownerId')
       if (id) {
-        getUserById(id, id).then((userData) => {
+        getCurrentUser(id).then((userData) => {
           const {
             username,
             description,
@@ -91,6 +91,7 @@ export const UserInformation = ({
           setValue('contactsUserShowType', possibleVisibility[foundIndexShowType])
           const foundContactType = possibleContacts.findIndex((element) => element.value === `${telegram ? 'telegram' : 'email'}`)
           setValue('contactType', possibleContacts[foundContactType])
+          setContactType(possibleContacts[foundContactType].value)
           setValue('contact', telegram ?? email)
           setPreviewFromApi(image)
         })
