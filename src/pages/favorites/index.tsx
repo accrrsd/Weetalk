@@ -6,6 +6,7 @@ import Card from '../../components/card/card'
 import { TitleSmart } from '../../components/title-smart/title-smart'
 import { getUserFavorites } from '../../utils/api'
 import favImg from '../../images/heartLiked.svg'
+import { loadImages } from '../../utils/functions'
 
 function Favorites() {
   const [favorites, setFavorites] = useState([])
@@ -20,21 +21,12 @@ function Favorites() {
   }, [])
 
   useEffect(() => {
-    const loadImage = (card: any) => {
-      return new Promise((resolve, reject) => {
-        const loadImg = new Image()
-        loadImg.src = `http://weetalk.online/img/${card.image}`
-        loadImg.onload = () => resolve(card)
-        loadImg.onerror = err => reject(err)
-      })
-    }
     // Избавляемся от первого рендера
     if (isFirstRender.current) {
       isFirstRender.current = false
       return
     }
-
-    Promise.all(favorites.map(image => loadImage(image)))
+    Promise.all(favorites.map(image => loadImages(image)))
       .then(() => setIsFavoritesLoaded(true))
       .catch(err => console.log('Failed to load images', err))
   }, [favorites])

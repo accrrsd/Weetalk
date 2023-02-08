@@ -19,3 +19,12 @@ export const changeLikeStatus = (
     )
   }
 }
+
+export const loadImages = (card: any) => {
+  return new Promise((resolve, reject) => {
+    const loadImg = new Image()
+    loadImg.src = `http://weetalk.online/img/${card.image}`
+    loadImg.onload = () => resolve(card)
+    loadImg.onerror = err => reject(err)
+  })
+}

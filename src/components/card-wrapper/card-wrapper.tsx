@@ -27,7 +27,6 @@ export default function CardWrapper({
   isFavoritesLoaded?: boolean
 }) {
   const [columns, setColumns] = useState(2)
-  const [selectedCard, setSelectedCard] = useState({})
   const navigate = useNavigate()
 
   const handleButtonClick = () => {
@@ -38,7 +37,6 @@ export default function CardWrapper({
     }
   }
   const handleCardClick = (card: any) => {
-    setSelectedCard(card)
     navigate(`/users/${card.id}`)
   }
 
