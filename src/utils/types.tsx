@@ -1,3 +1,6 @@
+export type TContactType = TSelectableItem<'telegram' | 'email', 'Telegram' | 'Электронная почта'>
+export type TContactShowType = TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES', 'Все пользователи' | 'Кого я выберу' | 'Не видит никто'>
+
 export type TTipPopupOffset = {
   left: number
   top: number
@@ -8,8 +11,8 @@ export type TFormValues = {
   name: string
   about: string
   work: string
-  contactsUserShowType: TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'>
-  contactType: TSelectableItem<'telegram' | 'email'>
+  contactShowType: TContactShowType
+  contactType: TContactType
   contact: string
 }
 
@@ -20,8 +23,8 @@ export type TUserFormData = {
   currentImage: File
 }
 
-export type TSelectableItem<valueType = string | number> = {
-  label: string
+export type TSelectableItem<valueType = string | number, labelType = string> = {
+  label: labelType
   value: valueType
 }
 
@@ -53,11 +56,4 @@ export type loadedCard = {
     email: string | null
     telegram: string | null
   }
-}
-
-export type TContactForReq = {
-  email?: string
-  instagram?: string
-  telegram?: string
-  showType: 'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES'
 }

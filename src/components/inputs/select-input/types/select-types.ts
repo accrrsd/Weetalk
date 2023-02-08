@@ -1,5 +1,5 @@
 import { Control } from 'react-hook-form'
-import { TSelectableItem, TSelectInputClassNames } from '../../../utils/types'
+import { TSelectableItem, TSelectInputClassNames } from '../../../../utils/types'
 
 type TMultipleSelectProps = {
   multiple: true

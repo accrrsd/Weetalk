@@ -1,12 +1,12 @@
-import style from './addPhoto.module.css'
+import style from './add-photo.module.css'
 import { useEffect, useState } from 'react'
-import useImagePreview from '../../hooks/useImagePreview'
-
-import { ReactComponent as ImageRect } from '../../images/addPhotoRect.svg'
-import { ReactComponent as AddPhotoPlusRect } from '../../images/addPhotoGradientPlus.svg'
 import { UseFormReturn } from 'react-hook-form'
-import { checkError } from '../../utils/functions'
-import { currentUrl } from '../../utils/api'
+
+import useImagePreview from '../../../hooks/useImagePreview'
+import { ReactComponent as ImageRect } from '../../../images/addPhotoRect.svg'
+import { ReactComponent as AddPhotoPlusRect } from '../../../images/addPhotoGradientPlus.svg'
+import { checkError } from '../../../utils/functions'
+import { currentUrl } from '../../../utils/api'
 
 type TAddPhoto = {
   formHook: UseFormReturn<any, object>
@@ -48,7 +48,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
     if (previewImageUrl) {
       setValue(inputName, null)
     }
-  }, [previewImageUrl])
+  }, [previewImageUrl, inputName, setValue])
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const files = e.target.files

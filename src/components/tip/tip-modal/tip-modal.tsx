@@ -1,26 +1,24 @@
+import style from './tip-modal.module.css'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { TTipPopupOffset } from '../../utils/types'
-import ModalOverlay from '../modal-overlay/modal-overlay'
-import style from './tip-modal.module.css'
+
+import { TTipPopupOffset } from '../../../utils/types'
+import ModalOverlay from '../../modals/modal-overlay/modal-overlay'
 
 const modalsContainer = document.querySelector('#modals')
 
-export const TipModal = ({
-  message,
-  onClick,
-  offset,
-  tongue = 'bottom',
-  overlayAdditionStyle,
-}: {
+type TTipModal = {
   message: string
   onClick: () => void
   offset: TTipPopupOffset
   tongue?: 'top' | 'bottom'
   overlayAdditionStyle?: string
-}) => {
+}
+
+export const TipModal = ({ message, onClick, offset, tongue = 'bottom', overlayAdditionStyle }: TTipModal) => {
   const [size, setSize] = useState<number>(0)
   const ref = useRef<HTMLDivElement>(null)
+
   useLayoutEffect(() => {
     if (ref.current) {
       setSize(ref.current.offsetHeight)

@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 import style from './input-pre-value.module.css'
 
 import { UseFormRegister } from 'react-hook-form'
-import { TFormValues } from '../../utils/types'
+import { TFormValues } from '../../../utils/types'
 
 export const ContactInput = ({
   register,

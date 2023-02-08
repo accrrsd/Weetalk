@@ -1,7 +1,7 @@
 import { useController } from 'react-hook-form'
-import { TSelectableItem } from '../../utils/types'
-import Select from './select/select'
+import { TSelectableItem } from '../../../utils/types'
 import { TSelectWrapperProps } from './types/select-types'
+import Select from './select/select'
 
 /**
  *

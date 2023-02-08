@@ -1,16 +1,31 @@
 import style from './user-information.module.css'
 import selectInputStyle from './selectInputStyle.module.css'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { checkError } from '../../utils/functions'
-import { TFormValues, TSelectableItem } from '../../utils/types'
-import { AddPhoto } from '../addPhoto/addPhoto'
-import { Tip } from '../tip/tip'
+
 import { useEffect, useState } from 'react'
-import { getCurrentUser } from '../../utils/api'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Oval } from 'react-loader-spinner'
-import { SelectInput } from '../select-input/select-input'
-import { ContactInput } from '../input-pre-value/input-pre-value'
+
+import { Tip } from '../tip/tip'
+import { AddPhoto } from '../inputs/add-photo/add-photo'
+import { SelectInput } from '../inputs/select-input/select-input'
+import { ContactInput } from '../inputs/input-pre-value/input-pre-value'
+
 import { possibleContacts, possibleVisibility } from '../../utils/constants'
+import { TFormValues, TSelectableItem } from '../../utils/types'
+import { checkError, isValidEmail } from '../../utils/functions'
+import { getCurrentUser } from '../../utils/api'
+
+type TUserInformation = {
+  onSubmit: (data: TFormValues) => any
+  onPhotoChange?: Function
+  onPhotoChangeStyle?: string
+  submitText?: string
+  submitLabelWrapperStyle?: string
+  submitSuccessText?: string
+  submitDenyText?: string
+  submitButtonStyle?: string
+  autoValues?: boolean
+}
 
 export const UserInformation = ({
   onSubmit,
@@ -22,17 +37,7 @@ export const UserInformation = ({
   submitDenyText = 'Ошибка, попробуйте снова',
   submitLabelWrapperStyle,
   autoValues = false,
-}: {
-  onSubmit: (data: TFormValues) => any
-  onPhotoChange?: Function
-  onPhotoChangeStyle?: string
-  submitText?: string
-  submitLabelWrapperStyle?: string
-  submitSuccessText?: string
-  submitDenyText?: string
-  submitButtonStyle?: string
-  autoValues?: boolean
-}) => {
+}: TUserInformation) => {
   const formHook = useForm<TFormValues>({ mode: 'all' })
   const [previewFromApi, setPreviewFromApi] = useState<null | string>(null)
   const [submitSuccess, setSubmitSuccess] = useState<null | boolean>(null)
@@ -51,27 +56,15 @@ export const UserInformation = ({
     formState: { errors },
   } = formHook
 
-  const isValidEmail = (email: string) =>
-    // eslint-disable-next-line no-useless-escape
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email
-    )
-      ? true
-      : 'Некорректный адрес электронной почты'
-
   const onSubmitWrapper: SubmitHandler<TFormValues> = (data) => {
     setLoader(true)
     onSubmit(data)
-      .then(() => {
-        setSubmitSuccess(true)
-      })
-      .catch(() => {
-        setSubmitSuccess(false)
-      })
-      .finally(() => {
-        setLoader(false)
-      })
+      .then(() => setSubmitSuccess(true))
+      .catch(() => setSubmitSuccess(false))
+      .finally(() => setLoader(false))
   }
+
+  const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
 
   useEffect(() => {
     if (autoValues) {
@@ -89,12 +82,15 @@ export const UserInformation = ({
           setValue('name', username)
           setValue('about', description)
           setValue('work', actualJob)
+
           const foundIndexShowType = possibleVisibility.findIndex((element) => element.value === showType)
-          setValue('contactsUserShowType', possibleVisibility[foundIndexShowType])
+          setValue('contactShowType', possibleVisibility[foundIndexShowType])
+
           const foundContactType = possibleContacts.findIndex((element) => element.value === `${telegram ? 'telegram' : 'email'}`)
           setValue('contactType', possibleContacts[foundContactType])
           setContactType(possibleContacts[foundContactType].value)
-          setValue('contact', telegram ?? email)
+
+          setValue('contact', telegram ?? email ?? '')
           setPreviewFromApi(image)
         })
       }
@@ -109,7 +105,7 @@ export const UserInformation = ({
       <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} modalDirection="down" />
+          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} tongue="bottom" />
         </span>
         <input
           {...register('name', {
@@ -124,7 +120,7 @@ export const UserInformation = ({
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} modalDirection="down" />
+          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} tongue="bottom" />
         </span>
         <SelectInput
           control={control}
@@ -138,14 +134,17 @@ export const UserInformation = ({
           preValue={contactType === possibleContacts[0].value ? '@' : ''}
           placeholder={contactType === possibleContacts[0].value ? 'ananas' : 'example@mail.ru'}
           wrapperErrorClassName={style.errorInput}
-          rules={{ required: 'Поле обязательное для заполнения', validate: contactType === possibleContacts[0].value ? true : isValidEmail }}
+          rules={{
+            required: 'Поле обязательное для заполнения',
+            validate: contactType === possibleContacts[0].value ? true : emailValidationHandler,
+          }}
         />
         {checkError('contact', errors) && <span className={style.errorMessage}>{checkError('contact', errors)}</span>}
       </div>
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} modalDirection="down" />
+          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} tongue="bottom" />
         </span>
         <SelectInput control={control} inputName="contactsUserShowType" options={possibleVisibility} className={selectInputStyle} />
       </div>
@@ -153,7 +152,7 @@ export const UserInformation = ({
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Расскажи о себе
-          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} modalDirection="down" />
+          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} tongue="bottom" />
         </span>
         <textarea
           maxLength={250}

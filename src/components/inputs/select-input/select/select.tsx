@@ -1,8 +1,9 @@
-import { forwardRef, useState } from 'react'
-import { TSelectableItem, TSelectInputClassNames } from '../../../utils/types'
-import { TSelectProps } from '../types/select-types'
-import { v4 as uuid } from 'uuid'
 import style from './select.module.css'
+import { forwardRef, useState } from 'react'
+import { v4 as uuid } from 'uuid'
+
+import { TSelectableItem, TSelectInputClassNames } from '../../../../utils/types'
+import { TSelectProps } from '../types/select-types'
 
 /**
  * Сумасшедший компонент, если принимает в себя:

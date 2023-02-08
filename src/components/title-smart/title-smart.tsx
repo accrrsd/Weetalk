@@ -10,23 +10,12 @@ type TTitleSmart = {
   onButtonClick?: () => any | void
 }
 
-export const TitleSmart = ({
-  text,
-  textStyle,
-  wrapperStyle,
-  haveButton = true,
-  buttonStyle,
-  buttonText,
-  onButtonClick,
-}: TTitleSmart) => {
+export const TitleSmart = ({ text, textStyle, wrapperStyle, haveButton = true, buttonStyle, buttonText, onButtonClick }: TTitleSmart) => {
   return (
     <div className={`${style.wrapper} ${wrapperStyle}`}>
       {text && <h2 className={`${style.title} ${textStyle}`}>{text}</h2>}
       {haveButton && (
-        <button
-          onClick={onButtonClick}
-          className={`${style.button} ${buttonStyle}`}
-        >
+        <button onClick={onButtonClick} className={`${style.button} ${buttonStyle}`}>
           {buttonText}
         </button>
       )}

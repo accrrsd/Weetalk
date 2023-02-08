@@ -3,22 +3,14 @@ import { useState } from 'react'
 import { UserInformation } from '../../components/user-information/user-information'
 import { TFormValues } from '../../utils/types'
 import { postUser } from '../../utils/api'
+import { createUserFormData } from '../../utils/functions'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
   const [photoChanged, setPhotoChanged] = useState(false)
   const onPhotoChange = () => setPhotoChanged(true)
 
   const onSubmit = (data: TFormValues) => {
-    const { name, about, work, photo, contactsUserShowType, contact, contactType } = data
-
-    const formDataContent = new FormData()
-    if (name) formDataContent.set('username', name)
-    if (about) formDataContent.set('description', about)
-    if (work) formDataContent.set('actualJob', work)
-    if (photo) formDataContent.set('currentImage', photo)
-
-    if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, contact)
-    formDataContent.set('contacts.showType', contactsUserShowType.value ?? 'NOBODY')
+    const formDataContent = createUserFormData(data)
 
     return postUser(formDataContent).then((id) => {
       localStorage.setItem('ownerId', id)

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-concat */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 const devUrl = 'http://weetalk.online/api/v1'
@@ -7,36 +6,20 @@ const temporaryBuildUrl = 'http://91.185.86.7:8080'
 
 export const currentUrl = temporaryBuildUrl
 
-export const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
-export const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
+const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 export const postUser = (content: FormData) => {
-  const url = currentUrl + '/users'
+  const url = `${currentUrl}/users`
   return fetch(url, {
     method: 'POST',
     body: content,
   }).then(checkResponse)
 }
 
-/**
- * @param currentUserId Текущий пользователь (ownerId)
- */
 export const getAllUsers = (currentUserId?: string | null) => {
-  const url = currentUrl + `/users?id=${currentUserId}`
-  return fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'GET',
-  }).then(checkResponse)
-}
-
-/**
- * @param currentUserId Текущий пользователь (ownerId)
- */
-export const getUserFavorites = (currentUserId: string | null) => {
-  const url = currentUrl + `/users/${currentUserId}/favorites`
+  const url = `${currentUrl}/users?id=${currentUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +29,17 @@ export const getUserFavorites = (currentUserId: string | null) => {
 }
 
 export const getCurrentUser = (currentUserId: string | number) => {
-  const url = currentUrl + '/users/' + currentUserId
+  const url = `${currentUrl}/users/${currentUserId}`
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  }).then(checkResponse)
+}
+
+export const getUserFavorites = (currentUserId: string | null) => {
+  const url = `${currentUrl}/users/${currentUserId}/favorites`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +49,7 @@ export const getCurrentUser = (currentUserId: string | number) => {
 }
 
 export const getUserById = (userId: number | string, currentUserId: string | null) => {
-  const url = currentUrl + '/users/' + currentUserId + '?id=' + userId
+  const url = `${currentUrl}/users/${currentUserId}?id=${userId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -66,7 +59,7 @@ export const getUserById = (userId: number | string, currentUserId: string | nul
 }
 
 export const addUserLike = (currentUserId: number | null, likedUserId: number | null) => {
-  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+  const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +72,7 @@ export const addUserLike = (currentUserId: number | null, likedUserId: number | 
 }
 
 export const removeUserLike = (currentUserId: number | null, likedUserId: number | null) => {
-  const url = currentUrl + `/users/${currentUserId}/like?likedUserId=${likedUserId}`
+  const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -91,11 +84,8 @@ export const removeUserLike = (currentUserId: number | null, likedUserId: number
   })
 }
 
-/**
- * @param currentUserId Текущий пользователь (ownerId)
- */
 export const patchUser = (content: FormData, currentUserId: string) => {
-  const url = currentUrl + '/users/' + currentUserId
+  const url = `${currentUrl}/users/${currentUserId}`
   return fetch(url, {
     method: 'PATCH',
     body: content,
@@ -103,7 +93,7 @@ export const patchUser = (content: FormData, currentUserId: string) => {
 }
 
 export const deleteUser = (currentUserId: string | number) => {
-  const url = currentUrl + '/users/' + currentUserId
+  const url = `${currentUrl}/users/${currentUserId}`
   return fetch(url, {
     method: 'DELETE',
   }).then(checkResponseWithoutContent)
