@@ -1,4 +1,4 @@
-import style from './Profile.module.css'
+import style from './profile.module.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Oval } from 'react-loader-spinner'
