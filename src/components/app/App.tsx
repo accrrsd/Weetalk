@@ -6,7 +6,7 @@ import { ProtectedRoutes } from '../protected-routes/protected-routes'
 
 import Login from '../../pages/login'
 import { RouteMenu } from '../route-menu/route-menu'
-import Profile from '../../pages/profile'
+import Profile from '../../pages/Profile'
 import Guests from '../../pages/guests'
 import Welcome from '../../pages/welcome'
 import Advices from '../../pages/advices'

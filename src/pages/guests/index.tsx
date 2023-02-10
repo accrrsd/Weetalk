@@ -9,7 +9,8 @@ export default function Guests() {
   const isFirstRender = useRef(true)
 
   useEffect(() => {
-    getAllUsers(localStorage.getItem('ownerId'))
+    console.log(document.cookie.split('; '))
+    getAllUsers()
       .then(card => {
         setCards(card)
       })

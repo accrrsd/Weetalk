@@ -9,11 +9,14 @@ const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
 
 export const currentUrl = temporaryBuildUrl
 
-const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+const checkResponse = (res: any) =>
+  res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 
-const checkUserCreateResponse = (res: any) => (res.ok ? res : Promise.reject(`Ошибка: ${res.status}`))
+const checkUserCreateResponse = (res: any) =>
+  res.ok ? res : Promise.reject(`Ошибка: ${res.status}`)
 
-const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
+const checkResponseWithoutContent = (res: any) =>
+  !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 type TPostUser = (content: FormData, roomId?: string) => Promise<any>
 
@@ -25,12 +28,16 @@ export const postUser: TPostUser = (content, roomId = devRoomId) => {
   }).then(checkUserCreateResponse)
 }
 
-export const getAllUsers = (currentUserId?: string | null) => {
-  const url = `${currentUrl}/users?id=${currentUserId}`
+export const getAllUsers = (
+  currentUserId?: string | null,
+  roomId = devRoomId
+) => {
+  const url = `${currentUrl}/rooms/${roomId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     method: 'GET',
   }).then(checkResponse)
 }
@@ -55,7 +62,10 @@ export const getUserFavorites = (currentUserId: string | null) => {
   }).then(checkResponse)
 }
 
-export const getUserById = (userId: number | string, currentUserId: string | null) => {
+export const getUserById = (
+  userId: number | string,
+  currentUserId: string | null
+) => {
   const url = `${currentUrl}/users/${currentUserId}?id=${userId}`
   return fetch(url, {
     headers: {
@@ -65,7 +75,10 @@ export const getUserById = (userId: number | string, currentUserId: string | nul
   }).then(checkResponse)
 }
 
-export const addUserLike = (currentUserId: number | null, likedUserId: number | null) => {
+export const addUserLike = (
+  currentUserId: number | null,
+  likedUserId: number | null
+) => {
   const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
@@ -78,7 +91,10 @@ export const addUserLike = (currentUserId: number | null, likedUserId: number | 
   })
 }
 
-export const removeUserLike = (currentUserId: number | null, likedUserId: number | null) => {
+export const removeUserLike = (
+  currentUserId: number | null,
+  likedUserId: number | null
+) => {
   const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
