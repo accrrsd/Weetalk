@@ -13,6 +13,7 @@ import { InfoQuestion } from '../../components/info-question/info-question'
 import { AddPhoto } from '../../components/inputs/add-photo/add-photo'
 import { SelectInput } from '../../components/inputs/select-input/select-input'
 import { ContactInput } from '../../components/inputs/input-pre-value/input-pre-value'
+import { setCookie } from '../../utils/cookie'
 
 export default function Login({ authorizedFunc }: { authorizedFunc: Function }) {
   const formHook = useForm<TFormValues>({ mode: 'all' })
@@ -26,11 +27,17 @@ export default function Login({ authorizedFunc }: { authorizedFunc: Function }) 
   const onSubmit = (data: TFormValues) => {
     const formDataContent = createUserFormData(data)
 
-    return postUser(formDataContent).then((id) => {
-      localStorage.setItem('ownerId', id)
-      localStorage.setItem('userData', '1234')
-      authorizedFunc(true)
-    })
+    return postUser(formDataContent)
+      .then((data) => {
+        console.log(data.headers)
+        return data.json()
+      })
+      .then((id) => {
+        localStorage.setItem('ownerId', id)
+        localStorage.setItem('userData', '1234')
+        authorizedFunc(true)
+        return id
+      })
   }
 
   const onSubmitWrapper: SubmitHandler<TFormValues> = (data) => {

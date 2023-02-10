@@ -5,18 +5,24 @@ const buildUrl = 'http://localhost:8080'
 
 const temporaryBuildUrl = 'http://91.185.86.7:8081'
 
+const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
+
 export const currentUrl = temporaryBuildUrl
 
 const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
+const checkUserCreateResponse = (res: any) => (res.ok ? res : Promise.reject(`Ошибка: ${res.status}`))
+
 const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
-export const postUser = (content: FormData) => {
-  const url = `${currentUrl}/users`
+type TPostUser = (content: FormData, roomId?: string) => Promise<any>
+
+export const postUser: TPostUser = (content, roomId = devRoomId) => {
+  const url = `${currentUrl}/users/${roomId}`
   return fetch(url, {
     method: 'POST',
     body: content,
-  }).then(checkResponse)
+  }).then(checkUserCreateResponse)
 }
 
 export const getAllUsers = (currentUserId?: string | null) => {
@@ -30,7 +36,7 @@ export const getAllUsers = (currentUserId?: string | null) => {
 }
 
 export const getCurrentUser = (currentUserId: string | number) => {
-  const url = `${currentUrl}/users/${currentUserId}`
+  const url = `${currentUrl}/users/view`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
