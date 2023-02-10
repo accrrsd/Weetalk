@@ -11,11 +11,11 @@ type TTipModal = {
   message: string
   onClick: () => void
   offset: TTipPopupOffset
-  tongue?: 'top' | 'bottom'
+  tongue?: 'toTop' | 'toBottom'
   overlayAdditionStyle?: string
 }
 
-export const TipModal = ({ message, onClick, offset, tongue = 'bottom', overlayAdditionStyle }: TTipModal) => {
+export const TipModal = ({ message, onClick, offset, tongue = 'toBottom', overlayAdditionStyle }: TTipModal) => {
   const [size, setSize] = useState<number>(0)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -27,10 +27,10 @@ export const TipModal = ({ message, onClick, offset, tongue = 'bottom', overlayA
 
   return createPortal(
     <>
-      <div ref={ref} className={style.wrapper} style={tongue === 'bottom' ? { top: offset.top - size - 20 } : { top: offset.top + 20 }}>
+      <div ref={ref} className={style.wrapper} style={tongue === 'toTop' ? { top: offset.top - size - 20 } : { top: offset.top + 20 }}>
         <div className={style.content} onClick={(e) => e.stopPropagation()}>
           <span className={style.message}>{message}</span>
-          <div className={`${style.tongue} ${tongue === 'bottom' ? style.tongueDown : style.tongueUp}`} style={{ left: offset.left }}></div>
+          <div className={`${style.tongue} ${tongue === 'toTop' ? style.tongueDown : style.tongueUp}`} style={{ left: offset.left }}></div>
         </div>
       </div>
       <ModalOverlay onClick={onClick} additionStyle={overlayAdditionStyle} />

@@ -6,6 +6,13 @@ export type TTipPopupOffset = {
   top: number
 }
 
+export type TTip = {
+  text: string
+  additionStyle?: string
+  color?: string
+  tongue?: 'toTop' | 'toBottom'
+}
+
 export type TFormValues = {
   photo: File
   name: string
@@ -42,6 +49,7 @@ export type TSelectInputClassNames = {
   container?: string
   optionsShow?: string
   optionSelected?: string
+  optionsAbsolute?: string
   optionHighlighted?: string
 }
 

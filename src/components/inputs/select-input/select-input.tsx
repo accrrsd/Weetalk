@@ -28,17 +28,19 @@ export function SelectInput({
   onChange,
   clearButton,
   divider,
-  defaultValueIndex = 0,
+  defaultValueIndex,
   className,
   isOpenProp,
 }: TSelectWrapperProps) {
-  const subRules = { clearButton, divider, isOpenProp, className }
+  const subRules = { clearButton, divider, isOpenProp, className, defaultValueIndex }
   const { field } = useController({
-    defaultValue: options[defaultValueIndex],
+    defaultValue: options[defaultValueIndex ?? 0],
     name: inputName,
     control,
     rules,
   })
+
+  // todo Рефактор переделать select так, чтобы он ВСЕГДА что-то возвращал (убрать undefined)
 
   const onChangeMultipleFunc = (e: TSelectableItem[]) => {
     field.onChange(e)

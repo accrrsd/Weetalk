@@ -105,7 +105,7 @@ export const UserInformation = ({
       <AddPhoto formHook={formHook} inputName="photo" onChange={onPhotoChange} onChangeStyle={onPhotoChangeStyle} previewImageUrl={previewFromApi} />
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} tongue="bottom" />
+          Как тебя зовут? <Tip color="black" text={'Напиши свои настоящие имя и фамилию'} tongue="toBottom" />
         </span>
         <input
           {...register('name', {
@@ -120,7 +120,7 @@ export const UserInformation = ({
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} tongue="bottom" />
+          Оставь свой контакт для связи <Tip color="black" text={'Добавь удобный контакт для связи с тобой'} tongue="toBottom" />
         </span>
         <SelectInput
           control={control}
@@ -144,7 +144,7 @@ export const UserInformation = ({
 
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
-          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} tongue="bottom" />
+          Кто видит твои контакты <Tip color="black" text={'Выбери кто из пользователей может видеть твои контакты'} tongue="toBottom" />
         </span>
         <SelectInput control={control} inputName="contactsUserShowType" options={possibleVisibility} className={selectInputStyle} />
       </div>
@@ -152,7 +152,7 @@ export const UserInformation = ({
       <div className={style.infoQuestionWrapper}>
         <span className={style.infoQuestion}>
           Расскажи о себе
-          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} tongue="bottom" />
+          <Tip color="black" text={'Расскажи, чем занимаешься, какие у тебя есть рабочие интересы и хобби'} tongue="toBottom" />
         </span>
         <textarea
           maxLength={250}

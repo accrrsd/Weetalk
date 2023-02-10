@@ -20,6 +20,8 @@ export type TSelectProps = {
   onBlur?: Function
   className?: TSelectInputClassNames
   isOpenProp?: boolean
+  enableAbsolutePreset?: boolean
+  defaultValueIndex?: number
 } & (TSingleSelectProps | TMultipleSelectProps)
 
 // --------------------------------------------------

@@ -1,42 +1,109 @@
 .container {
   position: relative;
-  width: 20em;
+  width: 100%;
   min-height: 1.5em;
-  border: 0.05em solid #777;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 12px;
-  border-radius: 0.25em;
+  border: none;
   outline: none;
   user-select: none;
+  padding: 0;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.container:focus {
+.container:focus .upperMenu {
   border-color: hsl(200, 100%, 50%);
+}
+
+.upperMenu {
+  width: 100%;
+  border: 1px solid var(--service5);
+  border-radius: 4px;
+  outline: none;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+  user-select: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  background-color: var(--bg2);
 }
 
 .valueWrapper {
   flex-grow: 1;
   display: flex;
-  gap: 0.5em;
   flex-wrap: wrap;
+  gap: 0.5em;
 }
 
-.upperMenu {
-  border: 1px solid var(--service5);
-  border-radius: 4px;
-  outline: none;
-  user-select: none;
-  align-items: center;
-  padding: 12px;
+.arrow {
+  translate: 0 25%;
+  border: 0.25em solid transparent;
+  border-top-color: #777;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+  translate: 0 -25%;
+}
+
+.optionsMain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
   font-size: 16px;
 
-  display: flex;
   width: 100%;
+  max-height: 15em;
+  min-height: 2em;
   box-sizing: border-box;
-  align-items: center;
   background-color: var(--bg2);
+
+  overflow-y: auto;
+  border: none;
+}
+
+.options {
+  margin-top: 8px;
+  composes: optionsMain;
+}
+
+.optionsAbsolute {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 100;
+  composes: optionsMain;
+}
+
+.optionsShow {
+  display: block;
+}
+
+.option {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.optionSelected {
+  background-color: hsl(200, 100%, 70%);
+}
+
+.optionHighlighted {
+  background-color: hsl(200, 100%, 50%);
+  color: white;
+}
+
+.iconsContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .clearBtn {
@@ -60,52 +127,7 @@
   width: 0.05em;
 }
 
-.arrow {
-  translate: 0 25%;
-  border: 0.25em solid transparent;
-  border-top-color: #777;
-}
-
-.arrowOpen {
-  transform: rotate(180deg);
-}
-
-.options {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: none;
-  max-height: 15em;
-  overflow-y: auto;
-  border: 0.05em solid #777;
-  border-radius: 0.25em;
-  width: 100%;
-  left: 0;
-  top: calc(100% + 0.25em);
-  background-color: white;
-  z-index: 100;
-  box-sizing: border-box;
-}
-
-.optionsShow {
-  display: block;
-}
-
-.option {
-  padding: 12px;
-  cursor: pointer;
-}
-
-.optionSelected {
-  background-color: hsl(200, 100%, 70%);
-}
-
-.optionHighlighted {
-  background-color: hsl(200, 100%, 50%);
-  color: white;
-}
-
+/* 
 .optionBadge {
   display: flex;
   align-items: center;
@@ -132,4 +154,4 @@
 .optionBadge > .removeBadgeBtn {
   font-size: 1.25em;
   color: #777;
-}
+} */

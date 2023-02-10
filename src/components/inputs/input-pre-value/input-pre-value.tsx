@@ -3,6 +3,19 @@ import style from './input-pre-value.module.css'
 
 import { UseFormRegister } from 'react-hook-form'
 import { TFormValues } from '../../../utils/types'
+import { useLayoutEffect, useState } from 'react'
+
+type TContactInput = {
+  register: UseFormRegister<TFormValues>
+  rules?: object
+  preValue: string
+  placeholder: string
+  wrapperClassName?: string
+  preClassName?: string
+  error?: boolean
+  inputClassName?: string
+  wrapperErrorClassName?: string
+}
 
 export const ContactInput = ({
   register,
@@ -14,25 +27,20 @@ export const ContactInput = ({
   error,
   inputClassName,
   wrapperErrorClassName,
-}: {
-  preValue: string
-  rules?: object
-  register: UseFormRegister<TFormValues>
-  placeholder: string
-  preClassName?: string
-  error?: boolean
-  wrapperClassName?: string
-  wrapperErrorClassName?: string
-  inputClassName?: string
-}) => {
-  const id = uuid()
+}: TContactInput) => {
+  const [uid, setUid] = useState<string>()
+
+  useLayoutEffect(() => {
+    setUid(uuid())
+  }, [setUid])
+
   return (
     <label
-      htmlFor={id}
+      htmlFor={uid}
       className={`${wrapperClassName ?? style.wrapperClassName} ${error ? wrapperErrorClassName ?? style.wrapperErrorClassName : ''}`}
     >
       {preValue && <span className={preClassName ?? style.preClassName}>{preValue}</span>}
-      <input {...register('contact', rules)} type="text" id={id} placeholder={placeholder} className={inputClassName ?? style.inputClassName} />
+      <input {...register('contact', rules)} type="text" id={uid} placeholder={placeholder} className={inputClassName ?? style.inputClassName} />
     </label>
   )
 }

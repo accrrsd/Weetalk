@@ -12,7 +12,7 @@ import { TSelectProps } from '../types/select-types'
  */
 
 const Select = forwardRef<HTMLDivElement, TSelectProps>(
-  ({ multiple, value, onChange, onBlur, options, clearButton, divider, className, isOpenProp }, ref) => {
+  ({ multiple, value, onChange, onBlur, options, clearButton, divider, className, isOpenProp, enableAbsolutePreset, defaultValueIndex }, ref) => {
     const [isOpen, setIsOpen] = useState(isOpenProp ?? false)
     const [highlightedIndex, setHighlightedIndex] = useState(0)
 
@@ -24,16 +24,17 @@ const Select = forwardRef<HTMLDivElement, TSelectProps>(
     }
 
     const selectOption = (option: TSelectableItem) => {
+      // Если опция отличается от активной, мы ее меняем, иначе - не делаем ничего
       if (!multiple) return option !== value ? onChange(option) : undefined
+      // Если опция уже есть в массиве, мы ее исключаем, иначе добавляем
       value.includes(option) ? onChange(value.filter((o) => o !== option)) : onChange([...value, option])
     }
 
-    const clearOptions = () => (multiple ? onChange([]) : onChange(undefined))
+    // При очистке значения, мы возвращаем пустой массив, или стандартное значение, или undefined
+    const clearOptions = () => (multiple ? onChange([]) : onChange(defaultValueIndex ? options[defaultValueIndex] : undefined))
 
     const isOptionSelected = (option: TSelectableItem) =>
       multiple ? value.includes(option) : option.label === value?.label && option.value === value.value
-
-    //todo Рефактор нужно сделать возможность как absolute так и обычного меню выбора, ИСПРАВИТЬ СТИЛИ и привести в нормальный вид, местами упростить и разбить на мелкие компоненты.
 
     return (
       <div ref={ref} onBlur={onBlurHandler} onClick={() => setIsOpen((prev) => !prev)} tabIndex={0} className={`${smartStyle('container')}`}>
@@ -55,21 +56,23 @@ const Select = forwardRef<HTMLDivElement, TSelectProps>(
                 ))
               : value?.label}
           </span>
-          {clearButton && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                clearOptions()
-              }}
-              className={`${smartStyle('clearBtn')}`}
-            >
-              &times;
-            </button>
-          )}
-          {divider && <div className={style.divider}></div>}
-          <div className={`${smartStyle('arrow')} ${isOpen ? smartStyle('arrowOpen') : ''}`}></div>
+          <div className={style.iconsContainer}>
+            {clearButton && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  clearOptions()
+                }}
+                className={`${smartStyle('clearBtn')}`}
+              >
+                &times;
+              </button>
+            )}
+            {divider && <div className={style.divider}></div>}
+            <div className={`${smartStyle('arrow')} ${isOpen ? smartStyle('arrowOpen') : ''}`}></div>
+          </div>
         </div>
-        <ul className={`${smartStyle('options')} ${isOpen ? smartStyle('optionsShow') : ''}`}>
+        <ul className={`${enableAbsolutePreset ? smartStyle('optionsAbsolute') : smartStyle('options')} ${isOpen ? smartStyle('optionsShow') : ''}`}>
           {options.map((option, index) => (
             <li
               onClick={(e) => {

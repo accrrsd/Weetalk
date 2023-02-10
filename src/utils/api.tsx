@@ -2,7 +2,8 @@
 
 const devUrl = 'http://weetalk.online/api/v1'
 const buildUrl = 'http://localhost:8080'
-const temporaryBuildUrl = 'http://91.185.86.7:8080'
+
+const temporaryBuildUrl = 'http://91.185.86.7:8081'
 
 export const currentUrl = temporaryBuildUrl
 

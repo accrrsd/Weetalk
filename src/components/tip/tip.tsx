@@ -3,16 +3,9 @@ import { useState } from 'react'
 
 import { ReactComponent as TipIcon } from '../../images/tip.svg'
 import { TipModal } from './tip-modal/tip-modal'
-import { TTipPopupOffset } from '../../utils/types'
+import { TTip, TTipPopupOffset } from '../../utils/types'
 
-type TTip = {
-  text: string
-  additionStyle?: string
-  color?: string
-  tongue?: 'top' | 'bottom'
-}
-
-export const Tip = ({ text, color, additionStyle, tongue = 'top' }: TTip) => {
+export const Tip = ({ text, color, additionStyle, tongue = 'toBottom' }: TTip) => {
   const [popupOffset, setPopupOffset] = useState<null | TTipPopupOffset>(null)
   return (
     <>
