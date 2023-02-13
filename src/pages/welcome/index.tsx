@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
-import styles from './welcome.module.css';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-/*import 'swiper/css/pagination';*/
-import photo1 from '../../images/welcome-1.jpg';
-import photo2 from '../../images/welcome-2.jpg';
-import photo3 from '../../images/welcome-3.jpg';
-import photo4 from '../../images/welcome-4.jpg';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import styles from './welcome.module.css'
+import { Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
+import photo1 from '../../images/welcome-1.jpg'
+import photo2 from '../../images/welcome-2.jpg'
+import photo3 from '../../images/welcome-3.jpg'
+import photo4 from '../../images/welcome-4.jpg'
+import { useNavigate } from 'react-router-dom'
 
 function Welcome() {
-  const navigate = useNavigate();
-  const [step, setStep] = useState(1);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  console.log(localStorage.getItem('welcomeState'));
+  const navigate = useNavigate()
+  const [step, setStep] = useState(1)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [swiper, setSwiper] = useState<SwiperType | null>(null)
+
+  useEffect(() => {
+    const swipeSlidesByClick = (e: { target: any; clientX: number }) => {
+      const clickTarget = e.target
+      const clickTargetWidth = clickTarget.offsetWidth
+      const xAxisTarget = e.clientX - clickTarget.getBoundingClientRect().left
+      if (swiper) {
+        if (clickTargetWidth / 2 > xAxisTarget) {
+          // clicked left
+          swiper.slidePrev()
+        } else {
+          // clicked right
+          swiper.slideNext()
+        }
+      }
+    }
+    setTimeout(() => {
+      document.addEventListener('click', swipeSlidesByClick)
+    }, 0)
+    return () => {
+      document.removeEventListener('click', swipeSlidesByClick)
+    }
+  }, [swiper])
   return (
     <div
       className={styles.container}
@@ -23,8 +46,8 @@ function Welcome() {
       <button
         className={styles.skipBtn}
         onClick={() => {
-          localStorage.setItem('welcomeState', 'done');
-          navigate('/guests');
+          localStorage.setItem('welcomeState', 'done')
+          navigate('/guests')
         }}
       >
         {currentSlide === 3 ? 'Закрыть' : 'Пропустить'}
@@ -49,8 +72,8 @@ function Welcome() {
             }}
             spaceBetween={250}
             slidesPerView={1}
-            onSwiper={(swiper) => console.log(swiper)}
-            onRealIndexChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+            onSwiper={swiper => setSwiper(swiper)}
+            onRealIndexChange={swiper => setCurrentSlide(swiper.realIndex)}
           >
             <SwiperSlide>
               <div className={styles.slide}>
@@ -76,7 +99,7 @@ function Welcome() {
                   А еще ознакомиться с нашими советами для начала общения с
                   незнакомым человеком
                 </p>
-                <img src={photo4} className={styles.slideImg} alt="Фото" />
+                <img src={photo3} className={styles.slideImg} alt="Фото" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -85,7 +108,7 @@ function Welcome() {
                   Ты всегда можешь изменить информацию в карточке или поменять
                   фото
                 </p>
-                <img src={photo3} className={styles.slideImg} alt="Фото" />
+                <img src={photo4} className={styles.slideImg} alt="Фото" />
               </div>
             </SwiperSlide>
           </Swiper>
@@ -93,7 +116,7 @@ function Welcome() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Welcome;
+export default Welcome

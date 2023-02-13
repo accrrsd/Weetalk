@@ -3,9 +3,10 @@
 const devUrl = 'http://weetalk.online/api/v1'
 const buildUrl = 'http://localhost:8080'
 
-const temporaryBuildUrl = 'http://91.185.86.7:8081'
+const temporaryBuildUrl = 'http://192.168.100.36:8081'
 
 const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
+const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
 
 export const currentUrl = temporaryBuildUrl
 
@@ -20,17 +21,18 @@ const checkResponseWithoutContent = (res: any) =>
 
 type TPostUser = (content: FormData, roomId?: string) => Promise<any>
 
-export const postUser: TPostUser = (content, roomId = devRoomId) => {
+export const postUser: TPostUser = (content, roomId = localRoomId) => {
   const url = `${currentUrl}/users/${roomId}`
   return fetch(url, {
     method: 'POST',
     body: content,
+    mode: 'no-cors',
   }).then(checkUserCreateResponse)
 }
 
 export const getAllUsers = (
   currentUserId?: string | null,
-  roomId = devRoomId
+  roomId = localRoomId
 ) => {
   const url = `${currentUrl}/rooms/${roomId}`
   return fetch(url, {
