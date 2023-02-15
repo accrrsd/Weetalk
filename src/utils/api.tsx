@@ -3,7 +3,7 @@
 const devUrl = 'http://weetalk.online/api/v1'
 const buildUrl = 'http://localhost:8080'
 
-const temporaryBuildUrl = 'http://91.185.86.7:8081'
+const temporaryBuildUrl = '/api/v1/test'
 
 const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
 const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
@@ -26,7 +26,6 @@ export const postUser: TPostUser = (content, roomId = devRoomId) => {
   return fetch(url, {
     method: 'POST',
     body: content,
-    mode: 'no-cors',
   }).then(checkUserCreateResponse)
 }
 
@@ -39,7 +38,6 @@ export const getAllUsers = (
     headers: {
       'Content-Type': 'application/json',
     },
-    credentials: 'include',
     method: 'GET',
   }).then(checkResponse)
 }

@@ -35,7 +35,7 @@ function Card({
     if (!image) {
       setBasicImage(favImage)
     } else {
-      setBasicImage(`http://weetalk.online/img/${image}`)
+      setBasicImage(`https://weetalk.online/img/${image}`)
     }
   }, [image])
 

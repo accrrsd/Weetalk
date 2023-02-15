@@ -94,7 +94,7 @@ export default function CardWrapper({
             <Card
               username={el.username}
               description={el.description}
-              image={el.image}
+              image={el.imageName}
               isLiked={el.isLiked}
               columns={columns}
               actualJob={el.actualJob}

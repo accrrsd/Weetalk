@@ -9,10 +9,9 @@ export default function Guests() {
   const isFirstRender = useRef(true)
 
   useEffect(() => {
-    console.log(document.cookie.split('; '))
     getAllUsers()
       .then(card => {
-        setCards(card)
+        setCards(card.usersIn)
       })
       .catch(error => console.log(`Error: ${error}`))
   }, [])

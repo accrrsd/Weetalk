@@ -50,11 +50,10 @@ export const isValidEmail: TIsValidEmailFunc = (email, errMessage) =>
     ? true
     : errMessage ?? false
 
-export const loadImages = (card: any) => {
-  return new Promise((resolve, reject) => {
+export const loadImages = (card: any) =>
+  new Promise((resolve, reject) => {
     const loadImg = new Image()
-    loadImg.src = `http://weetalk.online/img/${card.image}`
+    loadImg.src = `https://weetalk.online/img/${card.imageName}`
     loadImg.onload = () => resolve(card)
     loadImg.onerror = err => reject(err)
   })
-}
