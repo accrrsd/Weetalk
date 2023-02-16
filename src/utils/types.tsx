@@ -1,5 +1,11 @@
-export type TContactType = TSelectableItem<'telegram' | 'email', 'Telegram' | 'Электронная почта'>
-export type TContactShowType = TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES', 'Все пользователи' | 'Кого я выберу' | 'Не видит никто'>
+export type TContactType = TSelectableItem<
+  'telegram' | 'email',
+  'Telegram' | 'Электронная почта'
+>
+export type TContactShowType = TSelectableItem<
+  'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES',
+  'Все пользователи' | 'Кого я выберу' | 'Не видит никто'
+>
 
 export type TTipPopupOffset = {
   left: number
@@ -56,7 +62,7 @@ export type TSelectInputClassNames = {
 export type loadedCard = {
   actualJob: string
   username: string
-  image: string
+  imageName: string
   isLiked: boolean
   description: string
   id: number | null

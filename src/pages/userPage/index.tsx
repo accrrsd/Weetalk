@@ -10,7 +10,7 @@ import { changeLikeStatus } from '../../utils/functions'
 
 export default function UserPage() {
   const [loadedCard, setLoadedCard] = useState<loadedCard>({
-    image: '',
+    imageName: '',
     username: '',
     isLiked: false,
     actualJob: '',
@@ -21,12 +21,11 @@ export default function UserPage() {
   const [pageLoaded, setPageLoaded] = useState(false)
   const navigate = useNavigate()
   const params = useParams()
-  const currentUser = localStorage.getItem('ownerId')
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0)
     }, 0)
-    getUserById(String(params.id), currentUser)
+    getUserById(String(params.id))
       .then(card => {
         setLoadedCard(card)
       })
@@ -36,11 +35,7 @@ export default function UserPage() {
       })
   }, [params.id])
   const handleLike = () => {
-    changeLikeStatus(
-      Number(currentUser),
-      loadedCard.id,
-      loadedCard.isLiked
-    ).then(() => {
+    changeLikeStatus(loadedCard.id, loadedCard.isLiked).then(() => {
       setLoadedCard(state => {
         return { ...state, isLiked: !state.isLiked }
       })
@@ -57,7 +52,7 @@ export default function UserPage() {
         <>
           <Card
             card={loadedCard}
-            image={loadedCard.image}
+            image={loadedCard.imageName}
             isLiked={loadedCard.isLiked}
             onCardLike={handleLike}
             username={loadedCard.username}

@@ -6,16 +6,15 @@ export const checkError = (name: string, errors: FieldErrorsImpl) =>
   errors && errors[name] ? (errors[name]!.message as string) : false
 
 export const changeLikeStatus = (
-  currentUserId: number | null,
   likedUserId: number | null,
   isLiked: boolean
 ) => {
   if (!isLiked) {
-    return addUserLike(currentUserId, likedUserId).catch(error =>
+    return addUserLike(likedUserId).catch(error =>
       console.log(`Error: ${error}`)
     )
   } else {
-    return removeUserLike(currentUserId, likedUserId).catch(error =>
+    return removeUserLike(likedUserId).catch(error =>
       console.log(`Error: ${error}`)
     )
   }

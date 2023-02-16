@@ -22,12 +22,7 @@ function Card({
   actualJob?: string
   card?: any
   onCardClick?: (e: object) => void
-  onCardLike?: (
-    currentUserId: number | null,
-    likedUserId: number | null,
-    isLiked: boolean,
-    card: any
-  ) => void
+  onCardLike?: (likedUserId: number | null, isLiked: boolean, card: any) => void
   isFull?: boolean
 }) {
   const [basicImage, setBasicImage] = useState('')
@@ -43,9 +38,8 @@ function Card({
     onCardClick?.(card)
   }
   const handleLike = () => {
-    onCardLike?.(ownerId, card.id, card.isLiked, card)
+    onCardLike?.(card.id, card.isLiked, card)
   }
-  const ownerId = Number(localStorage.getItem('ownerId'))
   return (
     <>
       {columns === 2 ? (

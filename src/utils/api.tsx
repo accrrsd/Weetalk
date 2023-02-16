@@ -29,10 +29,7 @@ export const postUser: TPostUser = (content, roomId = devRoomId) => {
   }).then(checkUserCreateResponse)
 }
 
-export const getAllUsers = (
-  currentUserId?: string | null,
-  roomId = devRoomId
-) => {
+export const getAllUsers = (roomId = devRoomId) => {
   const url = `${currentUrl}/rooms/${roomId}`
   return fetch(url, {
     headers: {
@@ -62,11 +59,8 @@ export const getUserFavorites = (currentUserId: string | null) => {
   }).then(checkResponse)
 }
 
-export const getUserById = (
-  userId: number | string,
-  currentUserId: string | null
-) => {
-  const url = `${currentUrl}/users/${currentUserId}?id=${userId}`
+export const getUserById = (userId: number | string) => {
+  const url = `${currentUrl}/users/view?id=${userId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -75,35 +69,29 @@ export const getUserById = (
   }).then(checkResponse)
 }
 
-export const addUserLike = (
-  currentUserId: number | null,
-  likedUserId: number | null
-) => {
-  const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
+export const addUserLike = (likedUserId: number | null) => {
+  const url = `${currentUrl}/users/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://weetalk.online',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',
+      /*      'Access-Control-Allow-Origin': 'https://weetalk.online',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',*/
     },
     method: 'PATCH',
-    body: JSON.stringify({ currentUserId, likedUserId }),
+    body: JSON.stringify({ likedUserId }),
   })
 }
 
-export const removeUserLike = (
-  currentUserId: number | null,
-  likedUserId: number | null
-) => {
-  const url = `${currentUrl}/users/${currentUserId}/like?likedUserId=${likedUserId}`
+export const removeUserLike = (likedUserId: number | null) => {
+  const url = `${currentUrl}/users/like?likedUserId=${likedUserId}`
   return fetch(url, {
     headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://weetalk.online',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',
+      /*      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'https://weetalk.online',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',*/
     },
     method: 'DELETE',
-    body: JSON.stringify({ currentUserId, likedUserId }),
+    body: JSON.stringify({ likedUserId }),
   })
 }
 

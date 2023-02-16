@@ -41,12 +41,11 @@ export default function CardWrapper({
   }
 
   const handleLike = (
-    currentUserId: number | null,
     likedUserId: number | null,
     isLiked: boolean,
     card: any
   ) => {
-    changeLikeStatus(currentUserId, likedUserId, isLiked).then(() => {
+    changeLikeStatus(likedUserId, isLiked).then(() => {
       if (users !== undefined) {
         card.isLiked = !card.isLiked
         setUsers?.((state: Array<any>) =>

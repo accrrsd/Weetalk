@@ -21,11 +21,11 @@ export const RouteMenu = () => {
       case '/guests':
         setActiveLink('guests')
         break
-      case '/favorite':
-        setActiveLink('favorite')
+      case '/favorites':
+        setActiveLink('favorites')
         break
-      case '/recommendations':
-        setActiveLink('recommendations')
+      case '/advices':
+        setActiveLink('advices')
         break
       case '/profile':
         setActiveLink('profile')
@@ -40,25 +40,41 @@ export const RouteMenu = () => {
       <ul className={style.menu}>
         <li>
           <NavLink to="/guests" className={style.navLink}>
-            {activeLink === 'guests' ? <GuestsIconSolid className={style.menuIcon} /> : <GuestsIcon className={style.menuIcon} />}
+            {activeLink === 'guests' ? (
+              <GuestsIconSolid className={style.menuIcon} />
+            ) : (
+              <GuestsIcon className={style.menuIcon} />
+            )}
             <span className={style.linkText}>Люди</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/favorite" className={style.navLink}>
-            {activeLink === 'favorite' ? <FavoriteIconSolid className={style.menuIcon} /> : <FavoriteIcon className={style.menuIcon} />}
+          <NavLink to="/favorites" className={style.navLink}>
+            {activeLink === 'favorites' ? (
+              <FavoriteIconSolid className={style.menuIcon} />
+            ) : (
+              <FavoriteIcon className={style.menuIcon} />
+            )}
             <span className={style.linkText}>Избранное</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/recommendations" className={style.navLink}>
-            {activeLink === 'recommendations' ? <TipsIconSolid className={style.menuIcon} /> : <TipsIcon className={style.menuIcon} />}
+          <NavLink to="/advices" className={style.navLink}>
+            {activeLink === 'advices' ? (
+              <TipsIconSolid className={style.menuIcon} />
+            ) : (
+              <TipsIcon className={style.menuIcon} />
+            )}
             <span className={style.linkText}>Советы</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="/profile" className={style.navLink}>
-            {activeLink === 'profile' ? <ProfileIconSolid className={style.menuIcon} /> : <ProfileIcon className={style.menuIcon} />}
+            {activeLink === 'profile' ? (
+              <ProfileIconSolid className={style.menuIcon} />
+            ) : (
+              <ProfileIcon className={style.menuIcon} />
+            )}
             <span className={style.linkText}>Профиль</span>
           </NavLink>
         </li>
