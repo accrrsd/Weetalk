@@ -7,15 +7,23 @@ import { TitleSmart } from '../../components/title-smart/title-smart'
 import { getUserFavorites } from '../../utils/api'
 import favImg from '../../images/heartLiked.svg'
 import { loadImages } from '../../utils/functions'
+import { ICard } from '../../utils/interfaces'
 
 function Favorites() {
   const [favorites, setFavorites] = useState([])
   const [isFavoritesLoaded, setIsFavoritesLoaded] = useState(false)
   const cardWrapperRef = useRef<HTMLDivElement>(null)
   const isFirstRender = useRef(true)
+  const emptyCard: ICard = {
+    id: null,
+    username: 'Никита',
+    actualJob: 'ивент-менеджер',
+    isLiked: true,
+    imageName: 'local',
+  }
 
   useEffect(() => {
-    getUserFavorites(String(localStorage.getItem('ownerId')))
+    getUserFavorites()
       .then(card => setFavorites(card))
       .catch(error => console.log(`Error: ${error}`))
   }, [])
@@ -41,15 +49,9 @@ function Favorites() {
         wrapperStyle={wrapperStyle.heading}
       />
       <div className={wrapperStyle.cardWrapper} ref={cardWrapperRef}>
-        <Card
-          username="Никитка"
-          actualJob="ивент-менеджер"
-          image={''}
-          isLiked={true}
-          description="Профессиональный дизайнер, опыт работы 8 лет. Основатель комьюнити “Контраст”. Занимаюсь йогой, люблю отдыхать на природе. Буду рад обменяться опытом построения сообщества!"
-        />
+        <Card card={emptyCard} />
         <div className={style.tip}>
-          Иван, ты пока ещё никого не добавил в избранное 😔 <br />
+          Ты пока ещё никого не добавил в избранное 😔 <br />
           Это легко сделать, нажав на иконку{' '}
           <img className={style.img} src={favImg} alt="Лайк" />
         </div>

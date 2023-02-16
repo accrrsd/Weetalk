@@ -3,13 +3,13 @@ import style from './userPage.module.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TitleSmart } from '../../components/title-smart/title-smart'
 import { getUserById } from '../../utils/api'
-import { loadedCard } from '../../utils/types'
 import Card from '../../components/card/card'
 import { Oval } from 'react-loader-spinner'
 import { changeLikeStatus } from '../../utils/functions'
+import { ILoadedCard } from '../../utils/interfaces'
 
 export default function UserPage() {
-  const [loadedCard, setLoadedCard] = useState<loadedCard>({
+  const [loadedCard, setLoadedCard] = useState<ILoadedCard>({
     imageName: '',
     username: '',
     isLiked: false,
@@ -52,12 +52,9 @@ export default function UserPage() {
         <>
           <Card
             card={loadedCard}
-            image={loadedCard.imageName}
-            isLiked={loadedCard.isLiked}
             onCardLike={handleLike}
-            username={loadedCard.username}
-            actualJob={loadedCard.actualJob}
             isFull={true}
+            {...loadedCard}
           />
           {loadedCard.contacts && (
             <>
