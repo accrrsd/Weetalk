@@ -10,8 +10,8 @@ export default function Guests() {
 
   useEffect(() => {
     getAllUsers()
-      .then(card => {
-        setCards(card.usersIn)
+      .then(res => {
+        setCards(res.usersIn)
       })
       .catch(error => console.log(`Error: ${error}`))
   }, [])

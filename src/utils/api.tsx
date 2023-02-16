@@ -49,8 +49,8 @@ export const getCurrentUser = (currentUserId: string | number) => {
   }).then(checkResponse)
 }
 
-export const getUserFavorites = (currentUserId: string | null) => {
-  const url = `${currentUrl}/users/${currentUserId}/favorites`
+export const getUserFavorites = () => {
+  const url = `${currentUrl}/users/favorites`
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -74,8 +74,6 @@ export const addUserLike = (likedUserId: number | null) => {
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      /*      'Access-Control-Allow-Origin': 'https://weetalk.online',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',*/
     },
     method: 'PATCH',
     body: JSON.stringify({ likedUserId }),
@@ -85,11 +83,6 @@ export const addUserLike = (likedUserId: number | null) => {
 export const removeUserLike = (likedUserId: number | null) => {
   const url = `${currentUrl}/users/like?likedUserId=${likedUserId}`
   return fetch(url, {
-    headers: {
-      /*      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'https://weetalk.online',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS, PUT, POST, DELETE',*/
-    },
     method: 'DELETE',
     body: JSON.stringify({ likedUserId }),
   })

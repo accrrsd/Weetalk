@@ -1,44 +1,40 @@
 import style from '../card/card.module.css'
 import { useEffect, useState } from 'react'
 import favImage from '../../images/favImage.png'
+import { ICard } from '../../utils/interfaces'
 
 function Card({
-  username,
-  description,
-  image,
-  isLiked,
   columns,
-  actualJob,
   card,
   onCardClick,
   onCardLike,
   isFull,
 }: {
-  username: string
-  description?: string
-  image: string
-  isLiked: boolean
   columns?: number
-  actualJob?: string
-  card?: any
-  onCardClick?: (e: object) => void
-  onCardLike?: (likedUserId: number | null, isLiked: boolean, card: any) => void
+  card: ICard
+  onCardClick?: (e: number | null) => void
+  onCardLike?: (
+    likedUserId: number | null,
+    isLiked: boolean,
+    card: ICard
+  ) => void
   isFull?: boolean
 }) {
+  const { id, username, isLiked, actualJob, imageName } = card
   const [basicImage, setBasicImage] = useState('')
   useEffect(() => {
-    if (!image) {
+    if (!imageName || imageName === 'local') {
       setBasicImage(favImage)
     } else {
-      setBasicImage(`https://weetalk.online/img/${image}`)
+      setBasicImage(`https://weetalk.online/img/${imageName}`)
     }
-  }, [image])
+  }, [imageName])
 
   const handleClick = () => {
-    onCardClick?.(card)
+    onCardClick?.(id)
   }
   const handleLike = () => {
-    onCardLike?.(card.id, card.isLiked, card)
+    onCardLike?.(id, isLiked, card)
   }
   return (
     <>

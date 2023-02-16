@@ -6,6 +6,7 @@ import { TitleSmart } from '../title-smart/title-smart'
 import { Oval } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { changeLikeStatus } from '../../utils/functions'
+import { ICard } from '../../utils/interfaces'
 
 export default function CardWrapper({
   array,
@@ -17,10 +18,10 @@ export default function CardWrapper({
   isUsersLoaded,
   isFavoritesLoaded,
 }: {
-  array: Array<any>
+  array: ICard[]
   title: string
-  users?: any
-  favorites?: any
+  users?: ICard[]
+  favorites?: ICard[]
   setUsers?: Function
   setFavorites?: Function
   isUsersLoaded?: boolean
@@ -36,27 +37,25 @@ export default function CardWrapper({
       setColumns(2)
     }
   }
-  const handleCardClick = (card: any) => {
-    navigate(`/users/${card.id}`)
+  const handleCardClick = (id: number | null) => {
+    navigate(`/users/${id}`)
   }
 
   const handleLike = (
     likedUserId: number | null,
     isLiked: boolean,
-    card: any
+    card: ICard
   ) => {
     changeLikeStatus(likedUserId, isLiked).then(() => {
       if (users !== undefined) {
         card.isLiked = !card.isLiked
-        setUsers?.((state: Array<any>) =>
+        setUsers?.((state: ICard[]) =>
           state.map(c => (c.id === card.id ? card : c))
         )
       }
       if (favorites !== undefined) {
         card.isLiked = !card.isLiked
-        setFavorites?.((state: Array<any>) =>
-          state.filter(c => c.isLiked === true)
-        )
+        setFavorites?.((state: ICard[]) => state.filter(c => c.isLiked))
       }
     })
   }
@@ -89,18 +88,13 @@ export default function CardWrapper({
         />
       ) : (
         <Masonry columnsCount={columns} gutter={'16px'}>
-          {array.map((el: any) => (
+          {array.map((card: ICard) => (
             <Card
-              username={el.username}
-              description={el.description}
-              image={el.imageName}
-              isLiked={el.isLiked}
               columns={columns}
-              actualJob={el.actualJob}
-              card={el}
-              key={el.id}
+              key={card.id}
               onCardClick={handleCardClick}
               onCardLike={handleLike}
+              card={card}
             />
           ))}
         </Masonry>
