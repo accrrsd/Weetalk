@@ -40,8 +40,6 @@ export function SelectInput({
     rules,
   })
 
-  // todo Рефактор переделать select так, чтобы он ВСЕГДА что-то возвращал (убрать undefined)
-
   const onChangeMultipleFunc = (e: TSelectableItem[]) => {
     field.onChange(e)
     if (multiple && onChange) onChange(e)

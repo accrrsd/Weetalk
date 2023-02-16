@@ -18,4 +18,5 @@ export const roomSlice = createSlice({
   },
 })
 
+export const { setRoom } = roomSlice.actions
 export default roomSlice.reducer

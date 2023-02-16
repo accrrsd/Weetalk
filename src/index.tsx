@@ -9,7 +9,7 @@ const store = setupStore()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <HashRouter basename="/#">
+  <HashRouter>
     <Provider store={store}>
       <App />
     </Provider>
