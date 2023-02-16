@@ -1,3 +1,15 @@
+.photoTitle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.biggerPhoto {
+  width: 256px !important;
+  height: 256px !important;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -65,7 +77,7 @@
 }
 
 .textareaInput {
-  min-height: 80px;
+  min-height: 140px;
   resize: vertical;
   font-size: 16px;
 }
@@ -77,6 +89,19 @@
   width: 100%;
   align-items: center;
   gap: 10px;
+}
+
+.submit {
+  background: white;
+  padding: 12px 91px;
+  border: none;
+  border-radius: 8px;
+  color: var(--black2);
+  font-family: inherit;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .submitContent {
@@ -91,6 +116,10 @@
 .submitLabelWrapper {
   display: flex;
   width: 100%;
+  background: var(--main-gradient);
+  border: 1px transparent solid;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .submitLabelWrapperDisableEvents {

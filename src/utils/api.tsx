@@ -10,14 +10,9 @@ const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
 
 export const currentUrl = temporaryBuildUrl
 
-const checkResponse = (res: any) =>
-  res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
-const checkUserCreateResponse = (res: any) =>
-  res.ok ? res : Promise.reject(`Ошибка: ${res.status}`)
-
-const checkResponseWithoutContent = (res: any) =>
-  !res.ok && Promise.reject(`Ошибка: ${res.status}`)
+const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 type TPostUser = (content: FormData, roomId?: string) => Promise<any>
 
@@ -26,7 +21,7 @@ export const postUser: TPostUser = (content, roomId = devRoomId) => {
   return fetch(url, {
     method: 'POST',
     body: content,
-  }).then(checkUserCreateResponse)
+  }).then(checkResponse)
 }
 
 export const getAllUsers = (roomId = devRoomId) => {
@@ -39,7 +34,7 @@ export const getAllUsers = (roomId = devRoomId) => {
   }).then(checkResponse)
 }
 
-export const getCurrentUser = (currentUserId: string | number) => {
+export const getCurrentUser = () => {
   const url = `${currentUrl}/users/view`
   return fetch(url, {
     headers: {
@@ -95,16 +90,16 @@ export const removeUserLike = (likedUserId: number | null) => {
   })
 }
 
-export const patchUser = (content: FormData, currentUserId: string) => {
-  const url = `${currentUrl}/users/${currentUserId}`
+export const patchUser = (content: FormData) => {
+  const url = `${currentUrl}/users`
   return fetch(url, {
     method: 'PATCH',
     body: content,
   }).then(checkResponseWithoutContent)
 }
 
-export const deleteUser = (currentUserId: string | number) => {
-  const url = `${currentUrl}/users/${currentUserId}`
+export const deleteUser = () => {
+  const url = `${currentUrl}/users`
   return fetch(url, {
     method: 'DELETE',
   }).then(checkResponseWithoutContent)
