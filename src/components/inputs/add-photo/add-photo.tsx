@@ -21,7 +21,7 @@ export const AddPhoto = ({ formHook, inputName = 'photo', onChange, onChangeStyl
   const [photoChanged, setPhotoChanged] = useState(false)
   const imagePreview = useImagePreview(imageFile)
   const linkToPreviewImage = `${currentUrl}/img/${previewImageUrl}`
-  const previewSrc = previewImageUrl ? linkToPreviewImage : imagePreview
+  const previewSrc = !!imagePreview ? imagePreview : previewImageUrl ? linkToPreviewImage : ''
 
   const {
     register,
