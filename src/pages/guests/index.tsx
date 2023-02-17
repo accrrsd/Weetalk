@@ -18,7 +18,7 @@ export default function Guests() {
         })
         .catch((error) => console.log(`Error: ${error}`))
     }
-  }, [])
+  }, [roomId])
 
   useEffect(() => {
     // Избавляемся от первого рендера
