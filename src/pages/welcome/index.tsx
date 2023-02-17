@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 function Welcome() {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [, setSwiperUpdated] = useState(0)
   const [swiper, setSwiper] = useState<SwiperType | null>(null)
 
   useEffect(() => {
@@ -27,7 +27,12 @@ function Welcome() {
           swiper.slidePrev()
         } else {
           // clicked right
-          swiper.slideNext()
+          if (swiper.isEnd) {
+            localStorage.setItem('welcomeState', 'done')
+            navigate('/guests')
+          } else {
+            swiper.slideNext()
+          }
         }
       }
     }
@@ -37,7 +42,7 @@ function Welcome() {
     return () => {
       document.removeEventListener('click', swipeSlidesByClick)
     }
-  }, [swiper])
+  }, [navigate, swiper])
   return (
     <div
       className={styles.container}
@@ -50,7 +55,7 @@ function Welcome() {
           navigate('/guests')
         }}
       >
-        {currentSlide === 3 ? 'Закрыть' : 'Пропустить'}
+        {swiper && swiper.isEnd ? 'Закрыть' : 'Пропустить'}
       </button>
       {step === 1 ? (
         <div className={styles.welcome}>
@@ -67,13 +72,13 @@ function Welcome() {
           <Swiper
             modules={[Pagination]}
             pagination={{
-              clickable: true,
+              clickable: false,
               el: `.welcome-pagination`,
             }}
             spaceBetween={250}
             slidesPerView={1}
+            onRealIndexChange={swiper => setSwiperUpdated(swiper.realIndex)}
             onSwiper={swiper => setSwiper(swiper)}
-            onRealIndexChange={swiper => setCurrentSlide(swiper.realIndex)}
           >
             <SwiperSlide>
               <div className={styles.slide}>
