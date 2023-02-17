@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const devUrl = '/api/v1/test'
-const BuildUrl = 'https://weetalk.online/api/v1/test'
+const temporaryBuildUrl = '/api/v1/test'
 
 const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
 const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
 
-export const currentUrl = devUrl
+export const currentUrl = temporaryBuildUrl
 
 const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
 
