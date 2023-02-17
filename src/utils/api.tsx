@@ -14,9 +14,9 @@ const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ош�
 
 const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
-type TPostUser = (content: FormData, roomId?: string) => Promise<any>
+type TPostUser = (content: FormData, roomId: string) => Promise<any>
 
-export const postUser: TPostUser = (content, roomId = devRoomId) => {
+export const postUser: TPostUser = (content, roomId) => {
   const url = `${currentUrl}/users/${roomId}`
   return fetch(url, {
     method: 'POST',
@@ -24,7 +24,7 @@ export const postUser: TPostUser = (content, roomId = devRoomId) => {
   }).then(checkResponse)
 }
 
-export const getAllUsers = (roomId = devRoomId) => {
+export const getAllUsers = (roomId: string) => {
   const url = `${currentUrl}/rooms/${roomId}`
   return fetch(url, {
     headers: {
