@@ -2,13 +2,12 @@ import CardWrapper from '../../components/card-wrapper/card-wrapper'
 import { useEffect, useRef, useState } from 'react'
 import { getAllUsers } from '../../utils/api'
 import { loadImages } from '../../utils/functions'
-import { useAppSelector } from '../../hooks/storeHooks'
 
 export default function Guests() {
   const [cards, setCards] = useState([])
   const [isUsersLoaded, setIsUsersLoaded] = useState(false)
   const isFirstRender = useRef(true)
-  const roomId = useAppSelector((state) => state.roomReducer.room)
+  const roomId = localStorage.getItem('roomId')
 
   useEffect(() => {
     if (roomId) {

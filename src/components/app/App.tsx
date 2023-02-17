@@ -1,7 +1,6 @@
 import style from './App.module.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { HashRouter } from 'react-router-dom'
 import { ProtectedRoutes } from '../protected-routes/protected-routes'
 
 import Login from '../../pages/login'
@@ -13,7 +12,6 @@ import Advices from '../../pages/advices'
 import Favorites from '../../pages/favorites'
 import UserPage from '../../pages/userPage'
 import CheckRoom from '../../pages/checkRoom'
-import { useAppSelector } from '../../hooks/storeHooks'
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false)
@@ -24,7 +22,7 @@ export default function App() {
   const welcomeStateLocalStorage = !!localStorage.getItem('welcomeState')
 
   // todo используется для проверки комнаты
-  const roomId = useAppSelector((state) => state.roomReducer.room)
+  // const roomId = useAppSelector((state) => state.roomReducer.room)
 
   useEffect(() => {
     // Получаем из localStorage всякие статусы
