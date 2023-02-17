@@ -1,0 +1,37 @@
+.wrapper {
+  position: absolute;
+  color: var(--main1);
+  z-index: 1001;
+  font-size: 16px;
+  line-height: 22px;
+  left: 0;
+  right: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.content {
+  position: relative;
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--main-gradient);
+}
+
+.message {
+  white-space: pre-line;
+}
+
+.tongue {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  background: var(--main-gradient);
+  background-size: cover;
+}
+.tongueDown {
+  bottom: -15px;
+  clip-path: polygon(50% 100%, 100% 0, 0 0);
+}
+.tongueUp {
+  top: -15px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}

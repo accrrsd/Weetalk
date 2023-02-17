@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "HindVadodara";
+    font-weight: 300;
+    font-style: normal;
+    src: url("HindVadodara-Light.woff2") format("woff2");
+}
+@font-face {
+    font-family: "HindVadodara";
+    font-weight: 400;
+    font-style: normal;
+    src: url("HindVadodara-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "HindVadodara";
+    font-weight: 500;
+    font-style: normal;
+    src: url("HindVadodara-Medium.woff2") format("woff2");
+}
+@font-face {
+    font-family: "HindVadodara";
+    font-weight: 600;
+    font-style: normal;
+    src: url("HindVadodara-SemiBold.woff2") format("woff2");
+}

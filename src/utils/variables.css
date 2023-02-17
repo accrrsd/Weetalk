@@ -1,0 +1,23 @@
+:root {
+  --main1: #fff;
+  --main2: #7e7ee7;
+  --main3: #d9d9f8;
+  --main-gradient: linear-gradient(127.95deg, #2b5876 0%, #4e4376 97.08%);
+
+  --accent1: #e43642;
+  --accent2: #26878d;
+  --accent3: #1a78ae;
+  --accent4: #00a460;
+
+  --service1: #ffffff;
+  --service2: #696969;
+  --service3: #f5f5fd;
+  --service4: #c7c7c7;
+  --service5: #afaaa7;
+
+  --black1: #1e1e24;
+  --black2: #2d3037;
+
+  --bg1: #ebe6e3;
+  --bg2: #f7f7f6;
+}

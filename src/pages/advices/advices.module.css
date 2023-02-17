@@ -1,0 +1,70 @@
+.advices {
+    padding: 12px 15px 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.heading {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.headingWrapper {
+    margin-bottom: 24px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.element {
+    background: var(--bg1);
+    border-radius: 16px;
+    padding: 16px 12px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px 0;
+}
+
+.elementTitle {
+    width: fit-content;
+    padding: 8px;
+    margin: 0;
+    color: var(--black2);
+    background: #FFFFFF;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 2px solid var(--bg1);
+    border-radius: 8px;
+}
+
+.elementText {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: var(--black2);
+    font-family: 'HindVadodara', sans-serif;
+}
+
+.elementTip {
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    background: #fff;
+    color: var(--black1);
+    padding: 8px;
+    border-width: 1px 2px 2px 1px;
+    border-style: solid;
+    border-color: #AFAAA7;
+    border-radius: 8px;
+}

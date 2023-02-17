@@ -1,0 +1,27 @@
+.container:focus .upperMenu {
+  border-color: 1px solid var(--service5);
+}
+
+.option {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.optionSelected {
+  border: 2px solid var(--service5);
+  border-radius: 4px;
+}
+
+.optionSelected:last-child {
+  border: 2px solid var(--service5);
+  border-radius: 4px;
+}
+
+.optionHighlighted {
+  background-color: transparent;
+}

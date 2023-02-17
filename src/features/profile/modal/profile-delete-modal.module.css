@@ -1,0 +1,82 @@
+.deleteModalWrapper {
+  position: fixed;
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  z-index: 1001;
+
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 258px;
+  padding: 24px 24px 20px;
+  background-color: var(--main1);
+  border: 1px solid var(--main2);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 2px 4px 7px rgba(61, 16, 121, 0.49);
+  box-sizing: border-box;
+}
+
+.deleteModalTitle {
+  font-size: 18px;
+  line-height: 140%;
+  text-align: center;
+}
+
+.deleteModalButtonsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  margin-top: 36px;
+  width: 100%;
+}
+
+.deleteModalButton {
+  font-weight: 600;
+  padding: 12px 34px;
+  min-width: 98px;
+  color: var(--main2);
+  background-color: transparent;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  border: none;
+}
+
+.deleteModalButtonNo {
+  color: var(--main1);
+  background: var(--main-gradient);
+}
+
+.deleteModalButtonYesWrapper {
+  background: var(--main-gradient);
+  border: none;
+  border-radius: 8px;
+  padding: 1px;
+
+  display: flex;
+  width: 100%;
+}
+
+.deleteModalButtonYes {
+  color: var(--black2);
+  background: var(--main1);
+}
+
+.deleteModalButtonWithLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.deleteModalError {
+  color: var(--accent1);
+  margin-top: 15px;
+}

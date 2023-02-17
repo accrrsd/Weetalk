@@ -1,0 +1,25 @@
+.wrapperClassName {
+  background: var(--bg2);
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.wrapperErrorClassName {
+  outline: 1px solid red;
+}
+
+.inputClassName {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+
+.wrapperClassName {
+  font-size: 16px;
+}
