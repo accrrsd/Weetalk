@@ -1,6 +1,6 @@
 @import url(./utils/variables.css);
 @import url(./vendor/fonts/fonts.css);
-@import url('pages/Main/welcome/welcome-slider.css');
+@import url('pages/Application/welcome/welcome-slider.css');
 
 body {
   margin: 0;
