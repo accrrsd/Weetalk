@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './advices.module.css'
-import { TitleSmart } from '../../components/title-smart/title-smart'
+import { TitleSmart } from '../../../components/title-smart/title-smart'
 function Advices() {
   return (
     <div className={styles.advices}>

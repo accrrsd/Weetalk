@@ -5,13 +5,13 @@ import { ProtectedRoutes } from '../protected-routes/protected-routes'
 
 import Login from '../../pages/Main/login'
 import { RouteMenu } from '../route-menu/route-menu'
-import Profile from '../../pages/Main/profile'
-import Guests from '../../pages/Main/guests'
-import Welcome from '../../pages/Main/welcome'
-import Advices from '../../pages/Main/advices'
-import Favorites from '../../pages/Main/favorites'
-import UserPage from '../../pages/Main/userPage'
-import CheckRoom from '../../pages/Main/checkRoom'
+import Profile from '../pages/Main/profile'
+import Guests from '../pages/Main/guests'
+import Welcome from '../pages/Main/welcome'
+import Advices from '../pages/Main/advices'
+import Favorites from '../pages/Main/favorites'
+import UserPage from '../pages/Main/userPage'
+import CheckRoom from '../pages/Main/checkRoom'
 
 export default function App() {
   const [userAuthorized, setUserAuthorized] = useState(false)
@@ -36,11 +36,38 @@ export default function App() {
     <div className={style.page}>
       <Routes>
         <Route path="/room/:roomId" element={<CheckRoom />}></Route>
-        <Route element={<ProtectedRoutes needCondition={false} condition={userAuthorized} redirect="/" />}>
-          <Route path="/login" element={<Login authorizedFunc={setUserAuthorized} />} />
+        <Route
+          element={
+            <ProtectedRoutes
+              needCondition={false}
+              condition={userAuthorized}
+              redirect="/"
+            />
+          }
+        >
+          <Route
+            path="/login"
+            element={<Login authorizedFunc={setUserAuthorized} />}
+          />
         </Route>
-        <Route element={<ProtectedRoutes needCondition={true} condition={userAuthorized} redirect="/login" />}>
-          <Route element={<ProtectedRoutes needCondition={false} condition={welcomeDone} redirect="/guests" />}>
+        <Route
+          element={
+            <ProtectedRoutes
+              needCondition={true}
+              condition={userAuthorized}
+              redirect="/login"
+            />
+          }
+        >
+          <Route
+            element={
+              <ProtectedRoutes
+                needCondition={false}
+                condition={welcomeDone}
+                redirect="/guests"
+              />
+            }
+          >
             <Route path="/" element={<Welcome />} />
           </Route>
           <Route path="/guests" element={<Guests />} />

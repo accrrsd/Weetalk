@@ -1,7 +1,7 @@
-import CardWrapper from '../../components/card-wrapper/card-wrapper'
+import CardWrapper from '../../../components/card-wrapper/card-wrapper'
 import { useEffect, useRef, useState } from 'react'
-import { getAllUsers } from '../../utils/api'
-import { loadImages } from '../../utils/functions'
+import { getAllUsers } from '../../../utils/api'
+import { loadImages } from '../../../utils/functions'
 
 export default function Guests() {
   const [cards, setCards] = useState([])
@@ -12,10 +12,10 @@ export default function Guests() {
   useEffect(() => {
     if (roomId) {
       getAllUsers(roomId)
-        .then((res) => {
+        .then(res => {
           setCards(res.usersIn)
         })
-        .catch((error) => console.log(`Error: ${error}`))
+        .catch(error => console.log(`Error: ${error}`))
     }
   }, [roomId])
 
@@ -26,10 +26,18 @@ export default function Guests() {
       return
     }
 
-    Promise.all(cards.map((card) => loadImages(card)))
+    Promise.all(cards.map(card => loadImages(card)))
       .then(() => setIsUsersLoaded(true))
-      .catch((err) => console.log('Failed to load data', err))
+      .catch(err => console.log('Failed to load data', err))
   }, [cards])
 
-  return <CardWrapper array={cards} setUsers={setCards} title={'Люди рядом'} users={cards} isUsersLoaded={isUsersLoaded} />
+  return (
+    <CardWrapper
+      array={cards}
+      setUsers={setCards}
+      title={'Люди рядом'}
+      users={cards}
+      isUsersLoaded={isUsersLoaded}
+    />
+  )
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import CardWrapper from '../../components/card-wrapper/card-wrapper'
-import wrapperStyle from '../../components/card-wrapper/card-wrapper.module.css'
+import CardWrapper from '../../../components/card-wrapper/card-wrapper'
+import wrapperStyle from '../../../components/card-wrapper/card-wrapper.module.css'
 import style from './favorites.module.css'
-import Card from '../../components/card/card'
-import { TitleSmart } from '../../components/title-smart/title-smart'
-import { getUserFavorites } from '../../utils/api'
-import favImg from '../../images/heartLiked.svg'
-import { loadImages } from '../../utils/functions'
-import { ICard } from '../../utils/interfaces'
+import Card from '../../../components/card/card'
+import { TitleSmart } from '../../../components/title-smart/title-smart'
+import { getUserFavorites } from '../../../utils/api'
+import favImg from '../../../images/heartLiked.svg'
+import { loadImages } from '../../../utils/functions'
+import { ICard } from '../../../utils/interfaces'
 
 function Favorites() {
   const [favorites, setFavorites] = useState([])
