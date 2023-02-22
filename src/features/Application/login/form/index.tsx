@@ -5,14 +5,14 @@ import { useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import { Oval } from 'react-loader-spinner'
 
-import { InfoQuestion } from '../../../components/info-question/info-question'
-import { AddPhoto } from '../../../components/inputs/add-photo/add-photo'
-import { ContactInput } from '../../../components/inputs/input-pre-value/input-pre-value'
-import { SelectInput } from '../../../components/inputs/select-input/select-input'
+import { InfoQuestion } from '../../../../components/info-question/info-question'
+import { AddPhoto } from '../../../../components/inputs/add-photo/add-photo'
+import { ContactInput } from '../../../../components/inputs/input-pre-value/input-pre-value'
+import { SelectInput } from '../../../../components/inputs/select-input/select-input'
 
-import { possibleContacts, possibleVisibility } from '../../../utils/constants'
-import { checkError, isValidEmail } from '../../../utils/functions'
-import { TFormValues } from '../../../utils/types'
+import { possibleContacts, possibleVisibility } from '../../../../utils/constants'
+import { checkError, isValidEmail } from '../../../../utils/functions'
+import { TFormValues } from '../../../../utils/types'
 
 type TRegistrationForm = {
   formHook: UseFormReturn<TFormValues, any>
@@ -21,7 +21,7 @@ type TRegistrationForm = {
   onSubmitWrapper: (data: TFormValues) => void
 }
 
-export const RegistrationForm = ({ formHook, loader, submitSuccess, onSubmitWrapper }: TRegistrationForm) => {
+const RegistrationForm = ({ formHook, loader, submitSuccess, onSubmitWrapper }: TRegistrationForm) => {
   const [contactType, setContactType] = useState<string | number | undefined>(possibleContacts[0].value)
   const [photoChanged, setPhotoChanged] = useState(false)
   const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
@@ -135,3 +135,5 @@ export const RegistrationForm = ({ formHook, loader, submitSuccess, onSubmitWrap
     </div>
   )
 }
+
+export default RegistrationForm

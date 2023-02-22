@@ -4,14 +4,14 @@ import selectInputStyle from './profile-select.module.css'
 import { UseFormReturn } from 'react-hook-form'
 import { Oval } from 'react-loader-spinner'
 
-import { InfoQuestion } from '../../../components/info-question/info-question'
-import { AddPhoto } from '../../../components/inputs/add-photo/add-photo'
-import { ContactInput } from '../../../components/inputs/input-pre-value/input-pre-value'
-import { SelectInput } from '../../../components/inputs/select-input/select-input'
+import { InfoQuestion } from '../../../../components/info-question/info-question'
+import { AddPhoto } from '../../../../components/inputs/add-photo/add-photo'
+import { ContactInput } from '../../../../components/inputs/input-pre-value/input-pre-value'
+import { SelectInput } from '../../../../components/inputs/select-input/select-input'
 
-import { possibleContacts, possibleVisibility } from '../../../utils/constants'
-import { checkError, isValidEmail } from '../../../utils/functions'
-import { TFormValues } from '../../../utils/types'
+import { possibleContacts, possibleVisibility } from '../../../../utils/constants'
+import { checkError, isValidEmail } from '../../../../utils/functions'
+import { TFormValues } from '../../../../utils/types'
 
 type TProfileForm = {
   formHook: UseFormReturn<TFormValues, any>
@@ -23,7 +23,7 @@ type TProfileForm = {
   setContactType: (contact: string | number | undefined) => void
 }
 
-export const ProfileForm = ({ formHook, loader, submitSuccess, contactType, previewFromApi, onSubmitWrapper, setContactType }: TProfileForm) => {
+const ProfileForm = ({ formHook, loader, submitSuccess, contactType, previewFromApi, onSubmitWrapper, setContactType }: TProfileForm) => {
   const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
   const {
     register,
@@ -125,3 +125,4 @@ export const ProfileForm = ({ formHook, loader, submitSuccess, contactType, prev
     </form>
   )
 }
+export default ProfileForm

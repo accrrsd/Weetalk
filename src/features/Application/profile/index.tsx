@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { TitleSmart } from '../../components/title-smart/title-smart'
-import { ProfileForm } from './form'
-import { ProfileDeleteModal } from './modal'
+import { TitleSmart } from '../../../components/title-smart/title-smart'
+import ProfileForm from './form'
+import ProfileDeleteModal from './modal'
 
-import { deleteUser, getCurrentUser, patchUser } from '../../utils/api'
-import { possibleContacts, possibleVisibility } from '../../utils/constants'
-import { createUserFormData } from '../../utils/functions'
-import { TFormValues } from '../../utils/types'
+import { deleteUser, getCurrentUser, patchUser } from '../../../utils/api'
+import { possibleContacts, possibleVisibility } from '../../../utils/constants'
+import { createUserFormData } from '../../../utils/functions'
+import { TFormValues } from '../../../utils/types'
 
 export default function ProfileContainer() {
   const formHook = useForm<TFormValues>({ mode: 'all' })

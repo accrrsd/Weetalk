@@ -1,6 +1,6 @@
 import style from '../card/card.module.css'
 import { useEffect, useState } from 'react'
-import favImage from '../../images/favImage.png'
+import favImage from '../../images/Application/favImage.png'
 import { ICard } from '../../utils/interfaces'
 
 function Card({

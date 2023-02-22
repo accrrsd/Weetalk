@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { RegistrationForm } from './form'
+import RegistrationForm from './form'
 
-import { postUser } from '../../utils/api'
-import { createUserFormData } from '../../utils/functions'
-import { TFormValues } from '../../utils/types'
+import { postUser } from '../../../utils/api'
+import { createUserFormData } from '../../../utils/functions'
+import { TFormValues } from '../../../utils/types'
 
 export default function RegistrationContainer({ authorizedFunc }: { authorizedFunc: (elem: boolean) => void }) {
   const formHook = useForm<TFormValues>({ mode: 'all' })

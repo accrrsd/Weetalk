@@ -48,12 +48,12 @@
     width: 18px;
     height: 18px;
     background-color: transparent;
-    background-image: url("../../images/menu-block.svg");
+    background-image: url("../../images/Application/menu-block.svg");
     background-position: center;
 }
 
 .buttonOneColumn {
-    background-image: url("../../images/menu-list.svg");
+    background-image: url("../../images/Application/menu-list.svg");
 }
 
 .buttonSquare {

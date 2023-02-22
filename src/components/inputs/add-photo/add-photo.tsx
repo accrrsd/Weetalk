@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 
 import useImagePreview from '../../../hooks/useImagePreview'
-import { ReactComponent as ImageRect } from '../../../images/addPhotoRect.svg'
-import { ReactComponent as AddPhotoPlusRect } from '../../../images/addPhotoGradientPlus.svg'
+import { ReactComponent as ImageRect } from '../../../images/Application/addPhotoRect.svg'
+import { ReactComponent as AddPhotoPlusRect } from '../../../images/Application/addPhotoGradientPlus.svg'
 import { checkError } from '../../../utils/functions'
 import { currentUrl } from '../../../utils/api'
 

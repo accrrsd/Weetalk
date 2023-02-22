@@ -9,7 +9,7 @@
 .button {
     width: 24px;
     height: 24px;
-    background-image: url("../../../images/back-arrow.svg");
+    background-image: url("../../../images/Application/back-arrow.svg");
     background-position: center;
     background-size: cover;
 }
@@ -58,7 +58,7 @@
 .tg {
     width: 28px;
     height: 28px;
-    background-image: url("../../../images/tg-icon.svg");
+    background-image: url("../../../images/Application/tg-icon.svg");
     background-size: contain;
     background-position: center;
 }
@@ -66,7 +66,7 @@
 .email {
     width: 28px;
     height: 28px;
-    background-image: url("../../../images/email-icon.svg");
+    background-image: url("../../../images/Application/email-icon.svg");
     background-size: contain;
     background-position: center;
 }

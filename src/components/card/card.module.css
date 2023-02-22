@@ -162,11 +162,11 @@
   border: none;
   background-repeat: no-repeat;
   background-color: transparent;
-  background-image: url('../../images/heart.svg');
+  background-image: url('../../images/Application/heart.svg');
 }
 
 .heartLiked {
-  background-image: url('../../images/heartLiked.svg');
+  background-image: url('../../images/Application/heartLiked.svg');
 }
 
 .aboutFavRow {

@@ -5,7 +5,7 @@ import style from './favorites.module.css'
 import Card from '../../../components/card/card'
 import { TitleSmart } from '../../../components/title-smart/title-smart'
 import { getUserFavorites } from '../../../utils/api'
-import favImg from '../../../images/heartLiked.svg'
+import favImg from '../../../images/Application/heartLiked.svg'
 import { loadImages } from '../../../utils/functions'
 import { ICard } from '../../../utils/interfaces'
 

@@ -1,7 +1,7 @@
 import style from './tip.module.css'
 import { useState } from 'react'
 
-import { ReactComponent as TipIcon } from '../../images/tip.svg'
+import { ReactComponent as TipIcon } from '../../images/Application/tip.svg'
 import { TipModal } from './tip-modal/tip-modal'
 import { TTip, TTipPopupOffset } from '../../utils/types'
 

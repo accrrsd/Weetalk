@@ -1,5 +1,5 @@
 import { Oval } from 'react-loader-spinner'
-import { ModalAnyContent } from '../../../components/modals/modal-any-content/modal-any-content'
+import { ModalAnyContent } from '../../../../components/modals/modal-any-content/modal-any-content'
 import style from './profile-delete-modal.module.css'
 
 type TProfileDeleteModal = {
@@ -9,7 +9,7 @@ type TProfileDeleteModal = {
   deleteLoader: boolean
 }
 
-export const ProfileDeleteModal = ({ deleteError, deleteLoader, setOpenConfirmModal, onConfirmDelete }: TProfileDeleteModal) => (
+const ProfileDeleteModal = ({ deleteError, deleteLoader, setOpenConfirmModal, onConfirmDelete }: TProfileDeleteModal) => (
   <ModalAnyContent
     wrapperStyle={style.deleteModalWrapper}
     removeDefaultStyle={true}
@@ -39,3 +39,4 @@ export const ProfileDeleteModal = ({ deleteError, deleteLoader, setOpenConfirmMo
     </div>
   </ModalAnyContent>
 )
+export default ProfileDeleteModal
