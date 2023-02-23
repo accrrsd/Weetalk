@@ -5,17 +5,17 @@ import { UseFormReturn } from 'react-hook-form'
 import { checkError } from '../../../../utils/functions'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 
-export type TOrganizerLoginFormValues = {
+export type TManagerLoginFormValues = {
   email: string
   password: string
 }
 
-type TOrganizerLoginForm = {
-  formHook: UseFormReturn<TOrganizerLoginFormValues, any>
-  onSubmitWrapper: (data: TOrganizerLoginFormValues) => void
+type TManagerLoginForm = {
+  formHook: UseFormReturn<TManagerLoginFormValues, any>
+  onSubmitWrapper: (data: TManagerLoginFormValues) => void
 }
 
-const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TOrganizerLoginForm) => {
+const ManagerLoginForm = ({ formHook, onSubmitWrapper }: TManagerLoginForm) => {
   const [showPass, setShowPass] = useState(false)
   const {
     register,
@@ -28,7 +28,13 @@ const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TOrganizerLoginForm) 
       <div className={style.formWrapper}>
         <form onSubmit={handleSubmit(onSubmitWrapper)} className={style.form}>
           <h2 className={style.title}>Войти</h2>
-          <OrganizerInput register={register} error={checkError('email', errors)} inputName="email" label="Email" placeholder="Введите Email" />
+          <OrganizerInput
+            register={register}
+            error={checkError('email', errors)}
+            inputName="email"
+            label="Email"
+            placeholder="Введите Email"
+          />
           <OrganizerInput
             register={register}
             error={checkError('password', errors)}
@@ -47,4 +53,4 @@ const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TOrganizerLoginForm) 
   )
 }
 
-export default OrganizerLoginForm
+export default ManagerLoginForm
