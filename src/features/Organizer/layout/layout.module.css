@@ -1,3 +1,8 @@
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
 .content {
     background: #F7F8FF;
     width: 100%;

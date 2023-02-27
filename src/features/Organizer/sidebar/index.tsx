@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './sidebar.module.css'
-import logo from '../../images/Organizer/logo.svg'
+import logo from '../../../images/Organizer/logo.svg'
 import { NavLink, useLocation } from 'react-router-dom'
-import homeImageActive from '../../images/Organizer/sidebar-1-color.svg'
-import homeImage from '../../images/Organizer/sidebar-1-gray.svg'
-import settingsImageActive from '../../images/Organizer/sidebar-2-color.svg'
-import settingsImage from '../../images/Organizer/sidebar-2-gray.svg'
-import exitImage from '../../images/Organizer/exit-btn.svg'
+import homeImageActive from '../../../images/Organizer/sidebar-1-color.svg'
+import homeImage from '../../../images/Organizer/sidebar-1-gray.svg'
+import settingsImageActive from '../../../images/Organizer/sidebar-2-color.svg'
+import settingsImage from '../../../images/Organizer/sidebar-2-gray.svg'
+import exitImage from '../../../images/Organizer/exit-btn.svg'
 
 export const Sidebar = () => {
   const pathname = useLocation().pathname
