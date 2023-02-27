@@ -6,9 +6,11 @@ const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
 
 export const currentUrl = temporaryBuildUrl
 
-const checkResponse = (res: any) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+const checkResponse = (res: any) =>
+  res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 
-const checkResponseWithoutContent = (res: any) => !res.ok && Promise.reject(`Ошибка: ${res.status}`)
+const checkResponseWithoutContent = (res: any) =>
+  !res.ok && Promise.reject(`Ошибка: ${res.status}`)
 
 type TPostUser = (content: FormData, roomId: string) => Promise<any>
 
@@ -92,4 +94,14 @@ export const deleteUser = () => {
   return fetch(url, {
     method: 'DELETE',
   }).then(checkResponseWithoutContent)
+}
+
+export const getManager = () => {
+  const url = `${currentUrl}/manager/home`
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  }).then(checkResponse)
 }
