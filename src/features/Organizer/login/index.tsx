@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
-import ManagerLoginForm, { TManagerLoginFormValues } from './form'
+import OrganizerLoginForm, { TOrganizerLoginFormValues } from './form'
 
-export default function ManagerLogin() {
-  const formHook = useForm<TManagerLoginFormValues>()
+export default function OrganizerLogin() {
+  const formHook = useForm<TOrganizerLoginFormValues>({ mode: 'all' })
   const onSubmitWrapper = () => {}
-  return <ManagerLoginForm {...{ formHook, onSubmitWrapper }} />
+  return <OrganizerLoginForm {...{ formHook, onSubmitWrapper }} />
 }

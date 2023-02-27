@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
 
-  font-family: 'Lato', a Arial, Helvetica, sans-serif;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -40,13 +40,60 @@
   border-radius: 8px;
 
   outline: none;
-}
 
-.input::placeholder {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.02em;
+}
+
+.labelWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hideButton {
+  background-color: transparent;
+  border: none;
+
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  gap: 8px;
+
+  /* Text/Grey_2 */
+  color: #747386;
+}
+
+.errorMessage {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15px;
+
+  /* Text/Error */
+
+  color: #ff5964;
+
+  margin-top: 8px;
+}
+
+.errorInput {
+  border: 1px solid #ff5964;
+  color: #ff5964;
 }

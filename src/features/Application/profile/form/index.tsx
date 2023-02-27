@@ -10,7 +10,7 @@ import { ContactInput } from '../../../../components/inputs/input-pre-value/inpu
 import { SelectInput } from '../../../../components/inputs/select-input/select-input'
 
 import { possibleContacts, possibleVisibility } from '../../../../utils/constants'
-import { checkError, isValidEmail } from '../../../../utils/functions'
+import { checkError, emailValidationHandler } from '../../../../utils/functions'
 import { TFormValues } from '../../../../utils/types'
 
 type TProfileForm = {
@@ -24,7 +24,6 @@ type TProfileForm = {
 }
 
 const ProfileForm = ({ formHook, loader, submitSuccess, contactType, previewFromApi, onSubmitWrapper, setContactType }: TProfileForm) => {
-  const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
   const {
     register,
     handleSubmit,

@@ -5,6 +5,13 @@
 
 .formWrapper {
   display: flex;
+
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
 }
 
 .form {
@@ -17,6 +24,27 @@
 .title {
   margin: 0;
   margin-bottom: calc(24px - 16px);
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 140%;
+  /* identical to box height, or 45px */
+
+  letter-spacing: -0.01em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+
+.checkboxIcon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  align-self: center;
+  margin-bottom: 2px;
 }
 
 .checkbox {
@@ -26,14 +54,105 @@
 }
 
 .checkboxLabel {
-  display: flex;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
 
-  /* Text/Primary_1 */
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
+  cursor: pointer;
+  user-select: none;
+}
+
+.blockWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkText {
+  user-select: none;
+
+  /* Text/Primary_2 */
+
+  color: #1f40da;
+
+  cursor: pointer;
+}
+
+.bottomText {
   color: #1d1a4d;
+  margin: 0 auto;
+}
+
+.bottomMenu {
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(24px - 16px);
+  gap: 24px;
+  justify-content: center;
+}
+
+.loginButton {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.loginButtonWrapper {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px;
+  height: 54px;
+
+  background: #3a65fd;
+  box-shadow: 0px 2.43185px 12.1593px rgba(0, 0, 0, 0.2);
+  border-radius: 32px;
+
+  color: #ffffff;
+}
+
+.addition {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #747386;
+}
+
+.additionLine {
+  background-color: #747386;
+  width: 100%;
+  height: 2px;
+}
+
+.loginWithGoogle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 5px 0px;
+
+  background-color: transparent;
+  border: 1px solid #1f40da;
+  border-radius: 32px;
+
+  color: #1f40da;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  height: 54px;
+
+  cursor: pointer;
 }

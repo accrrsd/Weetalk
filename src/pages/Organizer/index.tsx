@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
-import ManagerLogin from '../../features/Manager/login'
+import OrganizerLogin from '../../features/Organizer/login'
 
-export default function ManagerRoutes() {
+export default function OrganizerRoutes() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Routes>
-        <Route path="/login" element={<ManagerLogin />} />
+        <Route path="/login" element={<OrganizerLogin />} />
       </Routes>
     </div>
   )

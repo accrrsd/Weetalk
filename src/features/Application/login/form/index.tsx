@@ -11,7 +11,7 @@ import { ContactInput } from '../../../../components/inputs/input-pre-value/inpu
 import { SelectInput } from '../../../../components/inputs/select-input/select-input'
 
 import { possibleContacts, possibleVisibility } from '../../../../utils/constants'
-import { checkError, isValidEmail } from '../../../../utils/functions'
+import { checkError, emailValidationHandler } from '../../../../utils/functions'
 import { TFormValues } from '../../../../utils/types'
 
 type TRegistrationForm = {
@@ -24,7 +24,6 @@ type TRegistrationForm = {
 const RegistrationForm = ({ formHook, loader, submitSuccess, onSubmitWrapper }: TRegistrationForm) => {
   const [contactType, setContactType] = useState<string | number | undefined>(possibleContacts[0].value)
   const [photoChanged, setPhotoChanged] = useState(false)
-  const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
   const {
     register,
     handleSubmit,
