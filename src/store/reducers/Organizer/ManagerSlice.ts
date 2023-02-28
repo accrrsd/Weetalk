@@ -1,14 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchManager } from './ActionCreators'
+import { ICard } from '../../../utils/interfaces'
+
+interface IData {
+  id?: string
+  email?: string
+  firstName?: string
+  lastName?: string
+  rooms?: [
+    {
+      id: string
+      roomName: string
+      usersIn?: ICard[]
+    }
+  ]
+}
 
 interface ManagerSlice {
-  managerData: object | null
+  data: IData
   isLoading: boolean
   error: string | null
 }
 
 const initialState: ManagerSlice = {
-  managerData: null,
+  data: {},
   isLoading: false,
   error: null,
 }
@@ -21,7 +36,7 @@ export const managerSlice = createSlice({
     [fetchManager.fulfilled.type]: (state, action) => {
       state.isLoading = false
       state.error = null
-      state.managerData = action.payload
+      state.data = action.payload
     },
     [fetchManager.pending.type]: state => {
       state.isLoading = true
