@@ -1,0 +1,9 @@
+.calendar {
+    max-width: 380px;
+    height: 348px;
+    background: gray;
+    grid-column: 5 span;
+    position: sticky;
+    top: 0;
+    align-self: start;
+}

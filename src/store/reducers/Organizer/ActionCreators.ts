@@ -4,11 +4,13 @@ import { getManager } from '../../../utils/api'
 export const fetchManager = createAsyncThunk(
   'manager/fetchManager',
   async (_, thunkAPI) => {
-    try {
-      const response = await getManager()
-      return response.data
-    } catch (e) {
-      return thunkAPI.rejectWithValue('Не удалось получить пользователя')
+    let response = await getManager()
+    if (!response.ok) {
+      return thunkAPI.rejectWithValue(
+        `${response.status} ${response.statusText}`
+      )
+    } else {
+      return response.json()
     }
   }
 )
