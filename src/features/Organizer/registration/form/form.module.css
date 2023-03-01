@@ -1,51 +1,5 @@
-.page {
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  max-width: 1440px;
-  width: 100%;
-}
-
-.formWrapper {
-  display: flex;
-
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  letter-spacing: 0.02em;
-
-  max-width: 730px;
-}
-
-.form {
-  margin: 249px 155px 249px 137px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.image {
-  background-image: url('../../../../images/Organizer/OrganizerLogin.svg');
-  max-height: 100vh;
-  height: 100%;
-  width: 100%;
-  max-width: 710px;
-  background-size: cover;
-  background-position: center;
-}
-
 .title {
-  margin: 0;
-  margin-bottom: calc(24px - 16px);
-
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -57,6 +11,19 @@
   /* Text/Primary_1 */
 
   color: #1d1a4d;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
 }
 
 .checkboxIcon {
@@ -88,26 +55,25 @@
   user-select: none;
 }
 
-.blockWrapper {
+.checkboxHypertextWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 4px;
 }
 
-.linkText {
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+.hypertext {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 19px;
-  letter-spacing: 0.02em;
+  line-height: 25px;
+  /* identical to box height, or 156% */
 
-  /* Text/Primary_2 */
+  /* Text/Primary_1 */
 
   color: #1f40da;
 
   user-select: none;
-
   cursor: pointer;
 }
 
@@ -159,6 +125,7 @@
   display: flex;
   align-items: center;
   gap: 25px;
+
   color: #747386;
 }
 

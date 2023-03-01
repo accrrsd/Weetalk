@@ -1,0 +1,48 @@
+.page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 1440px;
+  width: 100%;
+}
+
+.image {
+  max-height: 100vh;
+  height: 100%;
+  width: 100%;
+  max-width: 710px;
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 160px 155px 160px 137px;
+  box-sizing: border-box;
+  max-width: 730px;
+}
+
+.backButton {
+  display: flex;
+  width: fit-content;
+  gap: 16px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #747386;
+
+  margin-bottom: 80px;
+
+  user-select: none;
+  cursor: pointer;
+}

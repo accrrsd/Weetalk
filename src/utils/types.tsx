@@ -1,11 +1,7 @@
-export type TContactType = TSelectableItem<
-  'telegram' | 'email',
-  'Telegram' | 'Электронная почта'
->
-export type TContactShowType = TSelectableItem<
-  'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES',
-  'Все пользователи' | 'Кого я выберу' | 'Не видит никто'
->
+import { FieldValues, UseFormReturn } from 'react-hook-form'
+
+export type TContactType = TSelectableItem<'telegram' | 'email', 'Telegram' | 'Электронная почта'>
+export type TContactShowType = TSelectableItem<'ALL' | 'NOBODY' | 'ONLY_FOR_MY_FAVORITES', 'Все пользователи' | 'Кого я выберу' | 'Не видит никто'>
 
 export type TTipPopupOffset = {
   left: number
@@ -57,4 +53,9 @@ export type TSelectInputClassNames = {
   optionSelected?: string
   optionsAbsolute?: string
   optionHighlighted?: string
+}
+
+export type TSmallForm<T extends FieldValues> = {
+  formHook: UseFormReturn<T, any>
+  onSubmitWrapper: (data: T) => void
 }

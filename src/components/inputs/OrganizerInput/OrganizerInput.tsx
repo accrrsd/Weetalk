@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
 import { ReactComponent as HidePassSvg } from '../../../images/Organizer/closePassEye.svg'
 import { ReactComponent as ShowPassSvg } from '../../../images/Organizer/showPassEye.svg'
+import { checkError } from '../../../utils/functions'
 import style from './OrganizerInput.module.css'
 
 type TOrganizerInput = {
@@ -9,7 +10,7 @@ type TOrganizerInput = {
   label?: string
   inputName: string
   rules?: object
-  error?: string | false
+  errors: FieldErrorsImpl<any>
   hideButton?: true
   noLabel?: true
   autoComplete?: 'on' | 'off'
@@ -18,7 +19,7 @@ type TOrganizerInput = {
 export const OrganizerInput = ({
   register,
   rules = { required: 'Поле обязательное для заполнения' },
-  error,
+  errors,
   inputName,
   label,
   hideButton,
@@ -27,6 +28,7 @@ export const OrganizerInput = ({
   ...rest
 }: TOrganizerInput) => {
   const [showPass, setShowPass] = useState(false)
+  const error = checkError(inputName, errors)
 
   // prettier-ignore
   const checkShowState = ()=>showPass? <><HidePassSvg/> Скрыть</> : <><ShowPassSvg/> Показать</>

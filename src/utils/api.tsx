@@ -93,3 +93,19 @@ export const deleteUser = () => {
     method: 'DELETE',
   }).then(checkResponseWithoutContent)
 }
+
+export const loginManager = (content: FormData) => {
+  const url = `${currentUrl}/login`
+  return fetch(url, {
+    method: 'POST',
+    body: content,
+  }).then(checkResponse)
+}
+
+export const registrationManager = (content: FormData) => {
+  const url = `${currentUrl}/manager`
+  return fetch(url, {
+    method: 'POST',
+    body: content,
+  }).then(checkResponse)
+}

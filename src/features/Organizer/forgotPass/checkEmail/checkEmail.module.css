@@ -1,0 +1,91 @@
+.title {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 140%;
+
+  margin: 0;
+  margin-bottom: 32px;
+  /* identical to box height, or 45px */
+
+  letter-spacing: -0.01em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 32px;
+  width: 439px;
+}
+
+.text {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+
+.mailPreview {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+
+.hypertext {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+
+  /* Text/Primary_2 */
+
+  color: #1f40da;
+
+  display: inline-flex;
+  gap: 8px;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.bottomMessage {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
