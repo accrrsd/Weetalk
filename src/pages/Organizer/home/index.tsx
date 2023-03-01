@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from '../../../features/Organizer/header'
 import styles from './home.module.css'
 import { Calendar } from '../../../features/Organizer/calendar'
-import basicImage from '../../../images/Organizer/basic-img.png'
+import basicImage from '../../../images/Organizer/basic-img.svg'
 import { useAppSelector } from '../../../hooks/storeHooks'
 
 export const Home = () => {
