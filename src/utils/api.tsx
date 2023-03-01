@@ -94,20 +94,23 @@ export const deleteUser = () => {
   }).then(checkResponseWithoutContent)
 }
 
-export const loginManager = (content: FormData) => {
+export const loginOrganizer = (content: FormData) => {
   const url = `${currentUrl}/login`
   return fetch(url, {
     method: 'POST',
     body: content,
-  }).then(checkResponse)
+  }).then(checkResponseWithoutContent)
 }
 
-export const registrationManager = (content: FormData) => {
+export const registrationOrganizer = (content: object) => {
   const url = `${currentUrl}/manager`
   return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
     method: 'POST',
-    body: content,
-  }).then(checkResponse)
+    body: JSON.stringify(content),
+  }).then(checkResponseWithoutContent)
 }
 
 export const getManager = () => {

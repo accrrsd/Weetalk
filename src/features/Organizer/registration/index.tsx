@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { OrganizerImageFormWrapper } from '../../../components/OrganizerImageFormWrapper/OrganizerImageFormWrapper'
 import getMailImage from '../../../images/Organizer/getMail.svg'
 import mainImage from '../../../images/Organizer/OrganizerLogin.svg'
-import { registrationManager } from '../../../utils/api'
+import { registrationOrganizer } from '../../../utils/api'
 import { OrganizerRegistrationConfirmEmail } from './confirmEmail'
 import OrganizerRegistrationForm from './form'
 
@@ -27,19 +27,24 @@ export default function OrganizerRegistration() {
   const onSubmitWrapper = (data: TOrganizerRegistrationFormValues) => {
     setEmail(data.email)
 
+    const { fullName, email, password } = data
+
     //! Временно
-    const formDataContent = new FormData()
+    // const formDataContent = new FormData()
 
-    const firstName = data.fullName.split(' ')[0]
-    const lastName = data.fullName.split(' ')[1]
+    // formDataContent.set('firstName', data.fullName)
+    // formDataContent.set('email', data.email)
+    // formDataContent.set('password', data.password)
 
-    formDataContent.set('firstName', firstName)
-    formDataContent.set('lastName', lastName)
-    formDataContent.set('username', data.email)
-    formDataContent.set('password', data.password)
+    const newData = {
+      firstName: fullName,
+      lastName: fullName,
+      email,
+      password,
+    }
 
-    registrationManager(formDataContent).then(() => {
-      navigate('/organizer/')
+    registrationOrganizer(newData).then(() => {
+      navigate('/organizer/login')
     })
   }
 

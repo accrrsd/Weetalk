@@ -8,12 +8,14 @@ import { ReactComponent as CheckboxCheckedSvg } from '../../../../images/Organiz
 import { ReactComponent as GoogleLogo } from '../../../../images/Organizer/googleLogin.svg'
 import { ReactComponent as CheckboxEmptySvg } from '../../../../images/Organizer/grayBorder.svg'
 
+import { useNavigate } from 'react-router-dom'
 import style from './form.module.css'
 
 type TOrganizerRegistrationForm = {} & TSmallForm<TOrganizerRegistrationFormValues>
 
 const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegistrationForm) => {
   const [checkboxChecked, setCheckboxChecked] = useState(false)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -72,7 +74,10 @@ const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegi
           </button>
 
           <span className={style.bottomText}>
-            Уже зарегистрированы? <span className={style.hypertext}>Войти</span>
+            Уже зарегистрированы?{' '}
+            <span className={style.hypertext} onClick={() => navigate('/organizer/login')}>
+              Войти
+            </span>
           </span>
         </div>
       </form>
