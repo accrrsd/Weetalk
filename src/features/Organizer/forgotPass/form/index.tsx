@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { TOrganizerForgotPassFormValues } from '..'
+import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 import { emailValidationHandler } from '../../../../utils/functions'
 import { TSmallForm } from '../../../../utils/types'
@@ -14,7 +15,7 @@ const OrganizerForgotPassForm = ({ formHook, onSubmitWrapper, emailProp }: TOrga
     register,
     handleSubmit,
     setValue,
-    formState: { errors, dirtyFields },
+    formState: { errors, isDirty },
   } = formHook
 
   useEffect(() => {
@@ -38,13 +39,7 @@ const OrganizerForgotPassForm = ({ formHook, onSubmitWrapper, emailProp }: TOrga
               },
             }}
           />
-          <label
-            htmlFor="submitButton"
-            className={`${style.submitButtonWrapper} ${errors.email || !dirtyFields.email ? style.submitButtonWrapperDisabled : ''}`}
-          >
-            <input type="submit" id="submitButton" className={style.submitButton} />
-            Сбросить пароль
-          </label>
+          <SubmitButton disabled={!!errors.email || !isDirty}>Сбросить пароль</SubmitButton>
         </form>
       </div>
     </>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 import { ReactComponent as BluePencil } from '../../../../images/Organizer/bluePencil.svg'
 import { emailValidationHandler } from '../../../../utils/functions'
@@ -19,7 +20,7 @@ export const OrganizerRegistrationConfirmEmail = ({ email, onEmailChanged }: TOr
   const {
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors, isDirty },
   } = formHook
   const [changeEmail, setChangeEmail] = useState(false)
   const onEmailChangeClick = () => setChangeEmail(true)
@@ -40,13 +41,7 @@ export const OrganizerRegistrationConfirmEmail = ({ email, onEmailChanged }: TOr
             },
           }}
         />
-        <label
-          htmlFor="emailChangeConfirmButton"
-          className={`${style.changeEmailButtonWrapper} ${dirtyFields.email ? style.changeEmailButtonDisabled : ''}`}
-        >
-          <input type="submit" id="emailChangeConfirmButton" className={style.changeEmailButton} disabled={!!dirtyFields.email} />
-          Получить код
-        </label>
+        <SubmitButton disabled={!!errors.email || !isDirty}>Получить код</SubmitButton>
       </form>
     </>
   )

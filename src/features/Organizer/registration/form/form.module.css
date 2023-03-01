@@ -26,6 +26,12 @@
   letter-spacing: 0.02em;
 }
 
+.checkboxBlockWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .checkboxIcon {
   width: 18px;
   height: 18px;
@@ -98,29 +104,6 @@
   justify-content: center;
 }
 
-.loginButton {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-
-.loginButtonWrapper {
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 0px;
-  height: 54px;
-
-  background: #3a65fd;
-  box-shadow: 0px 2.43185px 12.1593px rgba(0, 0, 0, 0.2);
-  border-radius: 32px;
-
-  color: #ffffff;
-}
-
 .addition {
   display: flex;
   align-items: center;
@@ -135,26 +118,17 @@
   height: 2px;
 }
 
-.loginWithGoogle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  padding: 5px 0px;
-
-  background-color: transparent;
-  border: 1px solid #1f40da;
-  border-radius: 32px;
-
-  color: #1f40da;
+.errorMessage {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  letter-spacing: 0.02em;
-  height: 54px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
 
-  cursor: pointer;
+  letter-spacing: 0.15px;
+
+  /* Text/Error */
+
+  color: #ff5964;
 }

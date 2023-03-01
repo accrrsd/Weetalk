@@ -1,0 +1,38 @@
+.loginWithGoogle {
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 5px 0px;
+
+  background-color: transparent;
+  border: 1px solid #1f40da;
+  border-radius: 32px;
+
+  color: #1f40da;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  height: 54px;
+
+  cursor: pointer;
+}
+
+.loginWithGoogle:hover {
+  background: #85a0ff;
+  border: none;
+  color: #1d1a4d;
+}
+
+.loginWithGoogleDisabled,
+.loginWithGoogleDisabled:hover {
+  background: #ffffff;
+  border: 1px solid #e3e1eb;
+  border-radius: 32px;
+}

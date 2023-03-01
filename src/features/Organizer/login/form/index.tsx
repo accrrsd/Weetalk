@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TOrganizerLoginFormValues } from '..'
+import { LoginWithGoogle } from '../../../../components/buttons/LoginWithGoogle/Organizer'
+import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 import { ReactComponent as CheckboxCheckedSvg } from '../../../../images/Organizer/Checked.svg'
-import { ReactComponent as GoogleLogo } from '../../../../images/Organizer/googleLogin.svg'
 import { ReactComponent as CheckboxEmptySvg } from '../../../../images/Organizer/grayBorder.svg'
 import { emailValidationHandler } from '../../../../utils/functions'
 import { TSmallForm } from '../../../../utils/types'
@@ -70,21 +71,14 @@ const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TSmallForm<TOrganizer
                   Зарегистрироваться
                 </span>
               </span>
-              <label htmlFor="loginSubmitButton" className={style.loginButtonWrapper}>
-                <input type="submit" id="loginSubmitButton" className={style.loginButton} />
-                Войти
-              </label>
+
+              <SubmitButton>Войти</SubmitButton>
               <span className={style.addition}>
                 <div className={style.additionLine} />
                 или
                 <div className={style.additionLine} />
               </span>
-
-              <button className={style.loginWithGoogle}>
-                Войти через
-                <GoogleLogo />
-                Google
-              </button>
+              <LoginWithGoogle />
             </div>
           </form>
         </div>

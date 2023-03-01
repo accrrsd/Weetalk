@@ -38,6 +38,10 @@ export const isValidEmail: TIsValidEmailFunc = (email, errMessage) =>
 
 export const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
 
+export const stringContainNumber = (str: string) => /\d/.test(str)
+
+export const objectIsEmptyCheck = (obj: Object) => Object.keys(obj).length === 0
+
 export const loadImages = (card: any) =>
   new Promise((resolve, reject) => {
     const loadImg = new Image()

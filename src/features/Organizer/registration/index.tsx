@@ -26,15 +26,7 @@ export default function OrganizerRegistration() {
   const onBackClickStage2 = () => setStage(1)
   const onSubmitWrapper = (data: TOrganizerRegistrationFormValues) => {
     setEmail(data.email)
-
     const { fullName, email, password } = data
-
-    //! Временно
-    // const formDataContent = new FormData()
-
-    // formDataContent.set('firstName', data.fullName)
-    // formDataContent.set('email', data.email)
-    // formDataContent.set('password', data.password)
 
     const newData = {
       firstName: fullName,
