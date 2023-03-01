@@ -1,0 +1,108 @@
+.sidebar {
+    box-sizing: border-box;
+    max-width: 272px; /* 18% */
+    width: 100%;
+    background-color: #fff;
+    padding-top: 62px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 25px;
+}
+
+.logo {
+    display: block;
+    margin-right: 35px;
+    margin-left: auto;
+}
+
+.buttonCreate {
+    margin-left: 40px;
+    padding: 17.5px 37px;
+    background-color: var(--main-lk);
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    margin-top: 65px;
+    margin-bottom: 68px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 32px;
+}
+
+.menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 44px 0;
+}
+
+.link {
+    display: flex;
+    gap: 0 16px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.item {
+    height: 40px;
+    padding-left: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    left: 40px;
+    height: 2px;
+    width: calc(100% - 40px);
+    background-color: #95949B;
+}
+
+.text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}
+
+.indicator {
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--main-lk);
+}
+
+.buttonExit {
+    align-self: center;
+    margin-top: auto;
+    color: var(--main-lk);
+    font-family: 'Lato', sans-serif;
+    border: 1px solid var(--main-lk);
+    border-radius: 32px;
+    text-decoration: none;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 0 16px;
+}
+
+.buttonExitText {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}

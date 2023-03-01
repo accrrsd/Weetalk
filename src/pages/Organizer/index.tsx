@@ -1,7 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
+import { Layout } from '../../features/Organizer/layout'
 import OrganizerForgotPassRoute from './forgotPass'
+import { Home } from './home'
 import OrganizerLoginRoute from './login'
 import OrganizerRegistrationRoute from './registration'
+import { Settings } from './settings'
 
 export default function OrganizerRoutes() {
   return (
@@ -10,6 +13,10 @@ export default function OrganizerRoutes() {
         <Route path="/login" element={<OrganizerLoginRoute />} />
         <Route path="/forgotPass" element={<OrganizerForgotPassRoute />} />
         <Route path="/registration" element={<OrganizerRegistrationRoute />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
       </Routes>
     </div>
   )

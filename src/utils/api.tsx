@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const temporaryBuildUrl = '/api/v1/test'
+const temporaryBuildUrl = '/api/v1'
 
 const devRoomId = '54aa5f82-f9e7-4710-8088-cee12570e661'
 const localRoomId = '176fe47e-13f1-453d-bcae-7e168d3407dd'
@@ -108,4 +108,14 @@ export const registrationManager = (content: FormData) => {
     method: 'POST',
     body: content,
   }).then(checkResponse)
+}
+
+export const getManager = () => {
+  const url = `${currentUrl}/manager/home`
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  })
 }

@@ -1,0 +1,48 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 41px;
+}
+
+.button {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--service-lk);
+    cursor: pointer;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--black-lk);
+}
+
+.name {
+    margin: 0;
+}
+
+.email {
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    gap: 0 24px;
+}
+
+.image {
+    width: 56px;
+    height: 56px;
+}
