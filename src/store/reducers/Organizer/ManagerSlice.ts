@@ -12,6 +12,7 @@ interface IData {
       id: string
       roomName: string
       usersIn?: ICard[]
+      beginingDate: string | null
     }
   ]
 }

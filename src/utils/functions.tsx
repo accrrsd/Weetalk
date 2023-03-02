@@ -2,18 +2,27 @@ import { FieldErrorsImpl } from 'react-hook-form'
 import { addUserLike, removeUserLike } from './api'
 import { TFormValues } from './types'
 
-export const checkError = (name: string, errors: FieldErrorsImpl) => (errors && errors[name] ? (errors[name]!.message as string) : false)
+export const checkError = (name: string, errors: FieldErrorsImpl) =>
+  errors && errors[name] ? (errors[name]!.message as string) : false
 
-export const changeLikeStatus = (likedUserId: number | null, isLiked: boolean) => {
+export const changeLikeStatus = (
+  likedUserId: number | null,
+  isLiked: boolean
+) => {
   if (!isLiked) {
-    return addUserLike(likedUserId).catch((error) => console.log(`Error: ${error}`))
+    return addUserLike(likedUserId).catch(error =>
+      console.log(`Error: ${error}`)
+    )
   } else {
-    return removeUserLike(likedUserId).catch((error) => console.log(`Error: ${error}`))
+    return removeUserLike(likedUserId).catch(error =>
+      console.log(`Error: ${error}`)
+    )
   }
 }
 
 export const createUserFormData = (data: TFormValues) => {
-  const { name, about, work, photo, contactShowType, contact, contactType } = data
+  const { name, about, work, photo, contactShowType, contact, contactType } =
+    data
 
   const formDataContent = new FormData()
   if (name) formDataContent.set('username', name)
@@ -21,12 +30,16 @@ export const createUserFormData = (data: TFormValues) => {
   if (work) formDataContent.set('actualJob', work)
   if (photo) formDataContent.set('currentImage', photo)
 
-  if (contactType.value) formDataContent.set(`contacts.${contactType.value}`, contact)
+  if (contactType.value)
+    formDataContent.set(`contacts.${contactType.value}`, contact)
   formDataContent.set('contacts.showType', contactShowType.value ?? 'NOBODY')
   return formDataContent
 }
 
-type TIsValidEmailFunc = (email: string, errMessage?: string) => boolean | string
+type TIsValidEmailFunc = (
+  email: string,
+  errMessage?: string
+) => boolean | string
 
 export const isValidEmail: TIsValidEmailFunc = (email, errMessage) =>
   // eslint-disable-next-line no-useless-escape
@@ -36,7 +49,8 @@ export const isValidEmail: TIsValidEmailFunc = (email, errMessage) =>
     ? true
     : errMessage ?? false
 
-export const emailValidationHandler = (email: string) => isValidEmail(email, 'Некорректный адрес электронной почты')
+export const emailValidationHandler = (email: string) =>
+  isValidEmail(email, 'Некорректный адрес электронной почты')
 
 export const stringContainNumber = (str: string) => /\d/.test(str)
 
@@ -47,5 +61,16 @@ export const loadImages = (card: any) =>
     const loadImg = new Image()
     loadImg.src = `https://weetalk.online/img/${card.imageName}`
     loadImg.onload = () => resolve(card)
-    loadImg.onerror = (err) => reject(err)
+    loadImg.onerror = err => reject(err)
   })
+
+export function ensure<T>(
+  argument: T | undefined | null,
+  message: string = 'Функция вернула undefined'
+): T {
+  if (argument === undefined || argument === null) {
+    throw new TypeError(message)
+  }
+
+  return argument
+}
