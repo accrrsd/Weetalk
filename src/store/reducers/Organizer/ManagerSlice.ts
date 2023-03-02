@@ -9,10 +9,10 @@ interface IData {
   lastName?: string
   rooms?: [
     {
-      id: string
-      roomName: string
+      id?: string
+      roomName?: string
       usersIn?: ICard[]
-      beginingDate: string | null
+      beginingDate?: string | null
     }
   ]
 }

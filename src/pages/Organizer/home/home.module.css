@@ -1,11 +1,15 @@
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    display: flex;
     gap: 0 24px;
+    /*justify-content: center;*/
 }
 
 .events {
-    grid-column: 7 span;
+    max-width: 618px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
 }
 
 .basic {
@@ -16,9 +20,6 @@
     display: flex;
     gap: 0 40px;
     justify-content: space-between;
-/*    max-width: 611px;
-    height: 188px;
-    width: 100%;*/
     background-color: var(--main-lk);
 }
 
@@ -43,12 +44,29 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    padding: 0;
     margin: 0;
     border: none;
     background: none;
     letter-spacing: 0.02em;
     color: inherit;
-    text-decoration: underline;
+    padding: 0;
+    border-bottom: 1px solid #fff;
     cursor: pointer;
+}
+
+.loader {
+    z-index: 2;
+    background: #F7F8FF;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader svg {
+    transform: translateX(131px);
 }

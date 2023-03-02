@@ -1,10 +1,10 @@
 .wrapper {
     display: flex;
-    min-height: 100vh;
+    padding-left: 272px;
 }
 
 .content {
     background: #F7F8FF;
     width: 100%;
-    padding: 52px 100px 0 56px;
+    padding: 52px 100px 52px 56px;
 }
