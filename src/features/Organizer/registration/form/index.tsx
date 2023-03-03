@@ -21,11 +21,11 @@ const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegi
     register,
     handleSubmit,
     formState: { errors, isDirty },
+    clearErrors,
+    trigger,
   } = formHook
   // Если ошибка или если форма не была тронута
   const disableSubmitButton = !objectIsEmptyCheck(errors) || !isDirty
-
-  console.log('errors', objectIsEmptyCheck(errors))
 
   const confirmError = checkError('confirm', errors)
 
@@ -77,11 +77,15 @@ const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegi
               <div className={style.checkboxIcon}>{checkboxChecked ? <CheckboxCheckedSvg /> : <CheckboxEmptySvg />}</div>
               Я согласен с
               <input
+                tabIndex={-1}
                 type="checkbox"
-                {...register('confirm', { required: 'Требуется соглашение' })}
+                {...register('confirm', {
+                  required: 'Требуется соглашение',
+                })}
                 className={style.checkbox}
                 onChange={(e) => {
                   setCheckboxChecked(e.target.checked)
+                  e.target.checked ? clearErrors('confirm') : trigger('confirm')
                 }}
                 id="checkbox"
               />

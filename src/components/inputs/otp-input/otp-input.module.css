@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  box-sizing: border-box;
+
+  display: flex;
+  text-align: center;
+  padding: 10px;
+  gap: 10px;
+
+  width: 48px;
+  height: 52px;
+
+  /* Stroke/Grey_2 */
+
+  border: 1px solid #747386;
+  border-radius: 8px;
+
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+
+.container {
+  display: flex;
+  gap: 24px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.errorMessage {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Text/Error */
+
+  color: #ff5964;
+}

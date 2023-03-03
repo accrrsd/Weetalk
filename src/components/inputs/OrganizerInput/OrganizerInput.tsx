@@ -38,7 +38,7 @@ export const OrganizerInput = ({
         <div className={style.labelWrapper}>
           <span className={style.label}>{label ?? inputName}</span>
           {hideButton && (
-            <button className={style.hideButton} onClick={() => setShowPass((prev) => !prev)}>
+            <button className={style.hideButton} tabIndex={-1} onClick={() => setShowPass((prev) => !prev)}>
               {checkShowState()}
             </button>
           )}

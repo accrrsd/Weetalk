@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { v4 as uuid } from 'uuid'
 import style from './SubmitButton.module.css'
 
 type TBase = {
@@ -8,9 +9,9 @@ type TBase = {
   disabledWrapperStyle?: string
   buttonStyle?: string
   containerStyle?: string
-  onClick?: () => void
   submit?: boolean
-}
+} & React.AnchorHTMLAttributes<HTMLInputElement>
+
 export const SubmitButton = ({
   children,
   disabled,
@@ -18,17 +19,13 @@ export const SubmitButton = ({
   disabledWrapperStyle,
   buttonStyle,
   containerStyle,
-  onClick,
   submit = true,
   ...rest
 }: TBase) => {
+  const id = uuid()
   return (
-    <label
-      htmlFor="submitButton"
-      className={`${wrapperStyle ?? style.wrapper} ${disabled ? disabledWrapperStyle ?? style.disabledWrapper : ''}`}
-      onClick={onClick}
-    >
-      <input type={`${submit ? 'submit' : 'button'}`} id="submitButton" className={`${buttonStyle ?? style.button}`} disabled={disabled} {...rest} />
+    <label htmlFor={`${id}`} className={`${wrapperStyle ?? style.wrapper} ${disabled ? disabledWrapperStyle ?? style.disabledWrapper : ''}`}>
+      <input type={`${submit ? 'submit' : 'button'}`} id={id} className={`${buttonStyle ?? style.button}`} disabled={disabled} {...rest} />
       <span className={`${containerStyle ?? style.container}`}>{children}</span>
     </label>
   )
