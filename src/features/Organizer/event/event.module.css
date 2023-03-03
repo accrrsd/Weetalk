@@ -1,0 +1,142 @@
+.event {
+    box-shadow: 0 2.4px 12.1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 32px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--black-lk);
+    margin: 0;
+}
+
+.delete {
+    width: 20px;
+    height: 20px;
+    background-image: url("../../../images/Organizer/delete.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity .2s ease;
+}
+
+.delete:hover {
+    opacity: .8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.date {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+    letter-spacing: 0.02em;
+    color: var(--service-lk);
+}
+
+.edit {
+    text-decoration: none;
+    display: flex;
+    gap: 0 8px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    align-items: center;
+    letter-spacing: 0.02em;
+    color: #1F40DA;
+}
+
+.acc {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 28px 0 0;
+    transition: .3s ease;
+}
+
+.acc::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: 12px;
+    height: 7px;
+    background-image: url("../../../images/Organizer/triangle-arrow.svg");
+    
+}
+
+.content {
+    max-height: 75px;
+    transition: max-height .3s ease, opacity .4s ease;
+    opacity: 1;
+}
+
+.contentHidden {
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .3s ease, opacity .4s ease;
+    max-height: 0;
+}
+
+.divider {
+    margin: 24px 0;
+    width: 100%;
+    background-color: #95949B;
+    height: 1px;
+}
+
+.qr {
+    width: 44px;
+    height: 44px;
+    background-color: #3A65FD;
+    background-image: url("../../../images/Organizer/qr-code.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+}
+
+.menu {
+    display: flex;
+    gap: 0 25px;
+    align-items: center;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    gap: 0 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 0 8px;
+    padding: 8px 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.15px;
+    color: #1F40DA;
+    border: 1px solid #1F40DA;
+    border-radius: 32px;
+    cursor: pointer;
+
+}
