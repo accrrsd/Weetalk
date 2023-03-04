@@ -75,7 +75,6 @@ export const OtpInput = ({ inputName, rules = defaultRules, control, onFullFunc 
       }
     }
     smartSetOtp(newArray)
-    return
   }
 
   const onChange = ({ target }: ChangeEvent<HTMLInputElement>, index: number) => {

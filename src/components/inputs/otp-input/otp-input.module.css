@@ -30,8 +30,17 @@
   letter-spacing: 0.02em;
 
   /* Text/Primary_1 */
+  outline: none;
 
   color: #1d1a4d;
+}
+
+.input:hover {
+  border: 1px solid #85a0ff;
+}
+
+.input:focus {
+  border: 1px solid #294dcf;
 }
 
 .container {

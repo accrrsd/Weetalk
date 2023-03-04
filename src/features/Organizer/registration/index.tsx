@@ -24,7 +24,7 @@ export type TOtpInputCode = {
 }
 
 export default function OrganizerRegistration() {
-  const [stage, setStage] = useState<1 | 2 | 3>(1)
+  const [stage, setStage] = useState<1 | 2 | 3>(2)
   const [email, setEmail] = useState('')
   const navigate = useNavigate()
 

@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+
+  background-image: url('../../../images/Organizer/404.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  max-width: 370px;
+  margin-top: auto;
+  margin-bottom: 149px;
+}
+
+.title {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 140%;
+  /* identical to box height, or 45px */
+
+  margin: 0;
+  margin-bottom: 4px;
+
+  /* Primary_2 */
+
+  color: #1d1a4d;
+}
+
+.text {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  /* or 28px */
+
+  /* Primary_2 */
+
+  color: #1d1a4d;
+
+  margin-bottom: 48px;
+}

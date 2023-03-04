@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from '../../features/Organizer/layout'
+import Organizer404Route from './404'
 import OrganizerForgotPassRoute from './forgotPass'
 import { Home } from './home'
 import OrganizerLoginRoute from './login'
@@ -17,6 +18,7 @@ export default function OrganizerRoutes() {
           <Route index element={<Home />} />
           <Route path="/settings" element={<OrganizerSettingsRoute />} />
         </Route>
+        <Route path="*" element={<Organizer404Route />} />
       </Routes>
     </div>
   )
