@@ -1,7 +1,14 @@
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import { ReactComponent as BluePencil } from '../../../../images/Organizer/pencil.svg'
 import style from './checkEmail.module.css'
 
-export const OrganizerForgotPassCheckEmail = ({ email, onAgainClick }: { email: string; onAgainClick: () => void }) => {
+type TOrganizerForgotPassCheckEmail = {
+  email: string
+  onAgainClick: () => void
+  fetchError?: string
+}
+
+export const OrganizerForgotPassCheckEmail = ({ email, onAgainClick, fetchError }: TOrganizerForgotPassCheckEmail) => {
   return (
     <>
       <h2 className={style.title}>Проверьте вашу почту</h2>
@@ -21,6 +28,7 @@ export const OrganizerForgotPassCheckEmail = ({ email, onAgainClick }: { email: 
           </span>
         </span>
       </div>
+      <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
     </>
   )
 }

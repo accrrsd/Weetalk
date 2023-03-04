@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { TOrganizerForgotPassFormValues } from '..'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import { emailValidationHandler } from '../../../../utils/functions'
 import { TSmallForm } from '../../../../utils/types'
 import style from './form.module.css'
@@ -10,7 +11,7 @@ type TOrganizerForgotPassForm = {
   emailProp: string
 } & TSmallForm<TOrganizerForgotPassFormValues>
 
-const OrganizerForgotPassForm = ({ formHook, onSubmitWrapper, emailProp }: TOrganizerForgotPassForm) => {
+const OrganizerForgotPassForm = ({ formHook, onSubmitWrapper, emailProp, fetchError }: TOrganizerForgotPassForm) => {
   const {
     register,
     handleSubmit,
@@ -42,6 +43,7 @@ const OrganizerForgotPassForm = ({ formHook, onSubmitWrapper, emailProp }: TOrga
           <SubmitButton disabled={!!errors.email || !isDirty}>Сбросить пароль</SubmitButton>
         </form>
       </div>
+      <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
     </>
   )
 }

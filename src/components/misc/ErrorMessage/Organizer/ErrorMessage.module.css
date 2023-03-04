@@ -1,0 +1,31 @@
+.error {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.hypertext {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+
+  /* Primary/Primary_1 */
+
+  color: #3a65fd;
+}
+
+.text {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height */
+
+  letter-spacing: 0.02em;
+
+  /* Text/Grey_2 */
+
+  color: #747386;
+}

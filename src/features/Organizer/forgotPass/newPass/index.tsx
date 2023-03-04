@@ -1,10 +1,11 @@
 import { TOrganizerNewPassValues } from '..'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import { TSmallForm } from '../../../../utils/types'
 import style from './newPass.module.css'
 
-const OrganizerForgotPassNew = ({ formHook, onSubmitWrapper }: TSmallForm<TOrganizerNewPassValues>) => {
+const OrganizerForgotPassNew = ({ formHook, onSubmitWrapper, fetchError = '500' }: TSmallForm<TOrganizerNewPassValues>) => {
   const {
     register,
     handleSubmit,
@@ -30,6 +31,7 @@ const OrganizerForgotPassNew = ({ formHook, onSubmitWrapper }: TSmallForm<TOrgan
         />
         <SubmitButton disabled={!!errors.password || !isDirty}>Обновить пароль</SubmitButton>
       </form>
+      <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
     </>
   )
 }

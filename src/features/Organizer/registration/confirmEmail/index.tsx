@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
-import { TOrganizerRegistrationConfirmEmailChange, TOtpInputCode } from '..'
+import { TOrganizerRegistrationConfirmEmailChangeValues, TOtpInputCodeValues } from '..'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 import { OtpInput } from '../../../../components/inputs/otp-input/otp-input'
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import { ReactComponent as BluePencil } from '../../../../images/Organizer/pencil.svg'
 import { emailValidationHandler } from '../../../../utils/functions'
 import style from './confirmEmail.module.css'
 
 type TOrganizerRegistrationConfirmEmail = {
   email: string
-  onEmailChanged: (data: TOrganizerRegistrationConfirmEmailChange) => void
-  onCodeSubmitted: (data: TOtpInputCode) => void
-  emailFormHook: UseFormReturn<TOrganizerRegistrationConfirmEmailChange, any>
-  codeFormHook: UseFormReturn<TOtpInputCode, any>
+  onEmailChanged: (data: TOrganizerRegistrationConfirmEmailChangeValues) => void
+  onCodeSubmitted: (data: TOtpInputCodeValues) => void
+  emailFormHook: UseFormReturn<TOrganizerRegistrationConfirmEmailChangeValues, any>
+  codeFormHook: UseFormReturn<TOtpInputCodeValues, any>
+  fetchError?: string
 }
 
 export const OrganizerRegistrationConfirmEmail = ({
@@ -22,6 +24,7 @@ export const OrganizerRegistrationConfirmEmail = ({
   onCodeSubmitted,
   emailFormHook,
   codeFormHook,
+  fetchError,
 }: TOrganizerRegistrationConfirmEmail) => {
   const [changeEmail, setChangeEmail] = useState(false)
   const {
@@ -36,7 +39,7 @@ export const OrganizerRegistrationConfirmEmail = ({
     control: handleCodeControl,
   } = codeFormHook
 
-  const onEmailChangedWrapper = (data: TOrganizerRegistrationConfirmEmailChange) => {
+  const onEmailChangedWrapper = (data: TOrganizerRegistrationConfirmEmailChangeValues) => {
     onEmailChanged(data)
     setChangeEmail(false)
   }
@@ -89,6 +92,7 @@ export const OrganizerRegistrationConfirmEmail = ({
           <SubmitButton disabled={!!codeErrors.code || !codeIsDirty}>Подтвердить</SubmitButton>
         </div>
       </form>
+      <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
     </>
   )
 }

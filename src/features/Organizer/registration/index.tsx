@@ -15,22 +15,22 @@ export type TOrganizerRegistrationFormValues = {
   confirm: any
 }
 
-export type TOrganizerRegistrationConfirmEmailChange = {
+export type TOrganizerRegistrationConfirmEmailChangeValues = {
   email: string
 }
 
-export type TOtpInputCode = {
+export type TOtpInputCodeValues = {
   code: string
 }
 
 export default function OrganizerRegistration() {
-  const [stage, setStage] = useState<1 | 2 | 3>(2)
+  const [stage, setStage] = useState<1 | 2 | 3>(1)
   const [email, setEmail] = useState('')
   const navigate = useNavigate()
 
   const registrationFormHook = useForm<TOrganizerRegistrationFormValues>({ mode: 'all' })
-  const codeFormHook = useForm<TOtpInputCode>({ mode: 'all' })
-  const emailChangeFormHook = useForm<TOrganizerRegistrationConfirmEmailChange>({ mode: 'all' })
+  const codeFormHook = useForm<TOtpInputCodeValues>({ mode: 'all' })
+  const emailChangeFormHook = useForm<TOrganizerRegistrationConfirmEmailChangeValues>({ mode: 'all' })
 
   const { setValue: setRegistrationValue } = registrationFormHook
 
@@ -42,11 +42,11 @@ export default function OrganizerRegistration() {
     setStage(2)
   }
 
-  const onEmailChangedStage2 = (data: TOrganizerRegistrationConfirmEmailChange) => {
+  const onEmailChangedStage2 = (data: TOrganizerRegistrationConfirmEmailChangeValues) => {
     setEmail(data.email)
   }
 
-  const onCodeSubmitted = (data: TOtpInputCode) => {}
+  const onCodeSubmitted = (data: TOtpInputCodeValues) => {}
 
   const onRegistrationSuccess = () => {
     navigate('/organizer/')

@@ -14,6 +14,10 @@
 .formWrapper {
   display: flex;
 
+  flex-direction: column;
+
+  gap: 84px;
+
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -25,7 +29,7 @@
 }
 
 .form {
-  margin: 249px 155px 249px 137px;
+  margin: 249px 155px 0 137px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -166,4 +170,8 @@
   background-color: #747386;
   width: 100%;
   height: 2px;
+}
+
+.fetchErrorWrapper {
+  margin-left: 137px;
 }

@@ -18,3 +18,7 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.fetchErrorWrapper {
+  margin-top: 84px;
+}

@@ -4,13 +4,14 @@ import { TOrganizerLoginFormValues } from '..'
 import { LoginWithGoogle } from '../../../../components/buttons/LoginWithGoogle/Organizer'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import { ReactComponent as CheckboxCheckedSvg } from '../../../../images/Organizer/Checked.svg'
 import { ReactComponent as CheckboxEmptySvg } from '../../../../images/Organizer/grayBorder.svg'
 import { emailValidationHandler } from '../../../../utils/functions'
 import { TSmallForm } from '../../../../utils/types'
 import style from './form.module.css'
 
-const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TSmallForm<TOrganizerLoginFormValues>) => {
+const OrganizerLoginForm = ({ formHook, onSubmitWrapper, fetchError }: TSmallForm<TOrganizerLoginFormValues>) => {
   const [checkboxChecked, setCheckboxChecked] = useState(false)
   const navigate = useNavigate()
   const {
@@ -81,6 +82,7 @@ const OrganizerLoginForm = ({ formHook, onSubmitWrapper }: TSmallForm<TOrganizer
               <LoginWithGoogle />
             </div>
           </form>
+          <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
         </div>
       </div>
     </div>

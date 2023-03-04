@@ -10,11 +10,12 @@ import { ReactComponent as CheckboxEmptySvg } from '../../../../images/Organizer
 import { useNavigate } from 'react-router-dom'
 import { LoginWithGoogle } from '../../../../components/buttons/LoginWithGoogle/Organizer'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
+import { ErrorMessage } from '../../../../components/misc/ErrorMessage/Organizer/ErrorMessage'
 import style from './form.module.css'
 
 type TOrganizerRegistrationForm = {} & TSmallForm<TOrganizerRegistrationFormValues>
 
-const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegistrationForm) => {
+const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper, fetchError }: TOrganizerRegistrationForm) => {
   const [checkboxChecked, setCheckboxChecked] = useState(false)
   const navigate = useNavigate()
   const {
@@ -111,6 +112,7 @@ const OrganizerRegistrationForm = ({ formHook, onSubmitWrapper }: TOrganizerRegi
           </span>
         </div>
       </form>
+      <ErrorMessage code={fetchError} additionWrapperClassName={style.fetchErrorWrapper} />
     </>
   )
 }

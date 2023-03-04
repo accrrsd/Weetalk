@@ -131,3 +131,7 @@
 .submitWrapper {
   max-width: 50%;
 }
+
+.fetchErrorWrapper {
+  margin-top: 84px;
+}
