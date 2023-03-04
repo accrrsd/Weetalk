@@ -46,3 +46,11 @@
   user-select: none;
   cursor: pointer;
 }
+
+.backButton:hover {
+  color: #1d1a4d;
+}
+
+.backButton:active {
+  color: #1d1a4d;
+}

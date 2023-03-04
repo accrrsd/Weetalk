@@ -83,6 +83,11 @@
   cursor: pointer;
 }
 
+.hypertext:hover,
+.hypertext:active {
+  color: #00167c;
+}
+
 .bottomText {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-style: normal;

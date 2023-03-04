@@ -1,5 +1,3 @@
-import React from 'react'
-
-export const Settings = () => {
-  return <div>dad</div>
-}
+import OrganizerSettings from '../../../features/Organizer/settings'
+const OrganizerSettingsRoute = () => <OrganizerSettings />
+export default OrganizerSettingsRoute

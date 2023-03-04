@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import styles from './event.module.css'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import editImage from '../../../images/Organizer/bluePencil.svg'
 import miniqr from '../../../images/Organizer/miniqr.svg'
+import editImage from '../../../images/Organizer/pencil.svg'
+import styles from './event.module.css'
 
 // @ts-ignore
 export const Event = ({ roomName, beginingDate, id }) => {
@@ -14,9 +14,7 @@ export const Event = ({ roomName, beginingDate, id }) => {
         <h3 className={styles.title}>{roomName}</h3>
         <button className={styles.delete}></button>
       </div>
-      <p className={styles.date}>
-        {beginingDate ? beginingDate.split('-').join('.') : 'Дата не указана'}
-      </p>
+      <p className={styles.date}>{beginingDate ? beginingDate.split('-').join('.') : 'Дата не указана'}</p>
       <Link to={`/organizer/editEvent/${id}`} className={styles.edit}>
         <img src={editImage} alt="Карандаш" />
         Редактировать

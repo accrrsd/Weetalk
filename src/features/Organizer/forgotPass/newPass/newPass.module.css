@@ -1,0 +1,20 @@
+.title {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 140%;
+  /* identical to box height, or 45px */
+
+  letter-spacing: -0.01em;
+
+  /* Text/Primary_1 */
+
+  color: #1d1a4d;
+}
+.form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

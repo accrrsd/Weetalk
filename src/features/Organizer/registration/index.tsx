@@ -6,6 +6,7 @@ import getMailImage from '../../../images/Organizer/getMail.svg'
 import mainImage from '../../../images/Organizer/OrganizerLogin.svg'
 import { OrganizerRegistrationConfirmEmail } from './confirmEmail'
 import OrganizerRegistrationForm from './form'
+import OrganizerRegistrationSuccess from './success'
 
 export type TOrganizerRegistrationFormValues = {
   fullName: string
@@ -23,7 +24,7 @@ export type TOtpInputCode = {
 }
 
 export default function OrganizerRegistration() {
-  const [stage, setStage] = useState<1 | 2>(2)
+  const [stage, setStage] = useState<1 | 2 | 3>(1)
   const [email, setEmail] = useState('')
   const navigate = useNavigate()
 
@@ -47,11 +48,21 @@ export default function OrganizerRegistration() {
 
   const onCodeSubmitted = (data: TOtpInputCode) => {}
 
+  const onRegistrationSuccess = () => {
+    navigate('/organizer/')
+  }
+
   useEffect(() => {
     setRegistrationValue('email', email)
   }, [email, setRegistrationValue])
 
   switch (stage) {
+    case 3:
+      return (
+        <OrganizerImageFormWrapper image={getMailImage}>
+          <OrganizerRegistrationSuccess redirectFunc={onRegistrationSuccess} />
+        </OrganizerImageFormWrapper>
+      )
     case 2:
       return (
         <OrganizerImageFormWrapper image={getMailImage} backButton onBackClick={onBackClickStage2}>

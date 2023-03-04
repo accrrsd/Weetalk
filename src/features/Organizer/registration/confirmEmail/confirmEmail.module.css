@@ -82,6 +82,11 @@
   color: #1f40da;
 }
 
+.hypertext:hover,
+.hypertext:active {
+  color: #00167c;
+}
+
 .emailForm {
   display: flex;
   flex-direction: column;

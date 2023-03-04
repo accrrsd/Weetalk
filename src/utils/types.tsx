@@ -57,5 +57,5 @@ export type TSelectInputClassNames = {
 
 export type TSmallForm<T extends FieldValues> = {
   formHook: UseFormReturn<T, any>
-  onSubmitWrapper: (data: T) => void
+  onSubmitWrapper: (data: T) => void | Promise<any>
 }

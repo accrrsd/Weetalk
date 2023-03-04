@@ -1,4 +1,4 @@
-import { ReactComponent as BluePencil } from '../../../../images/Organizer/bluePencil.svg'
+import { ReactComponent as BluePencil } from '../../../../images/Organizer/pencil.svg'
 import style from './checkEmail.module.css'
 
 export const OrganizerForgotPassCheckEmail = ({ email, onAgainClick }: { email: string; onAgainClick: () => void }) => {

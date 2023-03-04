@@ -4,7 +4,7 @@ import { TOrganizerRegistrationConfirmEmailChange, TOtpInputCode } from '..'
 import { SubmitButton } from '../../../../components/buttons/SubmitButton/SubmitButton'
 import { OrganizerInput } from '../../../../components/inputs/OrganizerInput/OrganizerInput'
 import { OtpInput } from '../../../../components/inputs/otp-input/otp-input'
-import { ReactComponent as BluePencil } from '../../../../images/Organizer/bluePencil.svg'
+import { ReactComponent as BluePencil } from '../../../../images/Organizer/pencil.svg'
 import { emailValidationHandler } from '../../../../utils/functions'
 import style from './confirmEmail.module.css'
 

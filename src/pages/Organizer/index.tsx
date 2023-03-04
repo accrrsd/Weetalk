@@ -4,7 +4,7 @@ import OrganizerForgotPassRoute from './forgotPass'
 import { Home } from './home'
 import OrganizerLoginRoute from './login'
 import OrganizerRegistrationRoute from './registration'
-import { Settings } from './settings'
+import OrganizerSettingsRoute from './settings'
 
 export default function OrganizerRoutes() {
   return (
@@ -15,7 +15,7 @@ export default function OrganizerRoutes() {
         <Route path="/registration" element={<OrganizerRegistrationRoute />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<OrganizerSettingsRoute />} />
         </Route>
       </Routes>
     </div>
