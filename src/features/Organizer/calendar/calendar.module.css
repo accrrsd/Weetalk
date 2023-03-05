@@ -88,8 +88,11 @@
     box-sizing: border-box;
     border-radius: 8px;
     position: relative;
-
 }
+
+/*.day:hover {
+    background: 	#ededed;
+}*/
 
 .today {
     background: #E5ECFF;

@@ -65,7 +65,9 @@
     background: none;
     border: none;
     cursor: pointer;
+    text-align: left;
     padding: 0 28px 0 0;
+    min-width: 206px;
     transition: .3s ease;
 }
 
@@ -75,10 +77,14 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%) rotate(180deg);
+    transition: .3s ease;
     width: 12px;
     height: 7px;
     background-image: url("../../../images/Organizer/triangle-arrow.svg");
-    
+}
+
+.accActive::after {
+    transform: translateY(-50%) rotate(360deg);
 }
 
 .content {
@@ -126,6 +132,7 @@
 }
 
 .item {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     gap: 0 8px;
@@ -138,5 +145,25 @@
     border: 1px solid #1F40DA;
     border-radius: 32px;
     cursor: pointer;
+    user-select: none;
+    transition: .3s ease;
+}
 
+/*
+.item:hover {
+    background: #85A0FF;
+    border-color: #85A0FF;
+    color: var(--black-lk)
+}
+
+.item:active {
+    color: #fff;
+    background: var(--main-lk);
+    border-color: var(--main-lk);
+}
+*/
+
+.item:last-child {
+    min-width: 169px;
+    justify-content: center;
 }

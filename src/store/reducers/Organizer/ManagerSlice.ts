@@ -1,20 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchManager } from './ActionCreators'
-import { ICard } from '../../../utils/interfaces'
+import { ICard, IRoom } from '../../../utils/interfaces'
 
 interface IData {
   id?: string
   email?: string
   firstName?: string
   lastName?: string
-  rooms?: [
-    {
-      id?: string
-      roomName?: string
-      usersIn?: ICard[]
-      beginingDate?: string | null
-    }
-  ]
+  rooms?: IRoom[]
 }
 
 interface ManagerSlice {

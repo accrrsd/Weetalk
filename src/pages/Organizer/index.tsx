@@ -6,6 +6,8 @@ import { Home } from './home'
 import OrganizerLoginRoute from './login'
 import OrganizerRegistrationRoute from './registration'
 import OrganizerSettingsRoute from './settings'
+import { AddEvent } from './addEvent'
+import { EditEvent } from './editEvent'
 
 export default function OrganizerRoutes() {
   return (
@@ -17,6 +19,7 @@ export default function OrganizerRoutes() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/settings" element={<OrganizerSettingsRoute />} />
+          <Route path="/event/:id" element={<EditEvent />} />
         </Route>
         <Route path="*" element={<Organizer404Route />} />
       </Routes>
