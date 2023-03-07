@@ -54,6 +54,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .input {
+    box-sizing: border-box;
     width: 100%;
     padding: 15.5px 12px;
     background: #FAFAFF;
@@ -71,4 +72,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .form {
     max-width: 460px;
     width: 100%;
+}
+
+.buttonWrapper {
+    margin-top: 100px;
+    display: flex;
+    justify-content: end;
+    gap: 0 32px;
+}
+
+.submitButton {
+    padding: 17.5px 43px;
+    box-shadow: 0 2.43185px 12.1593px rgba(0, 0, 0, 0.2);
+    border-radius: 32px;
+    background: var(--main-lk);
+    font-family: 'Lato', sans-serif;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.button {
+    background: none;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    color: var(--black-lk);
+    cursor: pointer;
 }
