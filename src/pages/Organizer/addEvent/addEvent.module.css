@@ -1,0 +1,74 @@
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0;
+    color: #fff;
+    background-color: var(--main-lk);
+    padding-left: 32px;
+    padding-top: 18.5px;
+    padding-bottom: 18.5px;
+    box-shadow: 0 2.4px 12.1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px 8px 0 0;
+}
+
+.container {
+    background: #FFF;
+    box-shadow: 0 2.43185px 12.1593px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 8px 8px;
+    padding: 30px 57px 30px 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subtitle {
+    margin: 0 0 8px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    color: var(--black-lk);
+}
+
+/*
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+}*/
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.input {
+    width: 100%;
+    padding: 15.5px 12px;
+    background: #FAFAFF;
+    border: 1px solid #E3E1EB;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    color: #747386;
+
+}
+
+.form {
+    max-width: 460px;
+    width: 100%;
+}

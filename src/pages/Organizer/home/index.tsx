@@ -7,6 +7,7 @@ import { useAppSelector } from '../../../hooks/storeHooks'
 import { Event } from '../../../features/Organizer/event'
 import { Oval } from 'react-loader-spinner'
 import { IRoom } from '../../../utils/interfaces'
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
   const { data, isLoading } = useAppSelector(state => state.managerReducer)
@@ -34,6 +35,20 @@ export const Home = () => {
           />
           <div className={styles.wrapper}>
             <div className={styles.events}>
+              <div className={styles.basic}>
+                <div className={styles.basicText}>
+                  <h3 className={styles.basicTitle}>
+                    Доброе утро, {data.firstName}!
+                  </h3>
+                  <p className={styles.basicSubtitle}>
+                    У вас пока нет событий на этой неделе
+                  </p>
+                  <Link to="/organizer/addEvent" className={styles.basicButton}>
+                    Создать
+                  </Link>
+                </div>
+                <img src={basicImage} alt="Фото" />
+              </div>
               {data.rooms && data.rooms.length > 0 ? (
                 data.rooms.map((el: IRoom) => <Event key={el.id} {...el} />)
               ) : (
@@ -51,7 +66,7 @@ export const Home = () => {
                 </div>
               )}
             </div>
-            <Calendar />
+            <Calendar selectedDate={'no-date'} isCreatePage={false} />
           </div>
         </>
       )}

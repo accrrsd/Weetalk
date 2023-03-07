@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import miniqr from '../../../images/Organizer/miniqr.svg'
 import downloadImg from '../../../images/Organizer/download.svg'
 import copyImg from '../../../images/Organizer/copy.svg'
-import editImage from '../../../images/Organizer/pencil.svg'
+import editImage from '../../../images/Organizer/blue-pencil.svg'
 import styles from './event.module.css'
 import { RemoveModal } from '../RemoveModal'
 

@@ -20,6 +20,7 @@ export default function OrganizerRoutes() {
           <Route index element={<Home />} />
           <Route path="/settings" element={<OrganizerSettingsRoute />} />
           <Route path="/event/:id" element={<EditEvent />} />
+          <Route path="/addEvent" element={<AddEvent />} />
         </Route>
         <Route path="*" element={<Organizer404Route />} />
       </Routes>

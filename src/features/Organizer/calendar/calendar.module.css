@@ -90,9 +90,10 @@
     position: relative;
 }
 
-/*.day:hover {
-    background: 	#ededed;
-}*/
+.day:hover {
+    cursor: pointer;
+    background: #ededed;
+}
 
 .today {
     background: #E5ECFF;
@@ -120,4 +121,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.daySelected {
+    background: #ededed;
+/*    color: #1F40DA;*/
 }

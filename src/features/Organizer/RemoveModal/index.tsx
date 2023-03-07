@@ -1,5 +1,6 @@
 import styles from './RemoveModal.module.css'
 import { IRemoveModalProps } from '../../../utils/interfaces'
+import infoImg from '../../../images/Organizer/delete-info.svg'
 
 export const RemoveModal = ({
   active,
@@ -26,8 +27,11 @@ export const RemoveModal = ({
           Вы действительно хотите удалить событие: <br />
           {roomName}?
         </p>
-        <div className={styles.tip}>Вы не сможете восстановить его</div>
-        <button className={styles.bigButton} onClick={() => setActive(false)}>
+        <div className={styles.tip}>
+          <img src={infoImg} alt="Подсказка" />
+          Вы не сможете восстановить его
+        </div>
+        <button className={styles.button} onClick={() => setActive(false)}>
           Удалить
         </button>
       </div>

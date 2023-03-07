@@ -94,3 +94,25 @@
     letter-spacing: 0.02em;
     color: #747386;
 }
+
+.button {
+    background-color: var(--main-lk);
+    border-radius: 32px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 17.5px 0;
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+}
+
+.tip {
+    display: flex;
+    gap: 0 8px;
+    align-items: center;
+}

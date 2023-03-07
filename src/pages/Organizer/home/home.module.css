@@ -13,7 +13,7 @@
 }
 
 .basic {
-    padding: 32px;
+    padding: 44px 48px;
     color: #fff;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -40,6 +40,7 @@
 }
 
 .basicButton {
+    text-decoration: none;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;

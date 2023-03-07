@@ -1,7 +1,8 @@
 import styles from './calendar.module.css'
-import { useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { useAppSelector } from '../../../hooks/storeHooks'
 import { ensure } from '../../../utils/functions'
+import { Dispatch } from 'react'
 
 interface ICalendar {
   index: number
@@ -11,10 +12,44 @@ interface ICalendar {
   eventsDates: Array<string | number>
 }
 
-export const Calendar = () => {
+export const Calendar = ({
+  selectedDate,
+  setSelectedDate,
+  isCreatePage,
+}: {
+  selectedDate: string
+  setSelectedDate?: Dispatch<SetStateAction<string>>
+  isCreatePage: boolean
+}) => {
+  useEffect(() => {
+    getSelectedDate(selectedDate)
+  }, [selectedDate])
+  const [currentMonth, setCurrentMonth] = useState<ICalendar>({
+    index: 0,
+    name: '',
+    days: 0,
+    startWith: '',
+    eventsDates: [],
+  })
+  const [selectedDay, setSelectedDay] = useState('0')
+  console.log(selectedDate)
+  const getSelectedDate = (selectedDate: string) => {
+    const dateArr = selectedDate.split('-')
+    const month = dateArr[1]
+    const day =
+      dateArr[2] && dateArr[2][0] === '0' ? dateArr[2].substring(1) : dateArr[2]
+    console.log(day)
+    setVisibleMonth(isNaN(Number(month) - 1) ? 1 : Number(month) - 1)
+    setSelectedDay(day)
+    console.log(selectedDay)
+  }
+
   const [visibleMonth, setVisibleMonth] = useState<number>(
     new Date().getMonth()
   )
+  useEffect(() => {
+    setCurrentMonth(ensure(calendar.find(el => el.index === visibleMonth)))
+  }, [visibleMonth])
   const { data } = useAppSelector(state => state.managerReducer)
   const weekdays: string[] = ['П', 'В', 'С', 'Ч', 'П', 'С', 'В']
   const currentYear: number = new Date().getFullYear()
@@ -118,13 +153,12 @@ export const Calendar = () => {
       eventsDates: [],
     },
   ]
-  const currentMonth: ICalendar = ensure(
-    calendar.find(el => el.index === visibleMonth)
-  )
   const currentDays: number[] = Array.apply(
     null,
     Array(currentMonth?.days)
   ).map((x, i) => i + 1)
+
+  console.log(currentMonth)
 
   const getEventDates = () => {
     const rooms = data.rooms
@@ -200,12 +234,14 @@ export const Calendar = () => {
     visibleMonth !== 11
       ? setVisibleMonth(state => state + 1)
       : setVisibleMonth(0)
+    setSelectedDay('0')
   }
 
   const prevMonth = () => {
     visibleMonth !== 0
       ? setVisibleMonth(state => state - 1)
       : setVisibleMonth(11)
+    setSelectedDay('0')
   }
 
   return (
@@ -235,8 +271,21 @@ export const Calendar = () => {
                 ? styles.day + ' ' + styles.today
                 : currentMonth.eventsDates.includes(el)
                 ? styles.event + ' ' + styles.day
+                : Number(selectedDay) === el && Number(selectedDay) !== 0
+                ? styles.daySelected + ' ' + styles.day
                 : styles.day
             }
+            style={{ pointerEvents: el === 0 ? 'none' : 'initial' }}
+            onClick={() => {
+              isCreatePage &&
+                setSelectedDate?.(
+                  `2023-${
+                    String(currentMonth.index).split('').length === 1
+                      ? '0' + (currentMonth.index + 1)
+                      : currentMonth.index + 1
+                  }-${String(el).split('').length === 1 ? '0' + el : el}`
+                )
+            }}
           >
             {el === 0 ? ' ' : el}
             {currentMonth.eventsDates.filter(x => x === el).length > 1 && (

@@ -13,7 +13,6 @@ interface IHeader {
 export const Header = ({ headingType, haveCredentials, title }: IHeader) => {
   const navigate = useNavigate()
   const { data, error } = useAppSelector(state => state.managerReducer)
-  console.log(error)
   return (
     <div className={styles.wrapper}>
       {headingType === 'Title' && <h1 className={styles.title}>{title}</h1>}

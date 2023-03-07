@@ -58,6 +58,11 @@
     align-items: center;
     letter-spacing: 0.02em;
     color: #1F40DA;
+    transition: opacity .2s ease;
+}
+
+.edit:hover {
+    opacity: .8;
 }
 
 .acc {
@@ -146,7 +151,11 @@
     border-radius: 32px;
     cursor: pointer;
     user-select: none;
-    transition: .3s ease;
+    transition: .2s ease;
+}
+
+.item:hover, .item:active {
+    background: #E5ECFF;
 }
 
 /*
