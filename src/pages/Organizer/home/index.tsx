@@ -52,18 +52,7 @@ export const Home = () => {
               {data.rooms && data.rooms.length > 0 ? (
                 data.rooms.map((el: IRoom) => <Event key={el.id} {...el} />)
               ) : (
-                <div className={styles.basic}>
-                  <div className={styles.basicText}>
-                    <h3 className={styles.basicTitle}>
-                      Доброе утро, {data.firstName}!
-                    </h3>
-                    <p className={styles.basicSubtitle}>
-                      У вас пока нет событий на этой неделе
-                    </p>
-                    <button className={styles.basicButton}>Создать</button>
-                  </div>
-                  <img src={basicImage} alt="Фото" />
-                </div>
+                <div></div>
               )}
             </div>
             <Calendar selectedDate={'no-date'} isCreatePage={false} />
